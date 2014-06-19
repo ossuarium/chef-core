@@ -1,10 +1,6 @@
-# Chef Skeleton Cookbook for OurTownRentals.com
+# otr Cookbook for OurTownRentals.com
 
 [![All rights reserved](http://img.shields.io/badge/license-All_rights_reserved-red.svg?style=flat)](./LICENSE.txt)
-
-Use this project as a base for testable OurTownRentals.com [Chef] cookbooks.
-
-[Chef]: http://www.getchef.com/chef/
 
 ## Description
 
