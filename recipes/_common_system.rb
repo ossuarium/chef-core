@@ -4,9 +4,8 @@
 #
 
 include_recipe 'annoyances::default'
-include_recipe 'chef-sugar::default'
 include_recipe 'otr::_users'
-include_recipe 'apt::default' if debian?
+include_recipe 'apt::default' if platform_family? 'debian'
 include_recipe 'ntp::default'
 include_recipe 'timezone-ii::default'
 include_recipe 'zsh::default'
