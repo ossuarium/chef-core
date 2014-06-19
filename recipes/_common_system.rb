@@ -3,6 +3,7 @@
 # Recipe:: _common_system
 #
 
+include_recipe 'annoyances::default'
 include_recipe 'chef-sugar::default'
 include_recipe 'otr::_users'
 include_recipe 'apt::default' if debian?
