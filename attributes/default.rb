@@ -1,4 +1,4 @@
 #
-# Cookbook Name:: replace_cookbook
+# Cookbook Name:: otr
 # Attributes:: default
 #
