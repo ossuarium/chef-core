@@ -6,6 +6,7 @@ description      'Core infrastructure for OurTownRentals.com.'
 version          '0.0.0'
 
 depends 'apt', '~> 2.4.0'
+depends 'chef-sugar', '~> 2.0.0'
 depends 'firewall', '~> 0.11.8'
 depends 'ntp', '~> 1.6.2'
 depends 'oh-my-zsh', '~> 0.4.3'
