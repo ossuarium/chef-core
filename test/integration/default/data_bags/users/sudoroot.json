@@ -1,0 +1,9 @@
+{
+  "id": "sudoroot",
+  "groups": [ "sysadmin" ],
+  "uid": 2001,
+  "shell": "\/bin\/zsh",
+  "ssh_keys": [
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCtqRsuQUNOx2ei0mrzp2V47jZZKuw19eYLv3NoPxamf1p3jp6iDCjP8T1+6DZKhf800eOH8QM/5QwlQNLJarEkcSxYd3d8UL6bzSMYchOO7/JOi5lg7cYCRwp3QUUovqeS/zmatf7t6g6wLpc0wA4nYAbHJW/wb1xss+OpFj9AJb8g7/rcuI5nZkpiZmTsfDGQJqfc+x5a2lsGMyh3Lc4eyxUs696oOTWEiEZusls4S8SLAEXZlLAgw5bBhACRZQpB3LKssxyu/RheUyFmfogGU6IutTWpfzJjv6waFXAbbjYDGDNLby3UbfQ2Wu079U41NrLr1FaigLnHJAWtYv9t"
+  ]
+}

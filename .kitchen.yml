@@ -6,11 +6,20 @@ provisioner:
   name: chef_zero
   client_rb:
     ssl_verify_mode: :verify_peer
+  attributes:
+    tz: 'America/Los_Angeles'
+    authorization:
+      sudo:
+        users: [vagrant]
+        passwordless: true
 
 platforms:
   - name: ubuntu-14.04
+  - name: ubuntu-13.04
 
 suites:
   - name: default
     run_list:
       - recipe[otr::default]
+    excludes:
+      - ubuntu-13.04
