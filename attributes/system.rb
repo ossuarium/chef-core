@@ -4,7 +4,7 @@
 #
 
 #
-# Set sudo attributes.
+# Configuration for sudo.
 #
 
 default['authorization']['sudo']['users'] = []
@@ -13,7 +13,7 @@ default['authorization']['sudo']['passwordless'] = true
 default['authorization']['sudo']['include_sudoers_d'] = true
 
 #
-# Set sshd attributes.
+# Configuration for sshd.
 #
 
 default['openssh']['server']['password_authentication'] = 'no'
