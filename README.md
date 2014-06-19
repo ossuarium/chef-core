@@ -16,12 +16,6 @@ Core infrastructure for OurTownRentals.com.
 
 - Ubuntu 14.04
 
-## Attributes
-
-Attribute      | Default           | Description
----------------|-------------------|------------
-`replace_attr` | `replace_default` | replace_default_description
-
 ## Recipes
 
 ### default
