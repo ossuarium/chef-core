@@ -3,6 +3,7 @@
 # Recipe:: deployment
 #
 
+include_recipe 'otr::_common_system'
 include_recipe 'build-essential::default'
 
 #
