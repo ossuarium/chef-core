@@ -92,5 +92,8 @@ end
 # Install rbenv, Ruby, and gems for deployers.
 #
 
+node.set['ruby_build']['upgrade'] = 'sync'
+node.set['rbenv']['upgrade'] = 'sync'
+
 include_recipe 'ruby_build::default'
 include_recipe 'rbenv::user'
