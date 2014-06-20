@@ -7,6 +7,7 @@ version          '0.0.0'
 
 depends 'apt', '~> 2.4.0'
 depends 'annoyances', '~> 1.0.0'
+depends 'build-essential', '~> 2.0.4'
 depends 'firewall', '~> 0.11.8'
 depends 'ntp', '~> 1.6.2'
 depends 'nodejs'

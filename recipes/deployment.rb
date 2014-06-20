@@ -3,6 +3,8 @@
 # Recipe:: deployment
 #
 
+include_recipe 'build-essential::default'
+
 #
 # Setup deployer user.
 #
