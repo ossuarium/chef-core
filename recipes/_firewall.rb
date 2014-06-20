@@ -26,3 +26,19 @@ execute 'ufw limit ssh/tcp' do
   action :run
   not_if 'ufw status | grep LIMIT'
 end
+
+#
+# Open ports based on enabled servers.
+#
+
+firewall_rule 'http' do
+  protocol :tcp
+  port 80
+  action node['otr']['servers']['http'] ? :allow : :reject
+end
+
+firewall_rule 'https' do
+  protocol :tcp
+  port 443
+  action node['otr']['servers']['https'] ? :allow : :reject
+end

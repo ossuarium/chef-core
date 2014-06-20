@@ -36,6 +36,14 @@ a Ruby version and a set of default gems (including Bundler).
 
 See the [deployment attributes](./attributes/deployment.rb) for default values.
 
+### lamp_app_server
+
+This installs the Apache HTTP Server, MySQL client, PHP-FPM,
+and the necessary modules to host a PHP application using mod_fastcgi.
+
+This also installs the [database cookbook].
+
+[database cookbook]: http://community.opscode.com/cookbooks/database
 [users cookbook]: http://community.opscode.com/cookbooks/users
 
 ## Development and Testing

@@ -25,3 +25,12 @@ suites:
   - name: deployment
     run_list:
       - recipe[otr::deployment]
+
+  - name: lamp-app
+    # Must set apache version at the node level.
+    # See [issue 142](https://github.com/onehealth-cookbooks/apache2/issues/142).
+    attributes:
+      apache:
+        version: "2.4"
+    run_list:
+      - recipe[otr::lamp_app_server]
