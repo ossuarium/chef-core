@@ -26,6 +26,8 @@ Configures a minimal base system.
 
 Sets up the deployer user and deployers group.
 
+_This recipe should generally be placed neat the end of the run list._
+
 Users are added to the deployers groups using the [users cookbook]
 with the group name `deployers`.
 
