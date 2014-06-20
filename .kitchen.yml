@@ -16,14 +16,11 @@ provisioner:
 
 platforms:
   - name: ubuntu-14.04
-  - name: ubuntu-13.04
 
 suites:
   - name: default
     run_list:
       - recipe[otr::default]
-    excludes:
-      - ubuntu-13.04
 
   - name: deployment
     run_list:
