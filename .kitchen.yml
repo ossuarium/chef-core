@@ -24,3 +24,8 @@ suites:
       - recipe[otr::default]
     excludes:
       - ubuntu-13.04
+
+  - name: deployment
+    run_list:
+      - recipe[otr::default]
+      - recipe[otr::deployment]

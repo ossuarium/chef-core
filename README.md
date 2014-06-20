@@ -22,6 +22,22 @@ Core infrastructure for OurTownRentals.com.
 
 Configures a minimal base system.
 
+### deployment
+
+Sets up the deployer user and deployers group.
+
+Users are added to the deployers groups using the [users cookbook]
+with the group name `deployers`.
+
+This installs nodejs and a set of default npm packages.
+
+This installs rbenv for each deployer along with
+a Ruby version and a set of default gems (including Bundler).
+
+See the [deployment attributes](./attributes/deployment.rb) for default values.
+
+[users cookbook]: http://community.opscode.com/cookbooks/users
+
 ## Development and Testing
 
 ### Source Code
