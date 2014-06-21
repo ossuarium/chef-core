@@ -23,14 +23,37 @@ suites:
       - recipe[otr::default]
 
   - name: deployment
+    driver:
+      network:
+        - ["private_network", {ip: "10.10.10.100"}]
+        - ["forwarded_port", {guest: 20, host: 2201}]
     run_list:
       - recipe[otr::deployment]
 
+  - name: mysql-server
+    driver:
+      network:
+        - ["private_network", {ip: "10.10.10.101"}]
+        - ["forwarded_port", {guest: 80, host: 8181}]
+        - ["forwarded_port", {guest: 443, host: 4431}]
+    run_list:
+      - recipe[otr::mysql_server]
+    attributes:
+      mysql:
+        server_root_password: password
+      otr:
+        mysql_admin: true
+
   - name: lamp-app
+    driver:
+      network:
+        - ["private_network", {ip: "10.10.10.102"}]
+        - ["forwarded_port", {guest: 80, host: 8182}]
+        - ["forwarded_port", {guest: 443, host: 4432}]
+    run_list:
+      - recipe[otr::lamp_app_server]
     # Must set apache version at the node level.
     # See [issue 142](https://github.com/onehealth-cookbooks/apache2/issues/142).
     attributes:
       apache:
         version: "2.4"
-    run_list:
-      - recipe[otr::lamp_app_server]

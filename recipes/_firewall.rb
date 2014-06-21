@@ -42,3 +42,9 @@ firewall_rule 'https' do
   port 443
   action node['otr']['servers']['https'] ? :allow : :reject
 end
+
+firewall_rule 'mysql' do
+  protocol :tcp
+  port node['mysql']['port'].to_i
+  action node['otr']['servers']['mysql'] ? :allow : :reject
+end

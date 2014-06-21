@@ -28,3 +28,4 @@ default['openssh']['server']['t_c_p_keep_alive'] = 'yes'
 
 default['otr']['servers']['http'] = false
 default['otr']['servers']['https'] = false
+default['otr']['servers']['mysql'] = false
