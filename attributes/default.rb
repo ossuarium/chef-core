@@ -11,9 +11,11 @@ default['otr']['run_dir'] = '/var/run'
 # These will be enabled automatically by recipes that need them.
 #
 
-default['otr']['servers']['http'] = false
-default['otr']['servers']['https'] = false
-default['otr']['servers']['mysql'] = false
+default['otr']['servers'] = {
+  http: false,
+  https: false,
+  mysql: false,
+}
 
 #
 # Configuration for phpMyAdmin.
