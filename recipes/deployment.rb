@@ -3,6 +3,13 @@
 # Recipe:: deployment
 #
 
+#
+# Set git references to use for ruby-build and rbenv.
+#
+
+node.default['ruby_build']['git_ref'] = 'master'
+node.default['rbenv']['git_ref'] = 'master'
+
 include_recipe 'otr::_common_system'
 include_recipe 'build-essential::default'
 

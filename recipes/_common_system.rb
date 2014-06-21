@@ -3,6 +3,28 @@
 # Recipe:: _common_system
 #
 
+#
+# Configuration for sudo.
+#
+
+node.default['authorization']['sudo']['users'] = []
+node.default['authorization']['sudo']['groups'] = ['sysadmin']
+node.default['authorization']['sudo']['passwordless'] = true
+node.default['authorization']['sudo']['include_sudoers_d'] = true
+
+#
+# Configuration for sshd.
+#
+
+node.default['openssh']['server']['password_authentication'] = 'no'
+node.default['openssh']['server']['challenge_response_authentication'] = 'no'
+node.default['openssh']['server']['permit_root_login'] = 'no'
+node.default['openssh']['server']['t_c_p_keep_alive'] = 'yes'
+
+#
+# Include common recipes.
+#
+
 include_recipe 'annoyances::default'
 include_recipe 'otr::_users'
 include_recipe 'apt::default' if platform_family? 'debian'

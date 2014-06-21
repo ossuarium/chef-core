@@ -27,10 +27,6 @@ default['otr']['deployers']['gid'] = 3300
 # Directory under each deployer's home directory to put deployments.
 default['otr']['deployers']['deployments_dir'] = 'deployments'
 
-# Git references to use for ruby-build and rbenv.
-default['ruby_build']['git_ref'] = 'master'
-default['rbenv']['git_ref'] = 'master'
-
 # Ruby version each deployer will use.
 default['otr']['deployers']['ruby_version'] = '2.1.2'
 
