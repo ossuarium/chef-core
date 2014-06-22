@@ -5,6 +5,8 @@ license          'All rights reserved'
 description      'Core infrastructure for OurTownRentals.com.'
 version          '0.0.0'
 
+supports 'Ubuntu', '14.04'
+
 depends 'apache2', '~> 1.8.15'
 depends 'apt', '~> 2.4.0'
 depends 'annoyances', '~> 1.0.0'
@@ -26,3 +28,7 @@ depends 'timezone-ii', '~> 0.2.0'
 depends 'users', '~> 1.7.0'
 depends 'vim', '~> 1.1.2'
 depends 'zsh', '~> 1.0.0'
+
+recipe 'otr::default', 'Configures a minimal base system.'
+recipe 'otr::deployment', 'Sets up the deployer user and deployers group.'
+recipe 'otr::lamp_app_server', 'Configures the Apache HTTP Server, MySQL client, PHP-FPM.'

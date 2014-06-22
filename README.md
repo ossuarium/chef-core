@@ -1,4 +1,4 @@
-# otr Cookbook for OurTownRentals.com
+# otr
 
 [![All rights reserved](http://img.shields.io/badge/license-All_rights_reserved-red.svg?style=flat)](./LICENSE.txt)
 
@@ -8,52 +8,66 @@ Core infrastructure for OurTownRentals.com.
 
 ## Requirements
 
-### Platform
+### Platforms
 
-- [Ubuntu](http://www.ubuntu.com/)
+* Ubuntu (14.04)
 
-**Tested on:**
+### Cookbooks:
 
-- Ubuntu 14.04
+* apache2 (~> 1.8.15)
+* apt (~> 2.4.0)
+* annoyances (~> 1.0.0)
+* build-essential (~> 2.0.4)
+* database (~> 2.2.0)
+* firewall (~> 0.11.8)
+* mysql (~> 5.3.6)
+* nginx (~> 2.7.2)
+* ntp (~> 1.6.2)
+* nodejs (~> 1.3.0)
+* oh-my-zsh (~> 0.4.3)
+* openssh (~> 1.3.4)
+* php (~> 1.2.0)
+* phpmyadmin (~> 1.0.6)
+* rbenv (~> 0.7.3)
+* ruby_build (~> 0.8.0)
+* sudo (~> 2.6.0)
+* timezone-ii (~> 0.2.0)
+* users (~> 1.7.0)
+* vim (~> 1.1.2)
+* zsh (~> 1.0.0)
+
+## Attributes
+
+Attribute | Default | Description | Choices
+----------|---------|-------------|--------
+`node['otr']['run_dir']` | `"/var/run"` |  |
+`node['otr']['servers']` | `"{ ... }"` |  |
+`node['otr']['phpmyadmin']['pma_database']` | `"phpmyadmin"` |  |
+`node['otr']['phpmyadmin']['pma_username']` | `"phpmyadmin"` |  |
+`node['otr']['deployer']['user']` | `"deployer"` |  |
+`node['otr']['deployer']['home_dir']` | `"/home/\#{node['otr']['deployer']['user']}"` |  |
+`node['otr']['deployer']['sudo_commands']` | `"[ ... ]"` |  |
+`node['otr']['deployers']['name']` | `"deployers"` |  |
+`node['otr']['deployers']['gid']` | `"3300"` |  |
+`node['otr']['deployers']['deployments_dir']` | `"deployments"` |  |
+`node['otr']['deployers']['ruby_version']` | `"2.1.2"` |  |
+`node['otr']['deployers']['gems']` | `"[ ... ]"` |  |
+`node['otr']['deployers']['npm']['packages']` | `"{ ... }"` |  |
+`node['otr']['deployers']['dirs']` | `"[ ... ]"` |  |
+`node['otr']['deployers']['files']` | `"{ ... }"` |  |
 
 ## Recipes
 
-### default
-
-Configures a minimal base system.
-
-### deployment
-
-Sets up the deployer user and deployers group.
-
-_This recipe should generally be placed neat the end of the run list._
-
-Users are added to the deployers groups using the [users cookbook]
-with the group name `deployers`.
-
-This installs nodejs and a set of default npm packages.
-
-This installs rbenv for each deployer along with
-a Ruby version and a set of default gems (including Bundler).
-
-See the [deployment attributes](./attributes/deployment.rb) for default values.
-
-### lamp_app_server
-
-This installs the Apache HTTP Server, MySQL client, PHP-FPM,
-and the necessary modules to host a PHP application using mod_fastcgi.
-
-This also installs the [database cookbook].
-
-[database cookbook]: http://community.opscode.com/cookbooks/database
-[users cookbook]: http://community.opscode.com/cookbooks/users
+* otr::default - Configures a minimal base system.
+* otr::deployment - Sets up the deployer user and deployers group.
+* otr::lamp_app_server - Configures the Apache HTTP Server, MySQL client, PHP-FPM.
 
 ## Development and Testing
 
 ### Source Code
 
 The [otr source](https://bitbucket.org/ourtownrentals/chef-otr)
-is hosted on GitHub.
+is hosted on Bitbucket.
 To clone the project run
 
 ````bash
@@ -66,10 +80,12 @@ Run `rake -T` to see all Rake tasks.
 
 ````
 rake all                          # Run all tasks
+rake doc                          # Build documentation
 rake foodcritic                   # Lint Chef cookbooks
 rake kitchen:all                  # Run all test instances
 rake kitchen:default-centos-65    # Run default-centos-65 test instance
 rake kitchen:default-ubuntu-1404  # Run default-ubuntu-1404 test instance
+rake readme                       # Generate README.md from _README.md.erb
 rake rubocop                      # Run RuboCop
 rake rubocop:auto_correct         # Auto-correct RuboCop offenses
 rake spec                         # Run RSpec code examples
@@ -99,7 +115,7 @@ Please submit and comment on bug reports and feature requests.
 
 To submit a patch:
 
-1. Fork it.
+1. Fork it (https://bitbucket.org/ourtownrentals/chef-otr/fork).
 2. Create your feature branch (`git checkout -b my-new-feature`).
 3. Make changes. Write and run tests.
 4. Commit your changes (`git commit -am 'Add some feature'`).
