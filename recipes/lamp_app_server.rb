@@ -3,6 +3,17 @@
 # Recipe:: lamp_app_server
 #
 
+=begin
+#<
+This installs the Apache HTTP Server, MySQL client, PHP-FPM,
+and the necessary modules to host a PHP application using mod_fastcgi.
+
+This also installs the [database cookbook].
+
+[database cookbook]: http://community.opscode.com/cookbooks/database
+#>
+=end
+
 node.default['otr']['servers']['http'] = true
 node.default['otr']['servers']['https'] = true
 

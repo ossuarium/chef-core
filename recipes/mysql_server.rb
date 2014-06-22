@@ -3,6 +3,13 @@
 # Recipe:: mysql_server
 #
 
+=begin
+#<
+This will configure a MySQL server and optionally
+setup phpMyAdmin running on Nginx using FastCGI and PHP-FPM.
+#>
+=end
+
 ::Chef::Recipe.send :include, Opscode::OpenSSL::Password
 
 node.set_unless['mysql']['server_root_password'] = secure_password

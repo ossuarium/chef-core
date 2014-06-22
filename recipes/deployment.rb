@@ -3,6 +3,22 @@
 # Recipe:: deployment
 #
 
+=begin
+#<
+_This recipe should generally be placed near the end of the run list._
+
+Users are added to the deployers groups using the [users cookbook]
+with the group name `deployers`.
+
+This installs nodejs and a set of default npm packages.
+
+This installs rbenv for each deployer along with
+a Ruby version and a set of default gems (including Bundler).
+
+[users cookbook]: http://community.opscode.com/cookbooks/users
+#>
+=end
+
 #
 # Set git references to use for ruby-build and rbenv.
 #

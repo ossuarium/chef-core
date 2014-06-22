@@ -59,8 +59,37 @@ Attribute | Default | Description | Choices
 ## Recipes
 
 * otr::default - Configures a minimal base system.
-* otr::deployment - Sets up the deployer user and deployers group.
-* otr::lamp_app_server - Configures the Apache HTTP Server, MySQL client, PHP-FPM.
+* [otr::deployment](#otrdeployment) - Sets up the deployer user and deployers group.
+* [otr::lamp_app_server](#otrlamp_app_server) - Configures the Apache HTTP Server, MySQL client, PHP-FPM.
+* [otr::mysql_server](#otrmysql_server) - Configures a MySQL server.
+
+### otr::deployment
+
+_This recipe should generally be placed near the end of the run list._
+
+Users are added to the deployers groups using the [users cookbook]
+with the group name `deployers`.
+
+This installs nodejs and a set of default npm packages.
+
+This installs rbenv for each deployer along with
+a Ruby version and a set of default gems (including Bundler).
+
+[users cookbook]: http://community.opscode.com/cookbooks/users
+
+### otr::lamp_app_server
+
+This installs the Apache HTTP Server, MySQL client, PHP-FPM,
+and the necessary modules to host a PHP application using mod_fastcgi.
+
+This also installs the [database cookbook].
+
+[database cookbook]: http://community.opscode.com/cookbooks/database
+
+### otr::mysql_server
+
+This will configure a MySQL server and optionally
+setup phpMyAdmin running on Nginx using FastCGI and PHP-FPM.
 
 ## Development and Testing
 
