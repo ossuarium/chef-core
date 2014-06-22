@@ -33,3 +33,17 @@ recipe 'otr::default', 'Configures a minimal base system.'
 recipe 'otr::deployment', 'Sets up the deployer user and deployers group.'
 recipe 'otr::lamp_app_server', 'Configures the Apache HTTP Server, MySQL client, PHP-FPM.'
 recipe 'otr::mysql_server', 'Configures a MySQL server.'
+
+attribute 'otr/phpmyadmin/pma_database',
+  display_name: 'phpMyAdmin database name',
+  description: 'Name to use for the phpMyAdmin control database.',
+  type: 'string',
+  recipes: ['otr::mysql_server'],
+  default: 'phpmyadmin'
+
+attribute 'otr/phpmyadmin/pma_username',
+  display_name: 'phpMyAdmin database username',
+  description: 'MySQL username for access to the phpMyAdmin control database.',
+  type: 'string',
+  recipes: ['otr::mysql_server'],
+  default: 'phpmyadmin'

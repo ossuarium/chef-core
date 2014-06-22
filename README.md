@@ -40,21 +40,8 @@ Core infrastructure for OurTownRentals.com.
 
 Attribute | Default | Description | Choices
 ----------|---------|-------------|--------
-`node['otr']['run_dir']` | `"/var/run"` |  |
-`node['otr']['servers']` | `"{ ... }"` |  |
-`node['otr']['phpmyadmin']['pma_database']` | `"phpmyadmin"` |  |
-`node['otr']['phpmyadmin']['pma_username']` | `"phpmyadmin"` |  |
-`node['otr']['deployer']['user']` | `"deployer"` |  |
-`node['otr']['deployer']['home_dir']` | `"/home/\#{node['otr']['deployer']['user']}"` |  |
-`node['otr']['deployer']['sudo_commands']` | `"[ ... ]"` |  |
-`node['otr']['deployers']['name']` | `"deployers"` |  |
-`node['otr']['deployers']['gid']` | `"3300"` |  |
-`node['otr']['deployers']['deployments_dir']` | `"deployments"` |  |
-`node['otr']['deployers']['ruby_version']` | `"2.1.2"` |  |
-`node['otr']['deployers']['gems']` | `"[ ... ]"` |  |
-`node['otr']['deployers']['npm']['packages']` | `"{ ... }"` |  |
-`node['otr']['deployers']['dirs']` | `"[ ... ]"` |  |
-`node['otr']['deployers']['files']` | `"{ ... }"` |  |
+`node['otr']['phpmyadmin']['pma_database']` | `"phpmyadmin"` | Name to use for the phpMyAdmin control database. |
+`node['otr']['phpmyadmin']['pma_username']` | `"phpmyadmin"` | MySQL username for access to the phpMyAdmin control database. |
 
 ## Recipes
 
