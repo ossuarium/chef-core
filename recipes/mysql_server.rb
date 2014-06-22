@@ -14,6 +14,8 @@ setup phpMyAdmin running on Nginx using FastCGI and PHP-FPM.
 
 node.set_unless['mysql']['server_root_password'] = secure_password
 
+node.default['otr']['servers']['mysql'] = true
+
 if node['otr']['mysql_admin']
   node.default['otr']['servers']['http'] = true
   node.default['otr']['servers']['https'] = true
