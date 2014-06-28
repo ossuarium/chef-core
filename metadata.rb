@@ -35,15 +35,15 @@ recipe 'otr::lamp_app_server', 'Configures the Apache HTTP Server, MySQL client,
 recipe 'otr::mysql_server', 'Configures a MySQL server.'
 
 attribute 'otr/phpmyadmin/pma_database',
-  display_name: 'phpMyAdmin database name',
-  description: 'Name to use for the phpMyAdmin control database.',
-  type: 'string',
-  recipes: ['otr::mysql_server'],
-  default: 'phpmyadmin'
+          display_name: 'phpMyAdmin database name',
+          description: 'Name to use for the phpMyAdmin control database.',
+          type: 'string',
+          recipes: ['otr::mysql_server'],
+          default: 'phpmyadmin'
 
 attribute 'otr/phpmyadmin/pma_username',
-  display_name: 'phpMyAdmin database username',
-  description: 'MySQL username for access to the phpMyAdmin control database.',
-  type: 'string',
-  recipes: ['otr::mysql_server'],
-  default: 'phpmyadmin'
+          display_name: 'phpMyAdmin database username',
+          description: 'MySQL username for access to the phpMyAdmin control database.',
+          type: 'string',
+          recipes: ['otr::mysql_server'],
+          default: 'phpmyadmin'
