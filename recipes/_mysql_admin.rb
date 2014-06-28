@@ -49,10 +49,3 @@ phpmyadmin_db node['hostname'] do
   auth_type 'cookie'
   hide_dbs %w(information_schema mysql phpmyadmin performance_schema)
 end
-
-# This is required to enable the PHP MCrypt module on Ubuntu 14.04.
-# @todo Remove this when [php issue 20] is closed.
-# [php issue 20]: https://github.com/priestjim/chef-php/issues/20
-execute 'php5enmod mcrypt' do
-  notifies :restart, 'service[php5-fpm]'
-end
