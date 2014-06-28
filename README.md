@@ -42,6 +42,17 @@ Attribute | Default | Description | Choices
 ----------|---------|-------------|--------
 `node['otr']['phpmyadmin']['pma_database']` | `"phpmyadmin"` | Name to use for the phpMyAdmin control database. |
 `node['otr']['phpmyadmin']['pma_username']` | `"phpmyadmin"` | MySQL username for access to the phpMyAdmin control database. |
+`node['otr']['deployer']['user']` | `"deployer"` | System username for the deployer user. |
+`node['otr']['deployer']['home_dir']` | `"/home/node['otr']['deployer']['user']"` | Home directory for the deployer user. |
+`node['otr']['deployer']['sudo_commands']` | `["/bin/chgrp"]` | Commands the deployer user is allowed to run as root using sudo. |
+`node['otr']['deployers']['name']` | `"deployers"` | Group name for the deployers group. |
+`node['otr']['deployers']['gid']` | `3300` | Group id for the deployers group. |
+`node['otr']['deployers']['deployments_dir']` | `"deployments"` | Directory under each deploy user's home directory for deployments. |
+`node['otr']['deployers']['ruby_version']` | `"2.1.2"` | Ruby version each deployer will use. |
+`node['otr']['deployers']['gems']` | `[{"name"=>"bundler", "version"=>"~> 1.6"}]` | Ruby gems to install for each deployer. |
+`node['otr']['deployers']['npm_packages']` | `[{"name"=>"bower", "version"=>"1.3.5"}]` | Node packages to install via npm for each deployer. |
+`node['otr']['deployers']['dirs']` | `[".bundle"]` | Directories to create under each deployer's home directory. |
+`node['otr']['deployers']['files']` | `{"ruby-.gemrc"=>".gemrc", "bundler-config"=>".bundle/config"}` | Files to create under each deployer's home directory. |
 
 ## Recipes
 

@@ -105,9 +105,9 @@ end
 
 include_recipe 'nodejs::default'
 
-node['otr']['deployers']['npm']['packages'].each do |pkg, ver|
-  nodejs_npm pkg do
-    version ver
+node['otr']['deployers']['npm_packages'].each do |pkg|
+  nodejs_npm pkg[:name] do
+    version pkg[:version]
     action :install
   end
 end

@@ -36,14 +36,102 @@ recipe 'otr::mysql_server', 'Configures a MySQL server.'
 
 attribute 'otr/phpmyadmin/pma_database',
           display_name: 'phpMyAdmin database name',
-          description: 'Name to use for the phpMyAdmin control database.',
+          description: %q{Name to use for the phpMyAdmin control database.},
           type: 'string',
           recipes: ['otr::mysql_server'],
           default: 'phpmyadmin'
 
 attribute 'otr/phpmyadmin/pma_username',
           display_name: 'phpMyAdmin database username',
-          description: 'MySQL username for access to the phpMyAdmin control database.',
+          description: %q{MySQL username for access to the phpMyAdmin control database.},
           type: 'string',
           recipes: ['otr::mysql_server'],
           default: 'phpmyadmin'
+
+attribute 'otr/deployer/user',
+          display_name: 'Deployer username',
+          description: %q{System username for the deployer user.},
+          type: 'string',
+          recipes: ['otr::deployment'],
+          default: 'deployer'
+
+attribute 'otr/deployer/home_dir',
+          display_name: 'Deployer home directory',
+          description: %q{Home directory for the deployer user.},
+          type: 'string',
+          recipes: ['otr::deployment'],
+          default: %q{/home/node['otr']['deployer']['user']}
+
+attribute 'otr/deployer/sudo_commands',
+          display_name: 'Deployer sudo commands',
+          description: %q{Commands the deployer user is allowed to run as root using sudo.},
+          type: 'array',
+          recipes: ['otr::deployment'],
+          default: [
+            '/bin/chgrp',
+          ]
+
+attribute 'otr/deployers/name',
+          display_name: 'Deployers group',
+          description: %q{Group name for the deployers group.},
+          type: 'string',
+          recipes: ['otr::deployment'],
+          default: 'deployers'
+
+attribute 'otr/deployers/gid',
+          display_name: 'Deployers group id',
+          description: %q{Group id for the deployers group.},
+          type: 'numeric',
+          recipes: ['otr::deployment'],
+          default: 3300
+
+attribute 'otr/deployers/deployments_dir',
+          display_name: 'Deployers deployments directory',
+          description: %q{Directory under each deploy user's home directory for deployments.},
+          type: 'string',
+          recipes: ['otr::deployment'],
+          default: 'deployments'
+
+attribute 'otr/deployers/ruby_version',
+          display_name: 'Deployers Ruby version',
+          description: %q{Ruby version each deployer will use.},
+          type: 'string',
+          recipes: ['otr::deployment'],
+          default: '2.1.2'
+
+attribute 'otr/deployers/gems',
+          display_name: 'Deployers Ruby gems',
+          description: %q{Ruby gems to install for each deployer.},
+          type: 'array',
+          recipes: ['otr::deployment'],
+          default: [
+            {name: 'bundler', version: '~> 1.6'},
+          ]
+
+attribute 'otr/deployers/npm_packages',
+          display_name: 'Deployers Node packages',
+          description: %q{Node packages to install via npm for each deployer.},
+          type: 'array',
+          recipes: ['otr::deployment'],
+          default: [
+            {name: 'bower', version: '1.3.5'},
+          ]
+
+attribute 'otr/deployers/dirs',
+          display_name: 'Deployers directories',
+          description: %q{Directories to create under each deployer's home directory.},
+          type: 'array',
+          recipes: ['otr::deployment'],
+          default: [
+            '.bundle',
+          ]
+
+attribute 'otr/deployers/files',
+          display_name: 'Deployers files',
+          description: %q{Files to create under each deployer's home directory.},
+          type: 'hash',
+          recipes: ['otr::deployment'],
+          default: {
+            'ruby-.gemrc' => '.gemrc',
+            'bundler-config' => '.bundle/config',
+          }
