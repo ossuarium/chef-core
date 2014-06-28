@@ -14,7 +14,7 @@ Core infrastructure for OurTownRentals.com.
 
 ### Cookbooks:
 
-* apache2 (~> 1.8.15)
+* apache2 (~> 1.10.5)
 * apt (~> 2.4.0)
 * annoyances (~> 1.0.0)
 * build-essential (~> 2.0.4)
@@ -26,7 +26,7 @@ Core infrastructure for OurTownRentals.com.
 * nodejs (~> 1.3.0)
 * oh-my-zsh (~> 0.4.3)
 * openssh (~> 1.3.4)
-* php (~> 1.2.0)
+* php (~> 1.2.3)
 * phpmyadmin (~> 1.0.6)
 * rbenv (~> 0.7.3)
 * ruby_build (~> 0.8.0)
@@ -64,6 +64,7 @@ a Ruby version and a set of default gems (including Bundler).
 
 [users cookbook]: http://community.opscode.com/cookbooks/users
 
+
 ### otr::lamp_app_server
 
 This installs the Apache HTTP Server, MySQL client, PHP-FPM,
@@ -73,10 +74,12 @@ This also installs the [database cookbook].
 
 [database cookbook]: http://community.opscode.com/cookbooks/database
 
+
 ### otr::mysql_server
 
 This will configure a MySQL server and optionally
 setup phpMyAdmin running on Nginx using FastCGI and PHP-FPM.
+
 
 ## Development and Testing
 
