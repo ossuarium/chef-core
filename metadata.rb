@@ -34,20 +34,6 @@ recipe 'otr::deployment', 'Sets up the deployer user and deployers group.'
 recipe 'otr::lamp_app_server', 'Configures the Apache HTTP Server, MySQL client, PHP-FPM.'
 recipe 'otr::mysql_server', 'Configures a MySQL server.'
 
-attribute 'otr/phpmyadmin/pma_database',
-          display_name: 'phpMyAdmin database name',
-          description: %q{Name to use for the phpMyAdmin control database.},
-          type: 'string',
-          recipes: ['otr::mysql_server'],
-          default: 'phpmyadmin'
-
-attribute 'otr/phpmyadmin/pma_username',
-          display_name: 'phpMyAdmin database username',
-          description: %q{MySQL username for access to the phpMyAdmin control database.},
-          type: 'string',
-          recipes: ['otr::mysql_server'],
-          default: 'phpmyadmin'
-
 attribute 'otr/deployer/user',
           display_name: 'Deployer username',
           description: %q{System username for the deployer user.},
@@ -92,31 +78,6 @@ attribute 'otr/deployers/deployments_dir',
           recipes: ['otr::deployment'],
           default: 'deployments'
 
-attribute 'otr/deployers/ruby_version',
-          display_name: 'Deployers Ruby version',
-          description: %q{Ruby version each deployer will use.},
-          type: 'string',
-          recipes: ['otr::deployment'],
-          default: '2.1.2'
-
-attribute 'otr/deployers/gems',
-          display_name: 'Deployers Ruby gems',
-          description: %q{Ruby gems to install for each deployer.},
-          type: 'array',
-          recipes: ['otr::deployment'],
-          default: [
-            {name: 'bundler', version: '~> 1.6'},
-          ]
-
-attribute 'otr/deployers/npm_packages',
-          display_name: 'Deployers Node packages',
-          description: %q{Node packages to install via npm for each deployer.},
-          type: 'array',
-          recipes: ['otr::deployment'],
-          default: [
-            {name: 'bower', version: '1.3.5'},
-          ]
-
 attribute 'otr/deployers/dirs',
           display_name: 'Deployers directories',
           description: %q{Directories to create under each deployer's home directory.},
@@ -135,3 +96,42 @@ attribute 'otr/deployers/files',
             'ruby-.gemrc' => '.gemrc',
             'bundler-config' => '.bundle/config',
           }
+
+attribute 'otr/deployers/npm_packages',
+          display_name: 'Deployers Node packages',
+          description: %q{Node packages to install via npm for each deployer.},
+          type: 'array',
+          recipes: ['otr::deployment'],
+          default: [
+            {name: 'bower', version: '1.3.5'},
+          ]
+
+attribute 'otr/deployers/ruby_version',
+          display_name: 'Deployers Ruby version',
+          description: %q{Ruby version each deployer will use.},
+          type: 'string',
+          recipes: ['otr::deployment'],
+          default: '2.1.2'
+
+attribute 'otr/deployers/gems',
+          display_name: 'Deployers Ruby gems',
+          description: %q{Ruby gems to install for each deployer.},
+          type: 'array',
+          recipes: ['otr::deployment'],
+          default: [
+            {name: 'bundler', version: '~> 1.6'},
+          ]
+
+attribute 'otr/phpmyadmin/pma_database',
+          display_name: 'phpMyAdmin database name',
+          description: %q{Name to use for the phpMyAdmin control database.},
+          type: 'string',
+          recipes: ['otr::mysql_server'],
+          default: 'phpmyadmin'
+
+attribute 'otr/phpmyadmin/pma_username',
+          display_name: 'phpMyAdmin database username',
+          description: %q{MySQL username for access to the phpMyAdmin control database.},
+          type: 'string',
+          recipes: ['otr::mysql_server'],
+          default: 'phpmyadmin'
