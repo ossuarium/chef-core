@@ -34,6 +34,8 @@ recipe 'otr::deployment', 'Sets up the deployer user and deployers group.'
 recipe 'otr::lamp_app_server', 'Configures the Apache HTTP Server, MySQL client, PHP-FPM.'
 recipe 'otr::mysql_server', 'Configures a MySQL server.'
 
+provides 'service[otr_service]'
+
 attribute 'otr/deployer/user',
           display_name: 'Deployer username',
           description: %q{System username for the deployer user.},
@@ -135,3 +137,11 @@ attribute 'otr/phpmyadmin/pma_username',
           type: 'string',
           recipes: ['otr::mysql_server'],
           default: 'phpmyadmin'
+
+attribute 'otr/service/dirs',
+          display_name: 'Service directories',
+          description: %q{Directories to create under each service's directory.},
+          type: 'string',
+          default: [
+            'shared',
+          ]
