@@ -22,10 +22,9 @@ end
 private
 
 def set_attributes
-  name = new_resource.name
-  new_resource.dir = "#{node['otr']['srv_dir']}/#{name}"
+  new_resource.dir = "#{node['otr']['srv_dir']}/#{new_resource.name}"
   new_resource.apache_conf_dir =
-    "#{node['apache']['dir']}/services/#{name}" unless node['apache'].nil?
+    "#{node['apache']['dir']}/services/#{new_resource.name}" unless node['apache'].nil?
 end
 
 def create_service
