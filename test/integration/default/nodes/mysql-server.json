@@ -1,0 +1,21 @@
+{
+  "chef_type": "node",
+  "chef_environment": "_default",
+  "name": "mysql-server",
+  "automatic": {
+    "network": {
+      "interfaces": {
+        "eth1": {
+          "addresses": {
+            "10.10.10.101": {
+              "family": "inet"
+            }
+          }
+        }
+      }
+    },
+    "tags": [
+      "mysql-master"
+    ]
+  }
+}
