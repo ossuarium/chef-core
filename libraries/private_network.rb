@@ -10,18 +10,22 @@ class Chef
         @node = node
       end
 
+      # @return [Hash] the node attributes for the private interface
       def interface
         node['network']['interfaces'][node['otr']['private_interface']]
       end
 
+      # @return [String] the node's private IP address
       def ip
         interface['addresses'].find { |_, v| v['family'] == 'inet' }.first
       end
 
+      # @return [String] the node's netmask for the private network
       def netmask
         interface['addresses'][ip]['netmask']
       end
 
+      # @return [String] the node's network in the form `10.0.0.0/255.255.255.0`
       def subnet
         ipaddr = IPAddr.new "#{ip}/#{netmask}"
         "#{ipaddr}/#{netmask}"
