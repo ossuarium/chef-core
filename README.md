@@ -137,7 +137,7 @@ primary directory is set in `node['otr']['service']['dirs']`.
 
 #### Attribute Parameters
 
-- name: the name of the service
+- name: the name of the service.
 
 ## Development and Testing
 

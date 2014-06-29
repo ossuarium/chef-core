@@ -15,7 +15,7 @@ primary directory is set in `node['otr']['service']['dirs']`.
 @action create creates the service.
 @action delete deletes the service.
 
-@attribute name the name of the service
+@attribute name the name of the service.
 #>
 =end
 
