@@ -97,7 +97,29 @@ setup phpMyAdmin running on Nginx using FastCGI and PHP-FPM.
 
 ## Resources
 
+* [otr_lamp_app](#otr_lamp_app) - Each LAMP app must be assigned an `otr_service`.
 * [otr_service](#otr_service) - A service is the top-level organizational unit for providing web services.
+
+### otr_lamp_app
+
+Each LAMP app must be assigned an `otr_service`.
+
+#### Actions
+
+- create: creates the LAMP app. Default action.
+- delete: deletes the LAMP app.
+
+#### Attribute Parameters
+
+- name: the unique name of the LAMP app.
+- moniker: the name of the LAMP app.
+- service: the service to crate the LAMP app under.
+- fpm_socket: path to the externally managed FPM socket to use.
+- mysql_connection: MySQL admin connection information. Defaults to <code>{}</code>.
+- db_name: database name to use for the LAMP app.
+- db_user: MySQL username to use to connect to the database.
+- db_password: MySQL password to use to connect to the database.
+- db_client: host part of the MySQL username to use when creating the user. Defaults to <code>"%"</code>.
 
 ### otr_service
 
@@ -110,12 +132,12 @@ primary directory is set in `node['otr']['service']['dirs']`.
 
 #### Actions
 
-- create: Creates the service. Default action.
-- delete: Deletes the service.
+- create: creates the service. Default action.
+- delete: deletes the service.
 
 #### Attribute Parameters
 
-- name: The name of the service.
+- name: the name of the service
 
 ## Development and Testing
 
