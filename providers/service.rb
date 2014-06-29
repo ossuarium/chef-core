@@ -35,7 +35,6 @@ def create_service
     owner 'root'
     group node['otr']['deployer']['user']
     mode '0775'
-    action :create
   end
 
   # Create `/srv/name/shared`, etc.
@@ -44,7 +43,6 @@ def create_service
       owner 'root'
       group node['otr']['deployer']['user']
       mode '0775'
-      action :create
     end
   end
 
@@ -53,7 +51,6 @@ def create_service
     owner 'root'
     group node['root_group']
     mode '0755'
-    action :create
     only_if { Dir.exist?(node['apache']['dir']) }
   end
 
@@ -62,7 +59,6 @@ def create_service
     owner 'root'
     group node['root_group']
     mode '0755'
-    action :create
     only_if { Dir.exist?(node['apache']['dir']) }
   end
 end

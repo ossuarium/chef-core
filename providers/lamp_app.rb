@@ -45,7 +45,6 @@ def create_lamp_app
     group node['apache']['group']
     socket true
     socket_path new_resource.fpm_socket_path
-    action :add
     only_if { new_resource.fpm_socket == new_resource.name }
   end
 
@@ -55,7 +54,6 @@ def create_lamp_app
     owner 'root'
     group node['root_group']
     mode '0755'
-    action :create
     notifies :reload, 'service[apache2]'
   end
 
@@ -78,7 +76,6 @@ def create_lamp_app
     connection new_resource.mysql_connection
     encoding 'utf8'
     collation 'utf8_unicode_ci'
-    action :create
     not_if { new_resource.mysql_connection.empty? }
   end
 

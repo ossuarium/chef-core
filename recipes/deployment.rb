@@ -38,14 +38,12 @@ user node['otr']['deployer']['user'] do
   home node['otr']['deployer']['home_dir']
   system true
   supports manage_home: true
-  action :create
 end
 
 directory "#{node['otr']['deployer']['home_dir']}/bin" do
   owner node['otr']['deployer']['user']
   group node['otr']['deployers']['name']
   mode '0750'
-  action :create
 end
 
 sudo 'deployer' do
@@ -76,7 +74,6 @@ search(
     owner user.id
     group node['otr']['deployer']['user']
     mode '0750'
-    action :create
   end
 
   node['otr']['deployers']['dirs'].each do |path|
@@ -84,7 +81,6 @@ search(
       owner user.id
       group user.id
       mode '0750'
-      action :create
     end
   end
 
@@ -94,7 +90,6 @@ search(
       owner user.id
       group user.id
       mode '0640'
-      action :create
     end
   end
 end
@@ -108,7 +103,6 @@ include_recipe 'nodejs::default'
 node['otr']['deployers']['npm_packages'].each do |pkg|
   nodejs_npm pkg[:name] do
     version pkg[:version]
-    action :install
   end
 end
 
