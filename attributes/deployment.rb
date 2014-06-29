@@ -8,7 +8,7 @@
 #
 
 default['otr']['deployer']['user'] = 'deployer'
-default['otr']['deployer']['home_dir'] = "/home/#{node['otr']['deployer']['user']}"
+default['otr']['deployer']['home_dir'] = "#{node['otr']['home_dir']}/#{node['otr']['deployer']['user']}"
 
 default['otr']['deployer']['sudo_commands'] = [
   '/bin/chgrp',

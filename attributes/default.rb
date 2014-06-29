@@ -30,11 +30,13 @@ default['otr']['service']['dirs'] = [
 #
 
 # Run directory.
-# Set based on platform and version.
 default['otr']['run_dir'] = '/var/run'
 
 # Serve directory.
 default['otr']['srv_dir'] = '/srv'
+
+# Home directory.
+default['otr']['home_dir'] = '/home'
 
 # Disable available servers by default.
 # These will be enabled automatically by recipes that need them.

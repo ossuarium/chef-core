@@ -41,7 +41,7 @@ Core infrastructure for OurTownRentals.com.
 Attribute | Default | Description | Choices
 ----------|---------|-------------|--------
 `node['otr']['deployer']['user']` | `"deployer"` | System username for the deployer user. |
-`node['otr']['deployer']['home_dir']` | `"/home/node['otr']['deployer']['user']"` | Home directory for the deployer user. |
+`node['otr']['deployer']['home_dir']` | `"node['otr']['home_dir']/node['otr']['deployer']['user']"` | Home directory for the deployer user. |
 `node['otr']['deployer']['sudo_commands']` | `["/bin/chgrp"]` | Commands the deployer user is allowed to run as root using sudo. |
 `node['otr']['deployers']['name']` | `"deployers"` | Group name for the deployers group. |
 `node['otr']['deployers']['gid']` | `3300` | Group id for the deployers group. |

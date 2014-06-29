@@ -48,7 +48,7 @@ attribute 'otr/deployer/home_dir',
           description: %q{Home directory for the deployer user.},
           type: 'string',
           recipes: ['otr::deployment'],
-          default: %q{/home/node['otr']['deployer']['user']}
+          default: %q{node['otr']['home_dir']/node['otr']['deployer']['user']}
 
 attribute 'otr/deployer/sudo_commands',
           display_name: 'Deployer sudo commands',

@@ -61,7 +61,7 @@ end
 search(
   'users', "groups:#{node['otr']['deployers']['name']} AND NOT action:remove"
 ).each do |user|
-  home = "/home/#{user.id}"
+  home = "#{node['otr']['home_dir']}/#{user.id}"
 
   node.default['rbenv']['user_installs'] << {
     user: user.id,
