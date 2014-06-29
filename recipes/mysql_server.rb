@@ -34,6 +34,7 @@ mysql_database_user node['otr']['mysql_sudoroot_user'] do
              password: node['mysql']['server_root_password']
   password node['otr']['mysql_sudoroot_password']
   host Chef::Recipe::PrivateNetwork.new(node).subnet
+  grant_option true
   action [:create, :grant]
 end
 
