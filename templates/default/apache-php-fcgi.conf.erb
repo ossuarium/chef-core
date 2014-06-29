@@ -1,0 +1,11 @@
+# This file is managed by Chef.
+
+<IfModule mod_fastcgi.c>
+  <FilesMatch "\.(php)$">
+    allow from all
+  </FilesMatch>
+  FastCGIExternalServer /php-fcgi -socket <%= @socket %>
+  AddHandler php-fcgi .php
+  Action php-fcgi /php-fcgi-alias
+  Alias /php-fcgi-alias /php-fcgi
+</IfModule>
