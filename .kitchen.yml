@@ -43,6 +43,7 @@ suites:
       mysql:
         server_root_password: password
       otr:
+        mysql_sudoroot_password: password
         mysql_admin: true
 
   - name: lamp-app
