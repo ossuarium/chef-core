@@ -15,7 +15,7 @@ end
 
 firewall_rule 'ssh' do
   port 22
-  action [:allow]
+  action :allow
   notifies :enable, 'firewall[ufw]'
 end
 
