@@ -11,6 +11,12 @@ default['otr']['phpmyadmin']['pma_database'] = 'phpmyadmin'
 default['otr']['phpmyadmin']['pma_username'] = 'phpmyadmin'
 
 #
+# Configuration for MySQL.
+#
+
+default['otr']['mysql_sudoroot_user'] = 'sudoroot'
+
+#
 # Service configuration.
 #
 
@@ -37,3 +43,6 @@ default['otr']['servers'] = {
   https: false,
   mysql: false,
 }
+
+# Interface facing the private network.
+default['otr']['private_interface'] = 'eth1'

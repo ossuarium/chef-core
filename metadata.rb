@@ -124,6 +124,20 @@ attribute 'otr/deployers/gems',
             {name: 'bundler', version: '~> 1.6'},
           ]
 
+attribute 'otr/mysql_sudoroot_user',
+          display_name: 'MySQL admin username',
+          description: %q{Username for the MySQL admin user.},
+          type: 'string',
+          recipes: ['otr::mysql_server'],
+          default: 'sudoroot'
+
+attribute 'otr/mysql_sudoroot_password',
+          display_name: 'MySQL admin password',
+          description: %q{Password for the MySQL admin user.},
+          type: 'string',
+          recipes: ['otr::mysql_server'],
+          default: '`secure_password`'
+
 attribute 'otr/phpmyadmin/pma_database',
           display_name: 'phpMyAdmin database name',
           description: %q{Name to use for the phpMyAdmin control database.},
