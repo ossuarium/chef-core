@@ -97,8 +97,24 @@ setup phpMyAdmin running on Nginx using FastCGI and PHP-FPM.
 
 ## Resources
 
+* [otr_deployment](#otr_deployment)
 * [otr_lamp_app](#otr_lamp_app) - Each LAMP app must be assigned an `otr_service`.
 * [otr_service](#otr_service) - A service is the top-level organizational unit for providing web services.
+
+### otr_deployment
+
+
+
+#### Actions
+
+- create: creates the deployment. Default action.
+- delete: deletes the deployment.
+
+#### Attribute Parameters
+
+- name: the name of the deployment.
+- apps: the apps this deployment will deploy to, Defaults to <code>[]</code>.
+- server_group: the group name the server runs as that will use the deployment.
 
 ### otr_lamp_app
 
