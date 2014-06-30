@@ -70,7 +70,7 @@ search(
     }
   }
 
-  directory node['otr']['deployers']['deployments_dir'] do
+  directory "#{home}/#{node['otr']['deployers']['deployments_dir']}" do
     owner user.id
     group node['otr']['deployer']['user']
     mode '0750'
