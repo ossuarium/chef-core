@@ -7,8 +7,8 @@ cookbook 'apache2',
          ref: 'b1ffc2fb4ce59c8c348850154a155b49824b072f'
 
 cookbook 'php',
-         github: 'priestjim/chef-php',
-         ref: 'a5705e00bac359eb059d86ec5a267f70c568af46'
+         github: 'razor-x/chef-php',
+         ref: '6c988746d9ae8daea4f734bc71cc4934b77775d4'
 
 cookbook 'phpmyadmin',
          github: 'priestjim/chef-phpmyadmin',
