@@ -51,6 +51,7 @@ Attribute | Default | Description | Choices
 `node['otr']['deployers']['npm_packages']` | `[{"name"=>"bower", "version"=>"1.3.5"}]` | Node packages to install via npm for each deployer. |
 `node['otr']['deployers']['ruby_version']` | `"2.1.2"` | Ruby version each deployer will use. |
 `node['otr']['deployers']['gems']` | `[{"name"=>"bundler", "version"=>"~> 1.6"}]` | Ruby gems to install for each deployer. |
+`node['otr']['deployments']` | `[]` | Deployments to create on the node. |
 `node['otr']['mysql_sudoroot_user']` | `"sudoroot"` | Username for the MySQL admin user. |
 `node['otr']['mysql_sudoroot_password']` | `"`secure_password`"` | Password for the MySQL admin user. |
 `node['otr']['phpmyadmin']['pma_database']` | `"phpmyadmin"` | Name to use for the phpMyAdmin control database. |
@@ -114,7 +115,6 @@ setup phpMyAdmin running on Nginx using FastCGI and PHP-FPM.
 
 - name: the name of the deployment.
 - apps: the apps this deployment will deploy to, Defaults to <code>[]</code>.
-- server_group: the group name the server runs as that will use the deployment.
 
 ### otr_lamp_app
 

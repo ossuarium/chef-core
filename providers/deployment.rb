@@ -22,7 +22,7 @@ end
 private
 
 def deployment_users
-  search 'users', "groups:#{new_resource.name} AND NOT action:remove"
+  search 'users', "groups:deployment-#{new_resource.name} AND NOT action:remove"
 end
 
 def create_deployment

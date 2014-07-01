@@ -30,6 +30,10 @@ suites:
         - ["forwarded_port", {guest: 20, host: 2201}]
     run_list:
       - recipe[otr::deployment]
+    attributes:
+      otr:
+        deployments:
+          - name: default
 
   - name: mysql-server
     driver:

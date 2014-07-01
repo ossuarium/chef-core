@@ -124,6 +124,13 @@ attribute 'otr/deployers/gems',
             {name: 'bundler', version: '~> 1.6'},
           ]
 
+attribute 'otr/deployments',
+          display_name: 'Deployments',
+          description: %q{Deployments to create on the node.},
+          type: 'array',
+          recipes: ['otr::deployment'],
+          default: []
+
 attribute 'otr/mysql_sudoroot_user',
           display_name: 'MySQL admin username',
           description: %q{Username for the MySQL admin user.},

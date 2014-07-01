@@ -1,6 +1,6 @@
 {
   "id": "test-deployer",
-  "groups": [ "deployers" ],
+  "groups": [ "deployers", "deployment-default" ],
   "uid": 3001,
   "shell": "\/bin\/zsh",
   "ssh_keys": [

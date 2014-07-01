@@ -35,3 +35,9 @@ default['otr']['deployers']['files'] = {
   'ruby-.gemrc' => '.gemrc',
   'bundler-config' => '.bundle/config',
 }
+
+#
+# Deployments
+#
+
+default['otr']['deployments'] = []
