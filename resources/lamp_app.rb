@@ -36,4 +36,6 @@ attribute :db_user, kind_of: String
 attribute :db_password, kind_of: String
 attribute :db_client, kind_of: String, default: '%'
 
-attr_accessor :fpm_socket, :db_name, :db_user, :db_password, :dir, :conf_dir, :fpm_socket_path
+attr_accessor :type, :fpm_socket,
+              :db_name, :db_user, :db_password,
+              :dir, :conf_dir, :fpm_socket_path, :group

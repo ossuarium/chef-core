@@ -29,6 +29,8 @@ def set_attributes
   new_resource.db_user ||= new_resource.name
   new_resource.db_password ||= secure_password
 
+  new_resource.type = :lamp_app
+  new_resource.group = node['apache']['group']
   new_resource.dir = "#{new_resource.service.dir}/#{new_resource.moniker}"
   new_resource.conf_dir = "#{new_resource.service.apache_conf_dir}/#{new_resource.moniker}.d"
   new_resource.fpm_socket_path = "#{node['otr']['run_dir']}/#{new_resource.fpm_socket}.sock"
@@ -42,7 +44,7 @@ def create_lamp_app
   # Create the PHP-FPM socket if not explicitly given.
   php_fpm "lamp_app_#{new_resource.fpm_socket}" do
     user node['apache']['user']
-    group node['apache']['group']
+    group new_resource.group
     socket true
     socket_path new_resource.fpm_socket_path
     only_if { new_resource.fpm_socket == new_resource.name }
@@ -106,7 +108,7 @@ def delete_lamp_app
   # Remove PHP-FPM socket if it shares the LAMP app name.
   php_fpm "lamp_app_#{new_resource.fpm_socket}" do
     user node['apache']['user']
-    group node['apache']['group']
+    group new_resource.group
     socket true
     socket_path new_resource.fpm_socket_path
     action :remove

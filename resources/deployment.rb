@@ -10,7 +10,6 @@
 
 @attribute name the name of the deployment.
 @attribute apps the apps this deployment will deploy to,
-@attribute server_group the group name the server runs as that will use the deployment.
 #>
 =end
 
@@ -20,4 +19,3 @@ actions :create, :delete
 
 attribute :name, kind_of: String, required: true, name_attribute: true
 attribute :apps, kind_of: Array, default: []
-attribute :server_group, kind_of: String
