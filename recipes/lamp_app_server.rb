@@ -14,6 +14,9 @@ This also installs the [database cookbook].
 #>
 =end
 
+node.default['otr']['servers']['http'] = true
+node.default['otr']['servers']['https'] = true
+
 include_recipe 'otr::_common_system'
 include_recipe 'otr::_apache_server'
 include_recipe 'apache2::mod_fastcgi'

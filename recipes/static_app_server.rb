@@ -3,6 +3,9 @@
 # Recipe:: static_app_server
 #
 
+node.default['otr']['servers']['http'] = true
+node.default['otr']['servers']['https'] = true
+
 include_recipe 'otr::_common_system'
 include_recipe 'nginx::default'
 include_recipe 'otr::services'
