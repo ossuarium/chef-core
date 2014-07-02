@@ -41,6 +41,16 @@ def create_lamp_app
 
   fail 'No apache conf directory.' if new_resource.service.apache_conf_dir.nil?
 
+  # Create `/srv/service_name/shared/moniker`.
+  shared_path = "#{new_resource.service.dir}/shared"
+  directory "lamp_app_#{shared_path}/#{new_resource.moniker}" do
+    path "#{shared_path}/#{new_resource.moniker}"
+    owner node['apache']['user']
+    group new_resource.group
+    mode '0750'
+    only_if { Dir.exist?(shared_path) }
+  end
+
   # Create the PHP-FPM socket if not explicitly given.
   php_fpm "lamp_app_#{new_resource.fpm_socket}" do
     user node['apache']['user']
