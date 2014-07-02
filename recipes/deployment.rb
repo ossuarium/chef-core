@@ -73,7 +73,7 @@ search(
   directory "#{home}/#{node['otr']['deployers']['deployments_dir']}" do
     owner user.id
     group node['otr']['deployer']['user']
-    mode '0750'
+    mode '0755'
   end
 
   node['otr']['deployers']['dirs'].each do |path|
