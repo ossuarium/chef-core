@@ -33,6 +33,7 @@ recipe 'otr::default', 'Configures a minimal base system.'
 recipe 'otr::deployment', 'Sets up the deployer user and deployers group.'
 recipe 'otr::lamp_app_server', 'Configures the Apache HTTP Server, MySQL client, PHP-FPM.'
 recipe 'otr::mysql_server', 'Configures a MySQL server.'
+recipe 'otr::services', 'Create otr_services based on attributes.'
 
 provides 'service[otr_service]'
 

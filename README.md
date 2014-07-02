@@ -66,6 +66,7 @@ Attribute | Default | Description | Choices
 * [otr::deployment](#otrdeployment) - Sets up the deployer user and deployers group.
 * [otr::lamp_app_server](#otrlamp_app_server) - Configures the Apache HTTP Server, MySQL client, PHP-FPM.
 * [otr::mysql_server](#otrmysql_server) - Configures a MySQL server.
+* otr::services - Create otr_services based on attributes.
 
 ### otr::deployment
 
