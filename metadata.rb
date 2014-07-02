@@ -35,6 +35,8 @@ recipe 'otr::lamp_app_server', 'Configures the Apache HTTP Server, MySQL client,
 recipe 'otr::mysql_server', 'Configures a MySQL server.'
 recipe 'otr::services', 'Create otr_services based on attributes.'
 
+provides 'service[otr_deployment]'
+provides 'service[otr_lamp_app]'
 provides 'service[otr_service]'
 
 attribute 'otr/apps',
