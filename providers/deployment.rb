@@ -26,6 +26,18 @@ def deployment_users
 end
 
 def create_deployment
+  template "#{node['otr']['deployer']['home_dir']}/deployment-#{new_resource.name}.yml" do
+    source 'deployment.yml.erb'
+    cookbook 'otr'
+    owner node['otr']['deployer']['user']
+    group node['otr']['deployer']['user']
+    mode '0755'
+    variables(
+      name: new_resource.name,
+      apps: new_resource.apps
+    )
+  end
+
   deployment_users.each do |user|
     bin = "#{node['otr']['deployer']['home_dir']}/bin"
     script = "deploy-#{new_resource.name}-#{user.id}"
@@ -63,4 +75,8 @@ def delete_deployment
 
   Dir["#{node['otr']['deployer']['home_dir']}/bin/#{scripts}"]
   .each { |f| File.unlink f }
+
+  file "#{node['otr']['deployer']['home_dir']}/deployment-#{new_resource.name}.yml" do
+    action :delete
+  end
 end
