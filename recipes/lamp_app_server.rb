@@ -29,3 +29,15 @@ include_recipe 'php::module_mysql'
 apache_module 'actions' do
   enable true
 end
+
+include_recipe 'otr::services'
+
+node['otr']['apps'].select { |a| a[:type] == 'lamp' }.each do |app|
+  otr_lamp_app app[:name] do
+    moniker app[:moniker]
+    service resources(otr_service: app[:service])
+    action app[:action] if app[:action]
+  end
+end
+
+include_recipe 'otr::deployment'

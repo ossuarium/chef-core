@@ -36,6 +36,13 @@ recipe 'otr::mysql_server', 'Configures a MySQL server.'
 
 provides 'service[otr_service]'
 
+attribute 'otr/apps',
+          display_name: 'Apps',
+          description: %q{Apps to create on the node.},
+          type: 'array',
+          recipes: ['otr::lamp_app_server'],
+          default: []
+
 attribute 'otr/deployer/user',
           display_name: 'Deployer username',
           description: %q{System username for the deployer user.},
@@ -166,3 +173,10 @@ attribute 'otr/service/dirs',
           default: [
             'shared',
           ]
+
+attribute 'otr/services',
+          display_name: 'Services',
+          description: %q{Services to create on the node.},
+          type: 'array',
+          recipes: ['otr::services'],
+          default: []

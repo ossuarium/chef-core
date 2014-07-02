@@ -25,6 +25,13 @@ default['otr']['service']['dirs'] = [
 ]
 
 #
+# Services and apps.
+#
+
+default['otr']['services'] = []
+default['otr']['apps'] = []
+
+#
 # All attributes below are configured automatically,
 # and should not need to be changed.
 #

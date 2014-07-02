@@ -58,3 +58,15 @@ suites:
         - ["forwarded_port", {guest: 443, host: 4432}]
     run_list:
       - recipe[otr::lamp_app_server]
+    attributes:
+      otr:
+        services:
+          - name: default
+        apps:
+          - name: default_app
+            type: lamp
+            moniker: app
+            service: default
+        deployments:
+          - name: app_default
+            apps: [{type: "lamp", name: "default_app"}]

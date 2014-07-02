@@ -40,6 +40,7 @@ Core infrastructure for OurTownRentals.com.
 
 Attribute | Default | Description | Choices
 ----------|---------|-------------|--------
+`node['otr']['apps']` | `[]` | Apps to create on the node. |
 `node['otr']['deployer']['user']` | `"deployer"` | System username for the deployer user. |
 `node['otr']['deployer']['home_dir']` | `"node['otr']['home_dir']/node['otr']['deployer']['user']"` | Home directory for the deployer user. |
 `node['otr']['deployer']['sudo_commands']` | `["/bin/chgrp"]` | Commands the deployer user is allowed to run as root using sudo. |
@@ -57,6 +58,7 @@ Attribute | Default | Description | Choices
 `node['otr']['phpmyadmin']['pma_database']` | `"phpmyadmin"` | Name to use for the phpMyAdmin control database. |
 `node['otr']['phpmyadmin']['pma_username']` | `"phpmyadmin"` | MySQL username for access to the phpMyAdmin control database. |
 `node['otr']['service']['dirs']` | `["shared"]` | Directories to create under each service's directory. |
+`node['otr']['services']` | `[]` | Services to create on the node. |
 
 ## Recipes
 
