@@ -30,14 +30,16 @@ depends 'vim', '~> 1.1.2'
 depends 'zsh', '~> 1.0.0'
 
 recipe 'otr::default', 'Configures a minimal base system.'
-recipe 'otr::deployment', 'Sets up the deployer user and deployers group.'
-recipe 'otr::lamp_app_server', 'Configures the Apache HTTP Server, MySQL client, PHP-FPM.'
 recipe 'otr::mysql_server', 'Configures a MySQL server.'
+recipe 'otr::static_app_server', 'Configures a static web server.'
+recipe 'otr::lamp_app_server', 'Configures the Apache HTTP Server, MySQL client, PHP-FPM.'
 recipe 'otr::services', 'Create otr_services based on attributes.'
+recipe 'otr::deployment', 'Sets up the deployer user and deployers group.'
 
+provides 'service[otr_service]'
 provides 'service[otr_deployment]'
 provides 'service[otr_lamp_app]'
-provides 'service[otr_service]'
+provides 'service[otr_static_app]'
 
 attribute 'otr/apps',
           display_name: 'Apps',

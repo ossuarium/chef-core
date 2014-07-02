@@ -63,10 +63,27 @@ Attribute | Default | Description | Choices
 ## Recipes
 
 * otr::default - Configures a minimal base system.
-* [otr::deployment](#otrdeployment) - Sets up the deployer user and deployers group.
-* [otr::lamp_app_server](#otrlamp_app_server) - Configures the Apache HTTP Server, MySQL client, PHP-FPM.
 * [otr::mysql_server](#otrmysql_server) - Configures a MySQL server.
+* otr::static_app_server - Configures a static web server.
+* [otr::lamp_app_server](#otrlamp_app_server) - Configures the Apache HTTP Server, MySQL client, PHP-FPM.
 * otr::services - Create otr_services based on attributes.
+* [otr::deployment](#otrdeployment) - Sets up the deployer user and deployers group.
+
+### otr::mysql_server
+
+This will configure a MySQL server and optionally
+setup phpMyAdmin running on Nginx using FastCGI and PHP-FPM.
+
+
+### otr::lamp_app_server
+
+This installs the Apache HTTP Server, MySQL client, PHP-FPM,
+and the necessary modules to host a PHP application using mod_fastcgi.
+
+This also installs the [database cookbook].
+
+[database cookbook]: http://community.opscode.com/cookbooks/database
+
 
 ### otr::deployment
 
@@ -83,27 +100,12 @@ a Ruby version and a set of default gems (including Bundler).
 [users cookbook]: http://community.opscode.com/cookbooks/users
 
 
-### otr::lamp_app_server
-
-This installs the Apache HTTP Server, MySQL client, PHP-FPM,
-and the necessary modules to host a PHP application using mod_fastcgi.
-
-This also installs the [database cookbook].
-
-[database cookbook]: http://community.opscode.com/cookbooks/database
-
-
-### otr::mysql_server
-
-This will configure a MySQL server and optionally
-setup phpMyAdmin running on Nginx using FastCGI and PHP-FPM.
-
-
 ## Resources
 
 * [otr_deployment](#otr_deployment)
 * [otr_lamp_app](#otr_lamp_app) - Each LAMP app must be assigned an `otr_service`.
 * [otr_service](#otr_service) - A service is the top-level organizational unit for providing web services.
+* [otr_static_app](#otr_static_app) - Each static app must be assigned an `otr_service`.
 
 ### otr_deployment
 
@@ -158,6 +160,21 @@ primary directory is set in `node['otr']['service']['dirs']`.
 #### Attribute Parameters
 
 - name: the name of the service.
+
+### otr_static_app
+
+Each static app must be assigned an `otr_service`.
+
+#### Actions
+
+- create: creates the static app. Default action.
+- delete: deletes the static app.
+
+#### Attribute Parameters
+
+- name: the unique name of the static app.
+- moniker: the name of the static app.
+- service: the service to crate the static app under.
 
 ## Development and Testing
 

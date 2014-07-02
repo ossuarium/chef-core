@@ -25,4 +25,4 @@ actions :create, :delete
 
 attribute :name, kind_of: String, required: true, name_attribute: true
 
-attr_accessor :dir, :apache_conf_dir
+attr_accessor :dir, :nginx_conf_dir, :apache_conf_dir

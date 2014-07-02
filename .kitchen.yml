@@ -70,3 +70,24 @@ suites:
         deployments:
           - name: app_default
             apps: [{type: "lamp", name: "default_app"}]
+
+  - name: static-app
+    driver:
+      network:
+        - ["private_network", {ip: "10.10.10.103"}]
+        - ["forwarded_port", {guest: 80, host: 8183}]
+        - ["forwarded_port", {guest: 443, host: 4433}]
+    run_list:
+      - recipe[otr::static_app_server]
+    attributes:
+      otr:
+        services:
+          - name: default
+        apps:
+          - name: default_assets
+            type: static
+            moniker: assets
+            service: default
+        deployments:
+          - name: app_default
+            apps: [{type: "static", name: "default_assets"}]

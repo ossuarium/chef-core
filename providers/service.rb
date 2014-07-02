@@ -23,6 +23,8 @@ private
 
 def set_attributes
   new_resource.dir = "#{node['otr']['srv_dir']}/#{new_resource.name}"
+  new_resource.nginx_conf_dir =
+    "#{node['nginx']['dir']}/services/#{new_resource.name}" unless node['nginx'].nil?
   new_resource.apache_conf_dir =
     "#{node['apache']['dir']}/services/#{new_resource.name}" unless node['apache'].nil?
 end
@@ -46,12 +48,28 @@ def create_service
     end
   end
 
+  # Create `/etc/nginx/services`.
+  directory "#{node['nginx']['dir']}/services" do
+    owner 'root'
+    group node['root_group']
+    mode '0755'
+    only_if { Dir.exist?(node['nginx']['dir']) }
+  end
+
   # Create `/etc/apache2/services`.
   directory "#{node['apache']['dir']}/services" do
     owner 'root'
     group node['root_group']
     mode '0755'
     only_if { Dir.exist?(node['apache']['dir']) }
+  end
+
+  # Create `/etc/nginx/services/name`.
+  directory new_resource.nginx_conf_dir do
+    owner 'root'
+    group node['root_group']
+    mode '0755'
+    only_if { Dir.exist?(node['nginx']['dir']) }
   end
 
   # Create `/etc/apache2/services/name`.
@@ -72,11 +90,24 @@ def delete_service
     action :delete
   end
 
+  # Delete (if empty) `/etc/nginx/services/name`.
+  directory new_resource.nginx_conf_dir do
+    recursive true
+    action :delete
+    only_if { Dir.exist?(node['nginx']['dir']) }
+  end
+
   # Delete (if empty) `/etc/apache2/services/name`.
   directory new_resource.apache_conf_dir do
     recursive true
     action :delete
     only_if { Dir.exist?(node['apache']['dir']) }
+  end
+
+  # Delete `/etc/nginx/services`.
+  directory "#{node['nginx']['dir']}/services" do
+    action :delete
+    only_if { Dir["#{node['nginx']['dir']}/services/*"].empty? }
   end
 
   # Delete `/etc/apache2/services`.
