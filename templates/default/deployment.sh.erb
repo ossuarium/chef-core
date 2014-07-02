@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# This file is managed by Chef.
-
 <% @apps.each do |app| -%>
   <% if app.group %>
     sudo /bin/chgrp -R <%= app.group %> <%= @deployments_dir %>/<%= @name %>/current/<%= app.moniker %>
