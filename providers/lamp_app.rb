@@ -28,6 +28,7 @@ def set_attributes
   new_resource.db_name ||= new_resource.name
   new_resource.db_user ||= new_resource.name
   new_resource.db_password ||= secure_password
+  new_resource.db_client ||= Chef::Recipe::PrivateNetwork.new(node).ip
 
   new_resource.type = :lamp
   new_resource.group = node['apache']['group']
@@ -36,8 +37,21 @@ def set_attributes
   new_resource.fpm_socket_path = "#{node['otr']['run_dir']}/#{new_resource.fpm_socket}.sock"
 end
 
+def set_mysql_connection
+  db_node = search(
+    :node,
+    "chef_environment:#{node.chef_environment} AND tags:mysql-master"
+  ).first
+  new_resource.mysql_connection ||= {
+    host: Chef::Recipe::PrivateNetwork.new(db_node).ip,
+    username: db_node['otr']['mysql_sudoroot_user'],
+    password: db_node['otr']['mysql_sudoroot_password']
+  }
+end
+
 def create_lamp_app
   set_attributes
+  set_mysql_connection
 
   fail 'No apache conf directory.' if new_resource.service.apache_conf_dir.nil?
 
@@ -88,7 +102,7 @@ def create_lamp_app
     connection new_resource.mysql_connection
     encoding 'utf8'
     collation 'utf8_unicode_ci'
-    not_if { new_resource.mysql_connection.empty? }
+    only_if new_resource.database
   end
 
   # Create the LAMP app's MySQL user for this host.
@@ -99,12 +113,13 @@ def create_lamp_app
     database_name new_resource.db_name
     host new_resource.db_client
     action [:drop, :create, :grant]
-    not_if { new_resource.mysql_connection.empty? }
+    only_if new_resource.database
   end
 end
 
 def delete_lamp_app
   set_attributes
+  set_mysql_connection
 
   # Delete `/etc/apache2/services/service_name/moniker.d`.
   directory "lamp_app_#{new_resource.conf_dir}" do
@@ -131,6 +146,6 @@ def delete_lamp_app
     connection new_resource.mysql_connection
     host new_resource.db_client
     action :drop
-    not_if { new_resource.mysql_connection.empty? }
+    only_if new_resource.database
   end
 end

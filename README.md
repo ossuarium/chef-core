@@ -133,11 +133,12 @@ Each LAMP app must be assigned an `otr_service`.
 - moniker: the name of the LAMP app.
 - service: the service to crate the LAMP app under.
 - fpm_socket: path to the externally managed FPM socket to use.
-- mysql_connection: MySQL admin connection information. Defaults to <code>{}</code>.
+- database: whether to setup a database for this app. Defaults to <code>false</code>.
+- mysql_connection: MySQL admin connection information.
 - db_name: database name to use for the LAMP app.
 - db_user: MySQL username to use to connect to the database.
 - db_password: MySQL password to use to connect to the database.
-- db_client: host part of the MySQL username to use when creating the user. Defaults to <code>"%"</code>.
+- db_client: host part of the MySQL username to use when creating the user.
 
 ### otr_service
 
