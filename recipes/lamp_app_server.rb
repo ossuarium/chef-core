@@ -31,6 +31,12 @@ apache_module 'actions' do
   enable true
 end
 
+template "#{node['apache']['dir']}/conf.d/otr.conf" do
+  source 'apache-otr.conf.erb'
+  mode '0644'
+  notifies :reload, 'service[apache2]'
+end
+
 node['otr']['apps'].select { |a| a[:type] == 'lamp' }.each do |app|
   otr_lamp_app app[:name] do
     moniker app[:moniker]
