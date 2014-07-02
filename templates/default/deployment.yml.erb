@@ -1,0 +1,11 @@
+---
+:name: <%= @name %>
+:apps:
+<% if @apps.empty? -%>
+  []
+<% else -%>
+<% @apps.each do |app| -%>
+  - :moniker: <%= app.moniker %>
+    :shared_path: <%= app.service.dir %>/shared/<%= app.moniker %>
+<% end -%>
+<% end -%>
