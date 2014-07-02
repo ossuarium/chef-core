@@ -29,7 +29,7 @@ def set_attributes
   new_resource.db_user ||= new_resource.name
   new_resource.db_password ||= secure_password
 
-  new_resource.type = :lamp_app
+  new_resource.type = :lamp
   new_resource.group = node['apache']['group']
   new_resource.dir = "#{new_resource.service.dir}/#{new_resource.moniker}"
   new_resource.conf_dir = "#{new_resource.service.apache_conf_dir}/#{new_resource.moniker}.d"

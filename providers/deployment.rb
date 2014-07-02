@@ -39,8 +39,9 @@ def create_deployment
       variables(
         name: new_resource.name,
         user: user.id,
-        group: new_resource.server_group,
-        deployments_dir: "/home/#{user.id}/#{node['otr']['deployers']['deployments_dir']}",
+        deployments_dir:
+          "#{node['otr']['home_dir']}/#{user.id}/" +
+          node['otr']['deployers']['deployments_dir'],
         apps: new_resource.apps
       )
     end
