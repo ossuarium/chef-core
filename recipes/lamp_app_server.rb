@@ -14,9 +14,6 @@ This also installs the [database cookbook].
 #>
 =end
 
-node.default['otr']['servers']['http'] = true
-node.default['otr']['servers']['https'] = true
-
 include_recipe 'otr::_common_system'
 include_recipe 'otr::_apache_server'
 include_recipe 'apache2::mod_fastcgi'
@@ -25,12 +22,11 @@ include_recipe 'database::mysql'
 include_recipe 'php::default'
 include_recipe 'php::fpm'
 include_recipe 'php::module_mysql'
+include_recipe 'otr::services'
 
 apache_module 'actions' do
   enable true
 end
-
-include_recipe 'otr::services'
 
 node['otr']['apps'].select { |a| a[:type] == 'lamp' }.each do |app|
   otr_lamp_app app[:name] do

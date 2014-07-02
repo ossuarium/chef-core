@@ -5,13 +5,12 @@
 
 ::Chef::Recipe.send :include, Opscode::OpenSSL::Password
 
-node.default['nginx']['default_site_enabled'] = false
 node.default['phpmyadmin']['socket'] = "#{node['otr']['run_dir']}/php-fpm-phpmyadmin.sock"
 
 node.set_unless['otr']['phpmyadmin']['pma_password'] = secure_password
 
 include_recipe 'mysql::client'
-include_recipe 'nginx::default'
+include_recipe 'otr::_nginx_server'
 include_recipe 'php::default'
 include_recipe 'php::fpm'
 include_recipe 'phpmyadmin::default'
