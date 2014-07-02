@@ -20,6 +20,7 @@ node.default['openssh']['server']['password_authentication'] = 'no'
 node.default['openssh']['server']['challenge_response_authentication'] = 'no'
 node.default['openssh']['server']['permit_root_login'] = 'no'
 node.default['openssh']['server']['t_c_p_keep_alive'] = 'yes'
+node.default['openssh']['server']['allow_agent_forwarding'] = 'no'
 
 #
 # Include common recipes.
