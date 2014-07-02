@@ -70,13 +70,19 @@ end
 def delete_deployment
   scripts = "deploy-#{new_resource.name}-*"
 
-  Dir["#{node['authorization']['sudo']['prefix']}/sudoers.d/#{scripts}"]
-  .each { |f| File.unlink f }
-
-  Dir["#{node['otr']['deployer']['home_dir']}/bin/#{scripts}"]
-  .each { |f| File.unlink f }
-
   file "#{node['otr']['deployer']['home_dir']}/deployment-#{new_resource.name}.yml" do
     action :delete
+  end
+
+  Dir["#{node['otr']['deployer']['home_dir']}/bin/#{scripts}"].each do |f|
+    file f do
+      action :delete
+    end
+  end
+
+  Dir["#{node['authorization']['sudo']['prefix']}/sudoers.d/#{scripts}"].each do |f|
+    file f do
+      action :delete
+    end
   end
 end
