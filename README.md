@@ -41,6 +41,7 @@ Core infrastructure for OurTownRentals.com.
 Attribute | Default | Description | Choices
 ----------|---------|-------------|--------
 `node['otr']['apps']` | `[]` | Apps to create on the node. |
+`node['otr']['contact']` | `"evan@ourtownrentals.com"` | Administrative contact email. |
 `node['otr']['deployer']['user']` | `"deployer"` | System username for the deployer user. |
 `node['otr']['deployer']['home_dir']` | `"node['otr']['home_dir']/node['otr']['deployer']['user']"` | Home directory for the deployer user. |
 `node['otr']['deployer']['sudo_commands']` | `["/bin/chgrp"]` | Commands the deployer user is allowed to run as root using sudo. |

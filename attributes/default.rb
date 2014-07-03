@@ -3,6 +3,8 @@
 # Attributes:: default
 #
 
+default['otr']['contact'] = 'evan@ourtownrentals.com'
+
 default['otr']['packages'] = []
 
 #

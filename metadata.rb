@@ -48,6 +48,12 @@ attribute 'otr/apps',
           recipes: ['otr::lamp_app_server'],
           default: []
 
+attribute 'otr/contact',
+          display_name: 'Contact',
+          description: %q{Administrative contact email.},
+          type: 'string',
+          default: 'evan@ourtownrentals.com'
+
 attribute 'otr/deployer/user',
           display_name: 'Deployer username',
           description: %q{System username for the deployer user.},
