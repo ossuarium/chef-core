@@ -4,6 +4,12 @@
 #
 
 #
+# Deployment configuration.
+#
+
+default['otr']['deployment']['packages'] = []
+
+#
 # Deployer user configuration.
 #
 

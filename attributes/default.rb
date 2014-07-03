@@ -3,6 +3,8 @@
 # Attributes:: default
 #
 
+default['otr']['packages'] = []
+
 #
 # Configuration for phpMyAdmin.
 #

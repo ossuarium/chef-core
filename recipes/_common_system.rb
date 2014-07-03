@@ -37,3 +37,13 @@ include_recipe 'sudo::default'
 include_recipe 'openssh::default'
 include_recipe 'otr::_firewall'
 include_recipe 'oh-my-zsh::default'
+
+#
+# Install additional packages.
+#
+
+node['otr']['packages'].each do |pkg|
+  package pkg do
+    action :install
+  end
+end

@@ -136,6 +136,13 @@ attribute 'otr/deployers/gems',
             {name: 'bundler', version: '~> 1.6'},
           ]
 
+attribute 'otr/deployment/packages',
+          display_name: 'Deployment packages',
+          description: %q{Additional packages required for deployments.},
+          type: 'array',
+          recipes: ['otr::deployment'],
+          default: []
+
 attribute 'otr/deployments',
           display_name: 'Deployments',
           description: %q{Deployments to create on the node.},
@@ -156,6 +163,12 @@ attribute 'otr/mysql_sudoroot_password',
           type: 'string',
           recipes: ['otr::mysql_server'],
           default: '`secure_password`'
+
+attribute 'otr/packages',
+          display_name: 'Packages',
+          description: %q{Additional packages to install.},
+          type: 'array',
+          default: []
 
 attribute 'otr/phpmyadmin/pma_database',
           display_name: 'phpMyAdmin database name',

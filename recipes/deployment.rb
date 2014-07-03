@@ -30,6 +30,16 @@ include_recipe 'otr::_common_system'
 include_recipe 'build-essential::default'
 
 #
+# Install additional packages.
+#
+
+node['otr']['deployment']['packages'].each do |pkg|
+  package pkg do
+    action :install
+  end
+end
+
+#
 # Setup deployer user.
 #
 
