@@ -87,6 +87,7 @@ def create_lamp_app
     source 'apache-php-fcgi.conf.erb'
     cookbook 'otr'
     variables(
+      name: new_resource.name,
       socket: new_resource.fpm_socket_path
     )
     notifies :reload, 'service[apache2]'
