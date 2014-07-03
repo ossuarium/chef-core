@@ -44,5 +44,3 @@ node['otr']['apps'].select { |a| a[:type] == 'lamp' }.each do |app|
     action app[:action] if app[:action]
   end
 end
-
-include_recipe 'otr::deployment'
