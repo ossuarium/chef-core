@@ -40,7 +40,7 @@ end
 node['otr']['apps'].select { |a| a[:type] == 'lamp' }.each do |app|
   otr_lamp_app app[:name] do
     moniker app[:moniker]
-    service resources(otr_service: app[:service])
+    service lazy { resources(otr_service: app[:service]) }
     action app[:action] if app[:action]
   end
 end

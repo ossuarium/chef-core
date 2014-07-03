@@ -117,14 +117,14 @@ include_recipe 'ruby_build::default'
 include_recipe 'rbenv::user'
 
 node['otr']['deployments'].each do |deployment|
-  apps = if deployment[:apps]
-           deployment[:apps].map { |a| resources("otr_#{a[:type]}_app[#{a[:name]}]") }
-         else
-           []
-         end
-
   otr_deployment deployment[:name] do
-    apps apps
+    apps lazy {
+      if deployment[:apps]
+         deployment[:apps].map { |a| resources("otr_#{a[:type]}_app[#{a[:name]}]") }
+       else
+         []
+       end
+    }
     action deployment[:action] if deployment[:action]
   end
 end
