@@ -33,7 +33,6 @@ end
 
 template "#{node['apache']['dir']}/conf.d/otr.conf" do
   source 'apache-otr.conf.erb'
-  mode '0644'
   notifies :reload, 'service[apache2]'
 end
 

@@ -17,9 +17,6 @@ include_recipe 'phpmyadmin::default'
 
 template "#{node['nginx']['dir']}/sites-available/phpmyadmin" do
   source 'nginx-phpmyadmin.conf.erb'
-  owner 'root'
-  group node['root_group']
-  mode '0644'
   notifies :reload, 'service[nginx]'
 end
 

@@ -34,7 +34,6 @@ def create_service
 
   # Create `/srv/name`.
   directory new_resource.dir do
-    owner 'root'
     group node['otr']['deployer']['user']
     mode '0775'
   end
@@ -42,7 +41,6 @@ def create_service
   # Create `/srv/name/shared`, etc.
   node['otr']['service']['dirs'].each do |path|
     directory "#{new_resource.dir}/#{path}" do
-      owner 'root'
       group node['otr']['deployer']['user']
       mode '0775'
     end
@@ -50,33 +48,21 @@ def create_service
 
   # Create `/etc/nginx/services`.
   directory "#{node['nginx']['dir']}/services" do
-    owner 'root'
-    group node['root_group']
-    mode '0755'
     only_if { Dir.exist?(node['nginx']['dir']) }
   end
 
   # Create `/etc/apache2/services`.
   directory "#{node['apache']['dir']}/services" do
-    owner 'root'
-    group node['root_group']
-    mode '0755'
     only_if { Dir.exist?(node['apache']['dir']) }
   end
 
   # Create `/etc/nginx/services/name`.
   directory new_resource.nginx_conf_dir do
-    owner 'root'
-    group node['root_group']
-    mode '0755'
     only_if { Dir.exist?(node['nginx']['dir']) }
   end
 
   # Create `/etc/apache2/services/name`.
   directory new_resource.apache_conf_dir do
-    owner 'root'
-    group node['root_group']
-    mode '0755'
     only_if { Dir.exist?(node['apache']['dir']) }
   end
 end

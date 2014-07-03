@@ -38,9 +38,6 @@ def create_static_app
   # Create `/etc/nginx/services/service_name/moniker.d`.
   directory "static_app_#{new_resource.conf_dir}" do
     path new_resource.conf_dir
-    owner 'root'
-    group node['root_group']
-    mode '0755'
     notifies :reload, 'service[nginx]'
   end
 end

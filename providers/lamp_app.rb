@@ -77,9 +77,6 @@ def create_lamp_app
   # Create `/etc/apache2/services/service_name/moniker.d`.
   directory "lamp_app_#{new_resource.conf_dir}" do
     path new_resource.conf_dir
-    owner 'root'
-    group node['root_group']
-    mode '0755'
     notifies :reload, 'service[apache2]'
   end
 
@@ -87,9 +84,6 @@ def create_lamp_app
   template "#{new_resource.conf_dir}/php-fcgi.conf" do
     source 'apache-php-fcgi.conf.erb'
     cookbook 'otr'
-    owner 'root'
-    group node['root_group']
-    mode '0644'
     variables(
       socket: new_resource.fpm_socket_path
     )
