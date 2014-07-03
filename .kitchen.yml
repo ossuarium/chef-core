@@ -27,7 +27,6 @@ suites:
     driver:
       network:
         - ["private_network", {ip: "10.10.10.100"}]
-        - ["forwarded_port", {guest: 20, host: 2201}]
     run_list:
       - recipe[otr::deployment]
     attributes:
@@ -39,8 +38,6 @@ suites:
     driver:
       network:
         - ["private_network", {ip: "10.10.10.101"}]
-        - ["forwarded_port", {guest: 80, host: 8181}]
-        - ["forwarded_port", {guest: 443, host: 4431}]
     run_list:
       - recipe[otr::mysql_server]
     attributes:
@@ -54,8 +51,6 @@ suites:
     driver:
       network:
         - ["private_network", {ip: "10.10.10.102"}]
-        - ["forwarded_port", {guest: 80, host: 8182}]
-        - ["forwarded_port", {guest: 443, host: 4432}]
     run_list:
       - recipe[otr::lamp_app_server]
       - recipe[otr::deployment]
@@ -76,8 +71,6 @@ suites:
     driver:
       network:
         - ["private_network", {ip: "10.10.10.103"}]
-        - ["forwarded_port", {guest: 80, host: 8183}]
-        - ["forwarded_port", {guest: 443, host: 4433}]
     run_list:
       - recipe[otr::static_app_server]
       - recipe[otr::deployment]
