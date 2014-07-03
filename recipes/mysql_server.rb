@@ -40,5 +40,5 @@ end
 
 service 'nginx' do
   action node['otr']['mysql_admin'] ? :start : :stop
-  not_if node['nginx'].empty?
+  not_if { node['nginx'].empty? }
 end

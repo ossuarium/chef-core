@@ -96,7 +96,7 @@ def create_lamp_app
     connection new_resource.mysql_connection
     encoding 'utf8'
     collation 'utf8_unicode_ci'
-    only_if new_resource.database
+    only_if { new_resource.database }
   end
 
   # Create the LAMP app's MySQL user for this host.
@@ -107,7 +107,7 @@ def create_lamp_app
     database_name new_resource.db_name
     host new_resource.db_client
     action [:drop, :create, :grant]
-    only_if new_resource.database
+    only_if { new_resource.database }
   end
 end
 
@@ -140,6 +140,6 @@ def delete_lamp_app
     connection new_resource.mysql_connection
     host new_resource.db_client
     action :drop
-    only_if new_resource.database
+    only_if { new_resource.database }
   end
 end
