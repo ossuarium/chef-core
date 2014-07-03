@@ -3,6 +3,8 @@
 # Provider:: lamp_app
 #
 
+require 'digest/sha1'
+
 include Opscode::OpenSSL::Password
 
 def whyrun_supported?
@@ -25,8 +27,8 @@ private
 
 def set_attributes
   new_resource.fpm_socket ||= new_resource.name
-  new_resource.db_name ||= new_resource.name
-  new_resource.db_user ||= new_resource.name
+  new_resource.db_name ||= new_resource.name[0...64]
+  new_resource.db_user ||= Digest::SHA1.hexdigest(new_resource.name)[0...16]
   new_resource.db_password ||= secure_password
   new_resource.db_client ||= Chef::Recipe::PrivateNetwork.new(node).ip
 
@@ -92,7 +94,7 @@ def create_lamp_app
 
   # Create the database for the LAMP app.
   mysql_database "lamp_app_#{new_resource.db_name}" do
-    database_name new_resource.db_name[0...64]
+    database_name new_resource.db_name
     connection new_resource.mysql_connection
     encoding 'utf8'
     collation 'utf8_unicode_ci'
@@ -101,7 +103,7 @@ def create_lamp_app
 
   # Create the LAMP app's MySQL user for this host.
   mysql_database_user "lamp_app_#{new_resource.db_user}" do
-    username new_resource.db_user[0...16]
+    username new_resource.db_user
     connection new_resource.mysql_connection
     password new_resource.db_password
     database_name new_resource.db_name
@@ -136,7 +138,7 @@ def delete_lamp_app
 
   # Remove the LAMP app's MySQL user for this host.
   mysql_database_user "lamp_app_#{new_resource.db_user}" do
-    username new_resource.db_user[0...16]
+    username new_resource.db_user
     connection new_resource.mysql_connection
     host new_resource.db_client
     action :drop
