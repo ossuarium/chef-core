@@ -12,3 +12,8 @@ node.set['apache']['version'] = '2.4' if
 node.default['apache']['default_site_enabled']  = false
 
 include_recipe 'apache2::default'
+
+template "#{node['apache']['dir']}/conf.d/000-otr.conf" do
+  source 'apache-otr.conf.erb'
+  notifies :reload, 'service[apache2]'
+end
