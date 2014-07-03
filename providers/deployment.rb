@@ -46,6 +46,7 @@ def create_deployment
       cookbook 'otr'
       owner node['otr']['deployer']['user']
       group node['otr']['deployer']['user']
+      mode '754'
       variables(
         name: new_resource.name,
         user: user.id,
