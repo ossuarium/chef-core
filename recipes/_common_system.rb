@@ -3,6 +3,8 @@
 # Recipe:: _common_system
 #
 
+node.default['annoyances']['debian']['perform_apt_get_update'] = false
+
 #
 # Configuration for sudo.
 #
