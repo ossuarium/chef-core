@@ -3,10 +3,13 @@
 # Recipe:: _apache_server
 #
 
+apache24 = platform?('ubuntu') && node['platform_version'].to_f >= 14.04
+
 node.default['otr']['servers']['http'] = true
 node.default['otr']['servers']['https'] = true
 
-apache24 = platform?('ubuntu') && node['platform_version'].to_f >= 14.04
+node.default['apache']['default_site_enabled']  = false
+node.default['apache']['contact'] = node['otr']['contact']
 
 if apache24
   node.set['apache']['pid_file'] = '/var/run/apache2/apache2.pid'
