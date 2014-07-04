@@ -1,9 +1,5 @@
 <IfModule mod_fastcgi.c>
-  <FilesMatch "\.(php)$">
-    allow from all
-  </FilesMatch>
-  FastCGIExternalServer /php-fcgi-<%= @name %> -socket <%= @socket %>
-  AddHandler php-fcgi-<%= @name %> .php
+  FastCGIExternalServer /php-fcgi-<%= @name %> -socket <%= @socket %> -pass-header Authorization
   Action php-fcgi-<%= @name %> /php-fcgi-<%= @name %>-alias
   Alias /php-fcgi-<%= @name %>-alias /php-fcgi-<%= @name %>
 </IfModule>
