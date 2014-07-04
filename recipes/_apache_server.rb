@@ -25,3 +25,11 @@ apache_module 'access_compat' do
   enable false
   only_if { apache24 }
 end
+
+# This is required to avoid conflicting security.conf files.
+# @todo Remove this when [apache2 issue 131] is closed.
+# [apache2 issue 131]: https://github.com/onehealth-cookbooks/apache2/issues/131
+execute 'a2disconf security' do
+  notifies :reload, 'service[apache2]'
+  only_if { apache24 }
+end
