@@ -6,7 +6,9 @@
 node.default['otr']['servers']['http'] = true
 node.default['otr']['servers']['https'] = true
 
-if platform?('ubuntu') && node['platform_version'].to_f >= 14.04
+apache24 = platform?('ubuntu') && node['platform_version'].to_f >= 14.04
+
+if apache24
   node.set['apache']['pid_file'] = '/var/run/apache2/apache2.pid'
   node.set['apache']['version']  = '2.4'
 end
@@ -17,4 +19,9 @@ include_recipe 'apache2::logrotate'
 template "#{node['apache']['dir']}/conf.d/000-otr.conf" do
   source 'apache-otr.conf.erb'
   notifies :reload, 'service[apache2]'
+end
+
+apache_module 'access_compat' do
+  enable false
+  only_if { apache24 }
 end
