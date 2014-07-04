@@ -4,19 +4,19 @@
 
 <% if @server_aliases -%>
 <% unless @server_aliases.empty? -%>
-  ServerAlias <%= [@server_aliases].flatten.join " " %>
+  ServerAlias <%= [@server_aliases].flatten.join ' ' %>
 <% end -%>
 <% end -%>
 
   DocumentRoot <%= @docroot %>
 
 <% if @directory_index -%>
-  DirectoryIndex <%= [@directory_index].flatten.join " " %>
+  DirectoryIndex <%= [@directory_index].flatten.join ' ' %>
 <% end -%>
 
   <Directory <%= @docroot %>/>
-    Options <%= [@directory_options || 'FollowSymLinks'].flatten.join " " %>
-    AllowOverride <%= [@allow_override || 'None'].flatten.join " " %>
+    Options <%= [@directory_options || 'FollowSymLinks'].flatten.join ' ' %>
+    AllowOverride <%= [@allow_override || 'None'].flatten.join ' ' %>
     Require all granted
   </Directory>
 
