@@ -6,12 +6,10 @@
 node.default['otr']['servers']['http'] = true
 node.default['otr']['servers']['https'] = true
 
-node.set['apache']['version'] = '2.4' if
-  platform?('ubuntu') && node['platform_version'].to_f >= 14.04
-
-node.default['apache']['default_site_enabled']  = false
-node.default['apache']['contact'] = node['otr']['contact']
-
+if platform?('ubuntu') && node['platform_version'].to_f >= 14.04
+  node.set['apache']['pid_file'] = '/var/run/apache2/apache2.pid'
+  node.set['apache']['version']  = '2.4'
+end
 
 include_recipe 'apache2::default'
 
