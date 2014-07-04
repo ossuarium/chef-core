@@ -6,6 +6,8 @@
 <% else -%>
 <% @apps.each do |app| -%>
   - :moniker: <%= app.moniker %>
+<% if Dir.exist? "#{app.service.dir}/shared/#{app.moniker}" -%>
     :shared_path: <%= app.service.dir %>/shared/<%= app.moniker %>
+<% end -%>
 <% end -%>
 <% end -%>
