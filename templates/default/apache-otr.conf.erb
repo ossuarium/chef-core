@@ -1,8 +1,8 @@
-<Directory <%= node['apache']['docroot_dir'] %>/>
+<Directory <%= node['apache']['docroot_dir'] %>>
   Require all denied
 </Directory>
 
-<Directory <%= node['otr']['srv_dir'] %>/>
+<Directory <%= node['otr']['srv_dir'] %>>
   Options Indexes FollowSymLinks
   AllowOverride None
   Require all granted
