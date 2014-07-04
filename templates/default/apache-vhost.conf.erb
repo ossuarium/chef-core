@@ -3,7 +3,9 @@
   ServerName <%= @server_name %>
 
 <% if @server_aliases -%>
+<% unless @server_aliases.empty? -%>
   ServerAlias <%= [@server_aliases].flatten.join " " %>
+<% end -%>
 <% end -%>
 
   DocumentRoot <%= @docroot %>
