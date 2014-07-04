@@ -19,7 +19,7 @@ end
 include_recipe 'apache2::default'
 include_recipe 'apache2::logrotate'
 
-template "#{node['apache']['dir']}/conf.d/000-otr.conf" do
+template "#{node['apache']['dir']}/conf.d/otr.conf" do
   source 'apache-otr.conf.erb'
   notifies :reload, 'service[apache2]'
 end
