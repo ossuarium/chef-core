@@ -20,6 +20,7 @@ Core infrastructure for OurTownRentals.com.
 * build-essential (~> 2.0.4)
 * database (~> 2.2.0)
 * firewall (~> 0.11.8)
+* logrotate (~> 1.6.0)
 * mysql (~> 5.3.6)
 * nginx (~> 2.7.2)
 * ntp (~> 1.6.2)
