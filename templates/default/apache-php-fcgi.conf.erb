@@ -1,5 +1,9 @@
 <IfModule mod_fastcgi.c>
-  FastCGIExternalServer /php-fcgi-<%= @name %> -socket <%= @socket %> -pass-header Authorization
+  FastCGIExternalServer <%= node['apache']['cgibin_dir'] %>/<%= @name %>/php-fcgi -socket <%= @socket %> -pass-header Authorization
   Action php-fcgi-<%= @name %> /php-fcgi-<%= @name %>-alias
-  Alias /php-fcgi-<%= @name %>-alias /php-fcgi-<%= @name %>
+  Alias /php-fcgi-<%= @name %>-alias <%= node['apache']['cgibin_dir'] %>/<%= @name %>/php-fcgi
+
+  <Directory <%= node['apache']['cgibin_dir'] %>/<%= @name %>>
+    Require all granted
+  </Directory>
 </IfModule>

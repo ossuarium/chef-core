@@ -76,6 +76,9 @@ def create_lamp_app
     only_if { new_resource.fpm_socket == new_resource.name }
   end
 
+  # Create `/usr/lib/cgi-bin/name`.
+  directory "#{node['apache']['cgibin_dir']}/#{new_resource.name}"
+
   # Create `/etc/apache2/services/service_name/moniker.d`.
   directory "lamp_app_#{new_resource.conf_dir}" do
     path new_resource.conf_dir
@@ -135,6 +138,11 @@ def delete_lamp_app
     socket_path new_resource.fpm_socket_path
     action :remove
     only_if { new_resource.fpm_socket == new_resource.name }
+  end
+
+  # Delete `/usr/lib/cgi-bin/name`.
+  directory "#{node['apache']['cgibin_dir']}/php5-#{new_resource.name}" do
+    action :delete
   end
 
   # Remove the LAMP app's MySQL user for this host.
