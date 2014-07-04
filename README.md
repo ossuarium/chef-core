@@ -139,6 +139,7 @@ Each LAMP app must be assigned an `otr_service`.
 - name: the unique name of the LAMP app.
 - moniker: the name of the LAMP app.
 - service: the service to crate the LAMP app under.
+- fpm: whether to setup an FPM socket for this app. Defaults to <code>true</code>.
 - fpm_socket: path to the externally managed FPM socket to use.
 - database: whether to setup a database for this app. Defaults to <code>false</code>.
 - mysql_connection: MySQL admin connection information.

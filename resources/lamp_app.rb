@@ -14,6 +14,7 @@ Each LAMP app must be assigned an `otr_service`.
 @attribute moniker the name of the LAMP app.
 @attribute service the service to crate the LAMP app under.
 @attribute fpm_socket path to the externally managed FPM socket to use.
+@attribute fpm whether to setup an FPM socket for this app.
 @attribute mysql_connection MySQL admin connection information.
 @attribute database whether to setup a database for this app.
 @attribute db_name database name to use for the LAMP app.
@@ -30,6 +31,7 @@ actions :create, :delete
 attribute :name, kind_of: String, required: true, name_attribute: true
 attribute :moniker, kind_of: String, required: true
 attribute :service, kind_of: Chef::Resource, required: true
+attribute :fpm, kind_of: [TrueClass, FalseClass], default: true
 attribute :fpm_socket, kind_of: String
 attribute :database, kind_of: [TrueClass, FalseClass], default: false
 attribute :mysql_connection, kind_of: Hash
