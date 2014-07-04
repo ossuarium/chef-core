@@ -12,6 +12,7 @@ if platform?('ubuntu') && node['platform_version'].to_f >= 14.04
 end
 
 include_recipe 'apache2::default'
+include_recipe 'apache2::logrotate'
 
 template "#{node['apache']['dir']}/conf.d/000-otr.conf" do
   source 'apache-otr.conf.erb'
