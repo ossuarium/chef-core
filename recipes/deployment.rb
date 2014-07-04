@@ -129,10 +129,10 @@ node['otr']['deployments'].each do |deployment|
   otr_deployment deployment[:name] do
     apps lazy {
       if deployment[:apps]
-         deployment[:apps].map { |a| resources("otr_#{a[:type]}_app[#{a[:name]}]") }
-       else
-         []
-       end
+        deployment[:apps].map { |a| resources("otr_#{a[:type]}_app[#{a[:name]}]") }
+      else
+        []
+      end
     }
     action deployment[:action] if deployment[:action]
   end
