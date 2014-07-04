@@ -34,6 +34,7 @@ def create_service
 
   # Create `/srv/name`.
   directory new_resource.dir do
+    owner 'root'
     group node['otr']['deployer']['user']
     mode '0775'
   end
@@ -41,6 +42,7 @@ def create_service
   # Create `/srv/name/shared`, etc.
   node['otr']['service']['dirs'].each do |path|
     directory "#{new_resource.dir}/#{path}" do
+      owner 'root'
       group node['otr']['deployer']['user']
       mode '0775'
     end
