@@ -3,7 +3,7 @@
   "chef_environment": "_default",
   "name": "mysql-server",
   "automatic": {
-    "otr": {
+    "core": {
       "private_interface": "eth1",
       "mysql_sudoroot_user": "sudoroot",
       "mysql_sudoroot_password": "password"

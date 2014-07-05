@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: otr
+# Cookbook Name:: core
 # Provider:: service
 #
 
@@ -22,7 +22,7 @@ end
 private
 
 def set_attributes
-  new_resource.dir = "#{node['otr']['srv_dir']}/#{new_resource.name}"
+  new_resource.dir = "#{node['core']['srv_dir']}/#{new_resource.name}"
   new_resource.nginx_conf_dir =
     "#{node['nginx']['dir']}/services/#{new_resource.name}" unless node['nginx'].nil?
   new_resource.apache_conf_dir =
@@ -34,14 +34,14 @@ def create_service
 
   # Create `/srv/name`.
   directory new_resource.dir do
-    group node['otr']['deployer']['user']
+    group node['core']['deployer']['user']
     mode '0775'
   end
 
   # Create `/srv/name/shared`, etc.
-  node['otr']['service']['dirs'].each do |path|
+  node['core']['service']['dirs'].each do |path|
     directory "#{new_resource.dir}/#{path}" do
-      group node['otr']['deployer']['user']
+      group node['core']['deployer']['user']
       mode '0775'
     end
   end

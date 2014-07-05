@@ -1,4 +1,4 @@
-# otr
+# core
 
 [![All rights reserved](http://img.shields.io/badge/license-All_rights_reserved-red.svg?style=flat)](./LICENSE.txt)
 
@@ -41,45 +41,45 @@ Core infrastructure for OurTownRentals.com.
 
 Attribute | Default | Description | Choices
 ----------|---------|-------------|--------
-`node['otr']['apps']` | `[]` | Apps to create on the node. |
-`node['otr']['contact']` | `"evan@ourtownrentals.com"` | Administrative contact email. |
-`node['otr']['deployer']['user']` | `"deployer"` | System username for the deployer user. |
-`node['otr']['deployer']['home_dir']` | `"node['otr']['home_dir']/node['otr']['deployer']['user']"` | Home directory for the deployer user. |
-`node['otr']['deployer']['sudo_commands']` | `["/bin/chgrp"]` | Commands the deployer user is allowed to run as root using sudo. |
-`node['otr']['deployers']['name']` | `"deployers"` | Group name for the deployers group. |
-`node['otr']['deployers']['gid']` | `3300` | Group id for the deployers group. |
-`node['otr']['deployers']['deployments_dir']` | `"deployments"` | Directory under each deploy user's home directory for deployments. |
-`node['otr']['deployers']['dirs']` | `[".bundle"]` | Directories to create under each deployer's home directory. |
-`node['otr']['deployers']['files']` | `{"ruby-.gemrc"=>".gemrc", "bundler-config"=>".bundle/config"}` | Files to create under each deployer's home directory. |
-`node['otr']['deployers']['npm_packages']` | `[{"name"=>"bower", "version"=>"1.3.5"}]` | Node packages to install via npm for each deployer. |
-`node['otr']['deployers']['ruby_version']` | `"2.1.2"` | Ruby version each deployer will use. |
-`node['otr']['deployers']['gems']` | `[{"name"=>"bundler", "version"=>"~> 1.6"}]` | Ruby gems to install for each deployer. |
-`node['otr']['deployment']['packages']` | `[]` | Additional packages required for deployments. |
-`node['otr']['deployments']` | `[]` | Deployments to create on the node. |
-`node['otr']['mysql_sudoroot_user']` | `"sudoroot"` | Username for the MySQL admin user. |
-`node['otr']['mysql_sudoroot_password']` | `"`secure_password`"` | Password for the MySQL admin user. |
-`node['otr']['packages']` | `[]` | Additional packages to install. |
-`node['otr']['phpmyadmin']['pma_database']` | `"phpmyadmin"` | Name to use for the phpMyAdmin control database. |
-`node['otr']['phpmyadmin']['pma_username']` | `"phpmyadmin"` | MySQL username for access to the phpMyAdmin control database. |
-`node['otr']['service']['dirs']` | `["shared"]` | Directories to create under each service's directory. |
-`node['otr']['services']` | `[]` | Services to create on the node. |
+`node['core']['apps']` | `[]` | Apps to create on the node. |
+`node['core']['contact']` | `"evan@ourtownrentals.com"` | Administrative contact email. |
+`node['core']['deployer']['user']` | `"deployer"` | System username for the deployer user. |
+`node['core']['deployer']['home_dir']` | `"node['core']['home_dir']/node['core']['deployer']['user']"` | Home directory for the deployer user. |
+`node['core']['deployer']['sudo_commands']` | `["/bin/chgrp"]` | Commands the deployer user is allowed to run as root using sudo. |
+`node['core']['deployers']['name']` | `"deployers"` | Group name for the deployers group. |
+`node['core']['deployers']['gid']` | `3300` | Group id for the deployers group. |
+`node['core']['deployers']['deployments_dir']` | `"deployments"` | Directory under each deploy user's home directory for deployments. |
+`node['core']['deployers']['dirs']` | `[".bundle"]` | Directories to create under each deployer's home directory. |
+`node['core']['deployers']['files']` | `{"ruby-.gemrc"=>".gemrc", "bundler-config"=>".bundle/config"}` | Files to create under each deployer's home directory. |
+`node['core']['deployers']['npm_packages']` | `[{"name"=>"bower", "version"=>"1.3.5"}]` | Node packages to install via npm for each deployer. |
+`node['core']['deployers']['ruby_version']` | `"2.1.2"` | Ruby version each deployer will use. |
+`node['core']['deployers']['gems']` | `[{"name"=>"bundler", "version"=>"~> 1.6"}]` | Ruby gems to install for each deployer. |
+`node['core']['deployment']['packages']` | `[]` | Additional packages required for deployments. |
+`node['core']['deployments']` | `[]` | Deployments to create on the node. |
+`node['core']['mysql_sudoroot_user']` | `"sudoroot"` | Username for the MySQL admin user. |
+`node['core']['mysql_sudoroot_password']` | `"`secure_password`"` | Password for the MySQL admin user. |
+`node['core']['packages']` | `[]` | Additional packages to install. |
+`node['core']['phpmyadmin']['pma_database']` | `"phpmyadmin"` | Name to use for the phpMyAdmin control database. |
+`node['core']['phpmyadmin']['pma_username']` | `"phpmyadmin"` | MySQL username for access to the phpMyAdmin control database. |
+`node['core']['service']['dirs']` | `["shared"]` | Directories to create under each service's directory. |
+`node['core']['services']` | `[]` | Services to create on the node. |
 
 ## Recipes
 
-* otr::default - Configures a minimal base system.
-* [otr::mysql_server](#otrmysql_server) - Configures a MySQL server.
-* otr::static_app_server - Configures a static web server.
-* [otr::lamp_app_server](#otrlamp_app_server) - Configures the Apache HTTP Server, MySQL client, PHP-FPM.
-* otr::services - Create otr_services based on attributes.
-* [otr::deployment](#otrdeployment) - Sets up the deployer user and deployers group.
+* core::default - Configures a minimal base system.
+* [core::mysql_server](#coremysql_server) - Configures a MySQL server.
+* core::static_app_server - Configures a static web server.
+* [core::lamp_app_server](#corelamp_app_server) - Configures the Apache HTTP Server, MySQL client, PHP-FPM.
+* core::services - Create core_services based on attributes.
+* [core::deployment](#coredeployment) - Sets up the deployer user and deployers group.
 
-### otr::mysql_server
+### core::mysql_server
 
 This will configure a MySQL server and optionally
 setup phpMyAdmin running on Nginx using FastCGI and PHP-FPM.
 
 
-### otr::lamp_app_server
+### core::lamp_app_server
 
 This installs the Apache HTTP Server, MySQL client, PHP-FPM,
 and the necessary modules to host a PHP application using mod_fastcgi.
@@ -89,7 +89,7 @@ This also installs the [database cookbook].
 [database cookbook]: http://community.opscode.com/cookbooks/database
 
 
-### otr::deployment
+### core::deployment
 
 _This recipe should generally be placed near the end of the run list._
 
@@ -106,12 +106,12 @@ a Ruby version and a set of default gems (including Bundler).
 
 ## Resources
 
-* [otr_deployment](#otr_deployment)
-* [otr_lamp_app](#otr_lamp_app) - Each LAMP app must be assigned an `otr_service`.
-* [otr_service](#otr_service) - A service is the top-level organizational unit for providing web services.
-* [otr_static_app](#otr_static_app) - Each static app must be assigned an `otr_service`.
+* [core_deployment](#core_deployment)
+* [core_lamp_app](#core_lamp_app) - Each LAMP app must be assigned a `core_service`.
+* [core_service](#core_service) - A service is the top-level organizational unit for providing web services.
+* [core_static_app](#core_static_app) - Each static app must be assigned a `core_service`.
 
-### otr_deployment
+### core_deployment
 
 
 
@@ -125,9 +125,9 @@ a Ruby version and a set of default gems (including Bundler).
 - name: the name of the deployment.
 - apps: the apps this deployment will deploy to, Defaults to <code>[]</code>.
 
-### otr_lamp_app
+### core_lamp_app
 
-Each LAMP app must be assigned an `otr_service`.
+Each LAMP app must be assigned a `core_service`.
 
 #### Actions
 
@@ -148,14 +148,14 @@ Each LAMP app must be assigned an `otr_service`.
 - db_password: MySQL password to use to connect to the database.
 - db_client: host part of the MySQL username to use when creating the user.
 
-### otr_service
+### core_service
 
 A service is the top-level organizational unit for providing web services.
-Each service will have its own directory under `node['otr']['srv_dir']`
+Each service will have its own directory under `node['core']['srv_dir']`
 and a corresponding configuration directory for the installed web server.
 
 A set of default directories to create for each service under its
-primary directory is set in `node['otr']['service']['dirs']`.
+primary directory is set in `node['core']['service']['dirs']`.
 
 #### Actions
 
@@ -166,9 +166,9 @@ primary directory is set in `node['otr']['service']['dirs']`.
 
 - name: the name of the service.
 
-### otr_static_app
+### core_static_app
 
-Each static app must be assigned an `otr_service`.
+Each static app must be assigned a `core_service`.
 
 #### Actions
 
@@ -185,12 +185,12 @@ Each static app must be assigned an `otr_service`.
 
 ### Source Code
 
-The [otr source](https://bitbucket.org/ourtownrentals/chef-otr)
+The [core source](https://bitbucket.org/ourtownrentals/chef-core)
 is hosted on Bitbucket.
 To clone the project run
 
 ````bash
-$ git clone https://bitbucket.org/ourtownrentals/chef-otr.git
+$ git clone https://bitbucket.org/ourtownrentals/chef-core.git
 ````
 
 ### Rake
@@ -234,7 +234,7 @@ Please submit and comment on bug reports and feature requests.
 
 To submit a patch:
 
-1. Fork it (https://bitbucket.org/ourtownrentals/chef-otr/fork).
+1. Fork it (https://bitbucket.org/ourtownrentals/chef-core/fork).
 2. Create your feature branch (`git checkout -b my-new-feature`).
 3. Make changes. Write and run tests.
 4. Commit your changes (`git commit -am 'Add some feature'`).

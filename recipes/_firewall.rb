@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: otr
+# Cookbook Name:: core
 # Recipe:: _firewall
 #
 
@@ -34,17 +34,17 @@ end
 firewall_rule 'http' do
   protocol :tcp
   port 80
-  action node['otr']['servers']['http'] ? :allow : :reject
+  action node['core']['servers']['http'] ? :allow : :reject
 end
 
 firewall_rule 'https' do
   protocol :tcp
   port 443
-  action node['otr']['servers']['https'] ? :allow : :reject
+  action node['core']['servers']['https'] ? :allow : :reject
 end
 
 firewall_rule 'mysql' do
   protocol :tcp
   port node['mysql']['port'].to_i
-  action node['otr']['servers']['mysql'] ? :allow : :reject
+  action node['core']['servers']['mysql'] ? :allow : :reject
 end

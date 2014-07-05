@@ -1,30 +1,30 @@
 #
-# Cookbook Name:: otr
+# Cookbook Name:: core
 # Attributes:: default
 #
 
-default['otr']['contact'] = 'evan@ourtownrentals.com'
+default['core']['contact'] = 'evan@ourtownrentals.com'
 
-default['otr']['packages'] = []
+default['core']['packages'] = []
 
 #
 # Configuration for phpMyAdmin.
 #
 
-default['otr']['phpmyadmin']['pma_database'] = 'phpmyadmin'
-default['otr']['phpmyadmin']['pma_username'] = 'phpmyadmin'
+default['core']['phpmyadmin']['pma_database'] = 'phpmyadmin'
+default['core']['phpmyadmin']['pma_username'] = 'phpmyadmin'
 
 #
 # Configuration for MySQL.
 #
 
-default['otr']['mysql_sudoroot_user'] = 'sudoroot'
+default['core']['mysql_sudoroot_user'] = 'sudoroot'
 
 #
 # Service configuration.
 #
 
-default['otr']['service']['dirs'] = [
+default['core']['service']['dirs'] = [
   'shared',
 ]
 
@@ -32,8 +32,8 @@ default['otr']['service']['dirs'] = [
 # Services and apps.
 #
 
-default['otr']['services'] = []
-default['otr']['apps'] = []
+default['core']['services'] = []
+default['core']['apps'] = []
 
 #
 # All attributes below are configured automatically,
@@ -41,21 +41,21 @@ default['otr']['apps'] = []
 #
 
 # Run directory.
-default['otr']['run_dir'] = '/var/run'
+default['core']['run_dir'] = '/var/run'
 
 # Serve directory.
-default['otr']['srv_dir'] = '/srv'
+default['core']['srv_dir'] = '/srv'
 
 # Home directory.
-default['otr']['home_dir'] = '/home'
+default['core']['home_dir'] = '/home'
 
 # Disable available servers by default.
 # These will be enabled automatically by recipes that need them.
-default['otr']['servers'] = {
+default['core']['servers'] = {
   http: false,
   https: false,
   mysql: false,
 }
 
 # Interface facing the private network.
-default['otr']['private_interface'] = 'eth1'
+default['core']['private_interface'] = 'eth1'

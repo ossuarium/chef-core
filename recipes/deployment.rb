@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: otr
+# Cookbook Name:: core
 # Recipe:: deployment
 #
 
@@ -26,29 +26,29 @@ a Ruby version and a set of default gems (including Bundler).
 node.default['ruby_build']['git_ref'] = 'master'
 node.default['rbenv']['git_ref'] = 'master'
 
-include_recipe 'otr::_common_system'
+include_recipe 'core::_common_system'
 include_recipe 'build-essential::default'
 
 #
 # Install additional packages.
 #
 
-node['otr']['deployment']['packages'].each do |pkg|
+node['core']['deployment']['packages'].each do |pkg|
   package pkg do
     action :install
   end
 end
 
-directory "#{node['otr']['deployer']['home_dir']}/bin" do
-  owner node['otr']['deployer']['user']
-  group node['otr']['deployers']['name']
+directory "#{node['core']['deployer']['home_dir']}/bin" do
+  owner node['core']['deployer']['user']
+  group node['core']['deployers']['name']
   mode '0750'
 end
 
 sudo 'deployer' do
-  user node['otr']['deployer']['user']
+  user node['core']['deployer']['user']
   nopasswd true
-  commands node['otr']['deployer']['sudo_commands']
+  commands node['core']['deployer']['sudo_commands']
 end
 
 #
@@ -56,25 +56,25 @@ end
 #
 
 search(
-  'users', "groups:#{node['otr']['deployers']['name']} AND NOT action:remove"
+  'users', "groups:#{node['core']['deployers']['name']} AND NOT action:remove"
 ).each do |user|
-  home = "#{node['otr']['home_dir']}/#{user.id}"
+  home = "#{node['core']['home_dir']}/#{user.id}"
 
   node.default['rbenv']['user_installs'] << {
     user: user.id,
-    rubies: [node['otr']['deployers']['ruby_version']],
-    global: node['otr']['deployers']['ruby_version'],
+    rubies: [node['core']['deployers']['ruby_version']],
+    global: node['core']['deployers']['ruby_version'],
     gems: {
-      node['otr']['deployers']['ruby_version'] => node['otr']['deployers']['gems']
+      node['core']['deployers']['ruby_version'] => node['core']['deployers']['gems']
     }
   }
 
-  directory "#{home}/#{node['otr']['deployers']['deployments_dir']}" do
+  directory "#{home}/#{node['core']['deployers']['deployments_dir']}" do
     owner user.id
-    group node['otr']['deployer']['user']
+    group node['core']['deployer']['user']
   end
 
-  node['otr']['deployers']['dirs'].each do |path|
+  node['core']['deployers']['dirs'].each do |path|
     directory "#{home}/#{path}" do
       owner user.id
       group user.id
@@ -82,7 +82,7 @@ search(
     end
   end
 
-  node['otr']['deployers']['files'].each do |src, dest|
+  node['core']['deployers']['files'].each do |src, dest|
     cookbook_file src do
       path "#{home}/#{dest}"
       owner user.id
@@ -98,7 +98,7 @@ end
 
 include_recipe 'nodejs::default'
 
-node['otr']['deployers']['npm_packages'].each do |pkg|
+node['core']['deployers']['npm_packages'].each do |pkg|
   nodejs_npm pkg[:name] do
     version pkg[:version]
   end
@@ -114,11 +114,11 @@ node.set['rbenv']['upgrade'] = 'sync'
 include_recipe 'ruby_build::default'
 include_recipe 'rbenv::user'
 
-node['otr']['deployments'].each do |deployment|
-  otr_deployment deployment[:name] do
+node['core']['deployments'].each do |deployment|
+  core_deployment deployment[:name] do
     apps lazy {
       if deployment[:apps]
-        deployment[:apps].map { |a| resources("otr_#{a[:type]}_app[#{a[:name]}]") }
+        deployment[:apps].map { |a| resources("core_#{a[:type]}_app[#{a[:name]}]") }
       else
         []
       end

@@ -1,4 +1,4 @@
 require 'spec_helper'
 
-describe "otr::default" do
+describe "core::default" do
 end

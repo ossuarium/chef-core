@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: otr
+# Cookbook Name:: core
 # Provider:: static_app
 #
 

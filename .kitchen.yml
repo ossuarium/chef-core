@@ -21,16 +21,16 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[otr::default]
+      - recipe[core::default]
 
   - name: deployment
     driver:
       network:
         - ["private_network", {ip: "10.10.10.100"}]
     run_list:
-      - recipe[otr::deployment]
+      - recipe[core::deployment]
     attributes:
-      otr:
+      core:
         deployments:
           - name: default
 
@@ -39,11 +39,11 @@ suites:
       network:
         - ["private_network", {ip: "10.10.10.101"}]
     run_list:
-      - recipe[otr::mysql_server]
+      - recipe[core::mysql_server]
     attributes:
       mysql:
         server_root_password: password
-      otr:
+      core:
         mysql_sudoroot_password: password
         mysql_admin: true
 
@@ -52,10 +52,10 @@ suites:
       network:
         - ["private_network", {ip: "10.10.10.102"}]
     run_list:
-      - recipe[otr::lamp_app_server]
-      - recipe[otr::deployment]
+      - recipe[core::lamp_app_server]
+      - recipe[core::deployment]
     attributes:
-      otr:
+      core:
         services:
           - name: default
         apps:
@@ -72,10 +72,10 @@ suites:
       network:
         - ["private_network", {ip: "10.10.10.103"}]
     run_list:
-      - recipe[otr::static_app_server]
-      - recipe[otr::deployment]
+      - recipe[core::static_app_server]
+      - recipe[core::deployment]
     attributes:
-      otr:
+      core:
         services:
           - name: default
         apps:

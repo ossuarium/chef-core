@@ -1,10 +1,10 @@
 #
-# Cookbook Name:: otr
+# Cookbook Name:: core
 # Recipe:: services
 #
 
-node['otr']['services'].each do |service|
-  otr_service service[:name] do
+node['core']['services'].each do |service|
+  core_service service[:name] do
     action service[:action] if service[:action]
   end
 end

@@ -1,16 +1,16 @@
 #
-# Cookbook Name:: otr
+# Cookbook Name:: core
 # Resource:: service
 #
 
 =begin
 #<
 A service is the top-level organizational unit for providing web services.
-Each service will have its own directory under `node['otr']['srv_dir']`
+Each service will have its own directory under `node['core']['srv_dir']`
 and a corresponding configuration directory for the installed web server.
 
 A set of default directories to create for each service under its
-primary directory is set in `node['otr']['service']['dirs']`.
+primary directory is set in `node['core']['service']['dirs']`.
 
 @action create creates the service.
 @action delete deletes the service.

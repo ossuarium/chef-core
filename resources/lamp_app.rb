@@ -1,11 +1,11 @@
 #
-# Cookbook Name:: otr
+# Cookbook Name:: core
 # Resource:: lamp_app
 #
 
 =begin
 #<
-Each LAMP app must be assigned an `otr_service`.
+Each LAMP app must be assigned a `core_service`.
 
 @action create creates the LAMP app.
 @action delete deletes the LAMP app.

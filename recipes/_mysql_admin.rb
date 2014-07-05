@@ -1,16 +1,16 @@
 #
-# Cookbook Name:: otr
+# Cookbook Name:: core
 # Recipe:: _mysql_admin
 #
 
 ::Chef::Recipe.send :include, Opscode::OpenSSL::Password
 
-node.default['phpmyadmin']['socket'] = "#{node['otr']['run_dir']}/php-fpm-phpmyadmin.sock"
+node.default['phpmyadmin']['socket'] = "#{node['core']['run_dir']}/php-fpm-phpmyadmin.sock"
 
-node.set_unless['otr']['phpmyadmin']['pma_password'] = secure_password
+node.set_unless['core']['phpmyadmin']['pma_password'] = secure_password
 
 include_recipe 'mysql::client'
-include_recipe 'otr::_nginx_server'
+include_recipe 'core::_nginx_server'
 include_recipe 'php::default'
 include_recipe 'php::fpm'
 include_recipe 'phpmyadmin::default'
@@ -21,7 +21,7 @@ template "#{node['nginx']['dir']}/sites-available/phpmyadmin" do
 end
 
 nginx_site 'phpmyadmin' do
-  enable node['otr']['mysql_admin']
+  enable node['core']['mysql_admin']
 end
 
 phpmyadmin_pmadb 'phpmyadmin' do
@@ -29,9 +29,9 @@ phpmyadmin_pmadb 'phpmyadmin' do
   port node['mysql']['port'].to_i
   root_username 'root'
   root_password node['mysql']['server_root_password']
-  pma_database node['otr']['phpmyadmin']['pma_database']
-  pma_username node['otr']['phpmyadmin']['pma_username']
-  pma_password node['otr']['phpmyadmin']['pma_password']
+  pma_database node['core']['phpmyadmin']['pma_database']
+  pma_username node['core']['phpmyadmin']['pma_username']
+  pma_password node['core']['phpmyadmin']['pma_password']
 end
 
 phpmyadmin_db node['hostname'] do
@@ -39,9 +39,9 @@ phpmyadmin_db node['hostname'] do
   port node['mysql']['port'].to_i
   username 'root'
   password node['mysql']['server_root_password']
-  pma_database node['otr']['phpmyadmin']['pma_database']
-  pma_username node['otr']['phpmyadmin']['pma_username']
-  pma_password node['otr']['phpmyadmin']['pma_password']
+  pma_database node['core']['phpmyadmin']['pma_database']
+  pma_username node['core']['phpmyadmin']['pma_username']
+  pma_password node['core']['phpmyadmin']['pma_password']
   auth_type 'cookie'
   hide_dbs %w(information_schema mysql phpmyadmin performance_schema)
 end

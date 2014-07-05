@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: otr
+# Cookbook Name:: core
 # Recipe:: mysql_server
 #
 
@@ -13,32 +13,32 @@ setup phpMyAdmin running on Nginx using FastCGI and PHP-FPM.
 ::Chef::Recipe.send :include, Opscode::OpenSSL::Password
 
 node.set_unless['mysql']['server_root_password'] = secure_password
-node.set_unless['otr']['mysql_sudoroot_password'] = secure_password
+node.set_unless['core']['mysql_sudoroot_password'] = secure_password
 
-node.default['otr']['servers']['mysql'] = true
+node.default['core']['servers']['mysql'] = true
 
-if node['otr']['mysql_admin']
-  node.default['otr']['servers']['http'] = true
-  node.default['otr']['servers']['https'] = true
+if node['core']['mysql_admin']
+  node.default['core']['servers']['http'] = true
+  node.default['core']['servers']['https'] = true
 end
 
-include_recipe 'otr::_common_system'
+include_recipe 'core::_common_system'
 include_recipe 'mysql::server'
 include_recipe 'mysql::client'
 include_recipe 'database::mysql'
-include_recipe 'otr::_mysql_admin' if node['otr']['mysql_admin']
+include_recipe 'core::_mysql_admin' if node['core']['mysql_admin']
 
-mysql_database_user node['otr']['mysql_sudoroot_user'] do
+mysql_database_user node['core']['mysql_sudoroot_user'] do
   connection host: 'localhost',
              username: 'root',
              password: node['mysql']['server_root_password']
-  password node['otr']['mysql_sudoroot_password']
+  password node['core']['mysql_sudoroot_password']
   host Chef::Recipe::PrivateNetwork.new(node).subnet
   grant_option true
   action [:create, :grant]
 end
 
 service 'nginx' do
-  action node['otr']['mysql_admin'] ? :start : :stop
+  action node['core']['mysql_admin'] ? :start : :stop
   not_if { node['nginx'].empty? }
 end

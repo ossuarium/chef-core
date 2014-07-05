@@ -1,11 +1,11 @@
 #
-# Cookbook Name:: otr
+# Cookbook Name:: core
 # Resource:: static_app
 #
 
 =begin
 #<
-Each static app must be assigned an `otr_service`.
+Each static app must be assigned a `core_service`.
 
 @action create creates the static app.
 @action delete deletes the static app.

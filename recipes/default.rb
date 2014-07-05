@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: otr
+# Cookbook Name:: core
 # Recipe:: default
 #
 
-include_recipe 'otr::_common_system'
+include_recipe 'core::_common_system'

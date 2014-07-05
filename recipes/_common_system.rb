@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: otr
+# Cookbook Name:: core
 # Recipe:: _common_system
 #
 
@@ -29,7 +29,7 @@ node.default['openssh']['server']['allow_agent_forwarding'] = 'yes'
 #
 
 include_recipe 'annoyances::default'
-include_recipe 'otr::_users'
+include_recipe 'core::_users'
 include_recipe 'apt::default' if platform_family? 'debian'
 include_recipe 'logrotate::global'
 include_recipe 'ntp::default'
@@ -38,14 +38,14 @@ include_recipe 'zsh::default'
 include_recipe 'vim::default'
 include_recipe 'sudo::default'
 include_recipe 'openssh::default'
-include_recipe 'otr::_firewall'
+include_recipe 'core::_firewall'
 include_recipe 'oh-my-zsh::default'
 
 #
 # Install additional packages.
 #
 
-node['otr']['packages'].each do |pkg|
+node['core']['packages'].each do |pkg|
   package pkg do
     action :install
   end

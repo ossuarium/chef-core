@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: otr
+# Cookbook Name:: core
 # Recipe:: lamp_app_server
 #
 
@@ -14,27 +14,27 @@ This also installs the [database cookbook].
 #>
 =end
 
-node.default['otr']['servers']['http'] = true
-node.default['otr']['servers']['https'] = true
+node.default['core']['servers']['http'] = true
+node.default['core']['servers']['https'] = true
 
-include_recipe 'otr::_common_system'
-include_recipe 'otr::_apache_server'
+include_recipe 'core::_common_system'
+include_recipe 'core::_apache_server'
 include_recipe 'apache2::mod_fastcgi'
 include_recipe 'mysql::client'
 include_recipe 'database::mysql'
 include_recipe 'php::default'
 include_recipe 'php::fpm'
 include_recipe 'php::module_mysql'
-include_recipe 'otr::services'
+include_recipe 'core::services'
 
 apache_module 'actions' do
   enable true
 end
 
-node['otr']['apps'].select { |a| a[:type] == 'lamp' }.each do |app|
-  otr_lamp_app app[:name] do
+node['core']['apps'].select { |a| a[:type] == 'lamp' }.each do |app|
+  core_lamp_app app[:name] do
     moniker app[:moniker]
-    service lazy { resources(otr_service: app[:service]) }
+    service lazy { resources(core_service: app[:service]) }
     action app[:action] if app[:action]
   end
 end

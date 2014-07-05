@@ -1,15 +1,15 @@
 #
-# Cookbook Name:: otr
+# Cookbook Name:: core
 # Recipe:: _apache_server
 #
 
 apache24 = platform?('ubuntu') && node['platform_version'].to_f >= 14.04
 
-node.default['otr']['servers']['http'] = true
-node.default['otr']['servers']['https'] = true
+node.default['core']['servers']['http'] = true
+node.default['core']['servers']['https'] = true
 
 node.default['apache']['default_site_enabled']  = false
-node.default['apache']['contact'] = node['otr']['contact']
+node.default['apache']['contact'] = node['core']['contact']
 
 if apache24
   node.set['apache']['pid_file'] = '/var/run/apache2/apache2.pid'
@@ -19,8 +19,8 @@ end
 include_recipe 'apache2::default'
 include_recipe 'apache2::logrotate'
 
-template "#{node['apache']['dir']}/conf.d/otr.conf" do
-  source 'apache-otr.conf.erb'
+template "#{node['apache']['dir']}/conf.d/core.conf" do
+  source 'apache-core.conf.erb'
   notifies :reload, 'service[apache2]'
 end
 

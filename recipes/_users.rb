@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: otr
+# Cookbook Name:: core
 # Recipe:: _users
 #
 
@@ -10,9 +10,9 @@ include_recipe 'users::sysadmins'
 # Setup deployer user.
 #
 
-user node['otr']['deployer']['user'] do
+user node['core']['deployer']['user'] do
   shell '/bin/bash'
-  home node['otr']['deployer']['home_dir']
+  home node['core']['deployer']['home_dir']
   system true
   supports manage_home: true
 end
@@ -21,7 +21,7 @@ end
 # Create and add uses to the deployers group.
 #
 
-users_manage node['otr']['deployers']['name'] do
-  group_id node['otr']['deployers']['gid']
+users_manage node['core']['deployers']['name'] do
+  group_id node['core']['deployers']['gid']
   action [:remove, :create]
 end

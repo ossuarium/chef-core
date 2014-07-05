@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: otr
+# Cookbook Name:: core
 # Provider:: lamp_app
 #
 
@@ -36,7 +36,7 @@ def set_attributes
   new_resource.group = node['apache']['group']
   new_resource.dir = "#{new_resource.service.dir}/#{new_resource.moniker}"
   new_resource.conf_dir = "#{new_resource.service.apache_conf_dir}/#{new_resource.moniker}.d"
-  new_resource.fpm_socket_path = "#{node['otr']['run_dir']}/#{new_resource.fpm_socket}.sock"
+  new_resource.fpm_socket_path = "#{node['core']['run_dir']}/#{new_resource.fpm_socket}.sock"
 end
 
 def set_mysql_connection
@@ -46,8 +46,8 @@ def set_mysql_connection
   ).first
   new_resource.mysql_connection ||= {
     host: Chef::Recipe::PrivateNetwork.new(db_node).ip,
-    username: db_node['otr']['mysql_sudoroot_user'],
-    password: db_node['otr']['mysql_sudoroot_password']
+    username: db_node['core']['mysql_sudoroot_user'],
+    password: db_node['core']['mysql_sudoroot_password']
   }
 end
 
@@ -90,7 +90,7 @@ def create_lamp_app
   # Create an apache configuration fragment for the FCGI connection.
   template "#{new_resource.conf_dir}/php-fcgi.conf" do
     source 'apache-php-fcgi.conf.erb'
-    cookbook 'otr'
+    cookbook 'core'
     variables(
       name: new_resource.name,
       socket: new_resource.fpm_socket_path

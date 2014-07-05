@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: otr
+# Cookbook Name:: core
 # Attributes:: deployment
 #
 
@@ -7,16 +7,16 @@
 # Deployment configuration.
 #
 
-default['otr']['deployment']['packages'] = []
+default['core']['deployment']['packages'] = []
 
 #
 # Deployer user configuration.
 #
 
-default['otr']['deployer']['user'] = 'deployer'
-default['otr']['deployer']['home_dir'] = "#{node['otr']['home_dir']}/#{node['otr']['deployer']['user']}"
+default['core']['deployer']['user'] = 'deployer'
+default['core']['deployer']['home_dir'] = "#{node['core']['home_dir']}/#{node['core']['deployer']['user']}"
 
-default['otr']['deployer']['sudo_commands'] = [
+default['core']['deployer']['sudo_commands'] = [
   '/bin/chgrp',
 ]
 
@@ -24,20 +24,20 @@ default['otr']['deployer']['sudo_commands'] = [
 # Deployers group configuration.
 #
 
-default['otr']['deployers']['name'] = 'deployers'
-default['otr']['deployers']['gid'] = 3300
-default['otr']['deployers']['deployments_dir'] = 'deployments'
-default['otr']['deployers']['ruby_version'] = '2.1.2'
-default['otr']['deployers']['gems'] = [
+default['core']['deployers']['name'] = 'deployers'
+default['core']['deployers']['gid'] = 3300
+default['core']['deployers']['deployments_dir'] = 'deployments'
+default['core']['deployers']['ruby_version'] = '2.1.2'
+default['core']['deployers']['gems'] = [
   {name: 'bundler', version: '~> 1.6'},
 ]
-default['otr']['deployers']['npm_packages'] = [
+default['core']['deployers']['npm_packages'] = [
   {name: 'bower', version: '1.3.5'},
 ]
-default['otr']['deployers']['dirs'] = [
+default['core']['deployers']['dirs'] = [
   '.bundle',
 ]
-default['otr']['deployers']['files'] = {
+default['core']['deployers']['files'] = {
   'ruby-.gemrc' => '.gemrc',
   'bundler-config' => '.bundle/config',
 }
@@ -46,4 +46,4 @@ default['otr']['deployers']['files'] = {
 # Deployments
 #
 
-default['otr']['deployments'] = []
+default['core']['deployments'] = []

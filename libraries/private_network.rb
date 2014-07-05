@@ -12,7 +12,7 @@ class Chef
 
       # @return [Hash] the node attributes for the private interface
       def interface
-        node['network']['interfaces'][node['otr']['private_interface']]
+        node['network']['interfaces'][node['core']['private_interface']]
       end
 
       # @return [String] the node's private IP address
