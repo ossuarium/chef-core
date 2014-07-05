@@ -39,17 +39,6 @@ node['otr']['deployment']['packages'].each do |pkg|
   end
 end
 
-#
-# Setup deployer user.
-#
-
-user node['otr']['deployer']['user'] do
-  shell '/bin/bash'
-  home node['otr']['deployer']['home_dir']
-  system true
-  supports manage_home: true
-end
-
 directory "#{node['otr']['deployer']['home_dir']}/bin" do
   owner node['otr']['deployer']['user']
   group node['otr']['deployers']['name']
