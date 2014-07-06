@@ -3,7 +3,8 @@ source 'https://api.berkshelf.com'
 metadata
 
 cookbook 'php',
-         github: 'ourtownrentals/chef-php'
+         github: 'ourtownrentals/chef-php',
+         branch: 'otr'
 
 cookbook 'phpmyadmin',
          github: 'ourtownrentals/chef-phpmyadmin'
