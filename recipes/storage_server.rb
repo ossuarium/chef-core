@@ -15,6 +15,8 @@ node['core']['storage'].each do |storage|
 
   storage[:paths].each do |path|
     directory "#{node['core']['storage_dir']}/#{storage[:name]}/#{path}" do
+      group node['apache']['group']
+      mode '0775'
       recursive true
     end
   end unless storage[:paths].nil?
