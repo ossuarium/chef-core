@@ -6,8 +6,10 @@
 <% else -%>
 <% @apps.each do |app| -%>
   - :moniker: <%= app.moniker %>
+<% unless app.shared_dir.nil? -%>
 <% if Dir.exist? app.shared_dir -%>
     :shared_dir: <%= app.shared_dir %>
+<% end -%>
 <% end -%>
 <% end -%>
 <% end -%>
