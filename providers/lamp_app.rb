@@ -23,6 +23,13 @@ action :delete do
   end
 end
 
+action :destroy do
+  converge_by("Destroying #{@new_resource}") do
+    delete_lamp_app
+    destroy_lamp_app
+  end
+end
+
 private
 
 def set_attributes
@@ -159,4 +166,24 @@ def delete_lamp_app
   end
 
   new_resource.fpm_socket = new_resource.fpm_socket_path
+end
+
+def destroy_lamp_app
+  set_attributes
+  set_mysql_connection
+
+  # Delete `/srv/service_name/shared/moniker`.
+  directory "lamp_app_#{new_resource.shared_dir}" do
+    path new_resource.shared_dir
+    recursive true
+    action :delete
+  end
+
+  # Delete the database for the LAMP app.
+  mysql_database "lamp_app_#{new_resource.db_name}" do
+    database_name new_resource.db_name
+    connection new_resource.mysql_connection
+    action :drop
+    only_if { new_resource.database }
+  end
 end

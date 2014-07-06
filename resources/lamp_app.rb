@@ -9,6 +9,7 @@ Each LAMP app must be assigned a `core_service`.
 
 @action create creates the LAMP app.
 @action delete deletes the LAMP app.
+@action destroy deletes the instance, database, and shared directory.
 
 @attribute name the unique name of the LAMP app.
 @attribute moniker the name of the LAMP app.
@@ -26,7 +27,7 @@ Each LAMP app must be assigned a `core_service`.
 
 default_action :create
 
-actions :create, :delete
+actions :create, :delete, :destroy
 
 attribute :name, kind_of: String, required: true, name_attribute: true
 attribute :moniker, kind_of: String, required: true

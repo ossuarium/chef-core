@@ -135,6 +135,7 @@ Each LAMP app must be assigned a `core_service`.
 
 - create: creates the LAMP app. Default action.
 - delete: deletes the LAMP app.
+- destroy: deletes the instance, database, and shared directory.
 
 #### Attribute Parameters
 
