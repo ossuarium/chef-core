@@ -5,9 +5,6 @@
 
 apache24 = platform?('ubuntu') && node['platform_version'].to_f >= 14.04
 
-node.default['core']['servers']['http'] = true
-node.default['core']['servers']['https'] = true
-
 node.default['apache']['default_site_enabled']  = false
 node.default['apache']['contact'] = node['core']['contact']
 
