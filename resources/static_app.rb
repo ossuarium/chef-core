@@ -24,4 +24,4 @@ attribute :name, kind_of: String, required: true, name_attribute: true
 attribute :moniker, kind_of: String, required: true
 attribute :service, kind_of: Chef::Resource, required: true
 
-attr_accessor :type, :dir, :conf_dir, :group
+attr_accessor :type, :dir, :conf_dir, :group, :shared_dir
