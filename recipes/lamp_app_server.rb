@@ -17,13 +17,15 @@ This also installs the [database cookbook].
 node.default['core']['servers']['http'] = true
 node.default['core']['servers']['https'] = true
 
+node.default['php-fpm']['pools'] = []
+
 include_recipe 'core::_common_system' if node['core']['common_system']
 include_recipe 'core::_apache_server'
 include_recipe 'apache2::mod_fastcgi'
 include_recipe 'mysql::client'
 include_recipe 'database::mysql'
 include_recipe 'php::default'
-include_recipe 'php::fpm'
+include_recipe 'php-fpm::default'
 include_recipe 'php::module_mysql'
 include_recipe 'core::services'
 
