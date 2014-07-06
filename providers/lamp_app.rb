@@ -36,7 +36,7 @@ def set_attributes
   new_resource.group = node['apache']['group']
   new_resource.dir = "#{new_resource.service.dir}/#{new_resource.moniker}"
   new_resource.conf_dir = "#{new_resource.service.apache_conf_dir}/#{new_resource.moniker}.d"
-  new_resource.shared_path = "#{new_resource.service.dir}/shared/#{new_resource.moniker}"
+  new_resource.shared_dir = "#{new_resource.service.dir}/shared/#{new_resource.moniker}"
   new_resource.fpm_socket_path =
     if new_resource.fpm_socket == new_resource.name
       "#{node['core']['run_dir']}/php-fpm-lamp_app_#{new_resource.fpm_socket}.sock"
@@ -64,8 +64,8 @@ def create_lamp_app
   fail 'No apache conf directory.' if new_resource.service.apache_conf_dir.nil?
 
   # Create `/srv/service_name/shared/moniker`.
-  directory "lamp_app_#{new_resource.shared_path}" do
-    path new_resource.shared_path
+  directory "lamp_app_#{new_resource.shared_dir}" do
+    path new_resource.shared_dir
     owner node['apache']['user']
     group new_resource.group
     mode '0750'
