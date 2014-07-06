@@ -72,7 +72,6 @@ def create_lamp_app
   # Create `/srv/service_name/shared/moniker`.
   directory "lamp_app_#{new_resource.shared_dir}" do
     path new_resource.shared_dir
-    owner node['apache']['user']
     group new_resource.group
     mode '0750'
   end
