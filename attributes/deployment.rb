@@ -16,9 +16,7 @@ default['core']['deployment']['packages'] = []
 default['core']['deployer']['user'] = 'deployer'
 default['core']['deployer']['home_dir'] = "#{node['core']['home_dir']}/#{node['core']['deployer']['user']}"
 
-default['core']['deployer']['sudo_commands'] = [
-  '/bin/chgrp',
-]
+default['core']['deployer']['sudo_commands'] = %w(/bin/chgrp)
 
 #
 # Deployers group configuration.
