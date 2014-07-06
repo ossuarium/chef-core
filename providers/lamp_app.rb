@@ -77,7 +77,6 @@ def create_lamp_app
     socket true
     only_if { new_resource.fpm_socket == new_resource.name && new_resource.fpm }
   end
-  new_resource.fpm_socket = new_resource.fpm_socket_path
 
   # Create `/usr/lib/cgi-bin/name`.
   directory "#{node['apache']['cgibin_dir']}/#{new_resource.name}" do
@@ -121,6 +120,8 @@ def create_lamp_app
     action [:drop, :create, :grant]
     only_if { new_resource.database }
   end
+
+  new_resource.fpm_socket = new_resource.fpm_socket_path
 end
 
 def delete_lamp_app
@@ -142,7 +143,6 @@ def delete_lamp_app
     action :delete
     only_if { new_resource.fpm_socket == new_resource.name && new_resource.fpm }
   end
-  new_resource.fpm_socket = new_resource.fpm_socket_path
 
   # Delete `/usr/lib/cgi-bin/name`.
   directory "#{node['apache']['cgibin_dir']}/php5-#{new_resource.name}" do
@@ -158,4 +158,6 @@ def delete_lamp_app
     action :drop
     only_if { new_resource.database }
   end
+
+  new_resource.fpm_socket = new_resource.fpm_socket_path
 end
