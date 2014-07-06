@@ -43,6 +43,7 @@ Core infrastructure for OurTownRentals.com.
 Attribute | Default | Description | Choices
 ----------|---------|-------------|--------
 `node['core']['apps']` | `[]` | Apps to create on the node. |
+`node['core']['common_system']` | `true` | Whether to include the common system configuration. |
 `node['core']['contact']` | `"evan@ourtownrentals.com"` | Administrative contact email. |
 `node['core']['deployer']['user']` | `"deployer"` | System username for the deployer user. |
 `node['core']['deployer']['home_dir']` | `"node['core']['home_dir']/node['core']['deployer']['user']"` | Home directory for the deployer user. |
