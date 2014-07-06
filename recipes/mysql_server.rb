@@ -26,7 +26,7 @@ include_recipe 'core::_common_system' if node['core']['common_system']
 include_recipe 'mysql::server'
 include_recipe 'mysql::client'
 include_recipe 'database::mysql'
-include_recipe 'core::_mysql_admin' if node['core']['mysql_admin']
+include_recipe 'phpmyadmin::default' if node['core']['mysql_admin']
 
 mysql_database_user node['core']['mysql_sudoroot_user'] do
   connection host: 'localhost',
@@ -38,7 +38,7 @@ mysql_database_user node['core']['mysql_sudoroot_user'] do
   action [:create, :grant]
 end
 
-service 'nginx' do
+service 'apache2' do
   action node['core']['mysql_admin'] ? :start : :stop
-  not_if { node['nginx'].empty? }
+  not_if { node['apache2'].empty? }
 end

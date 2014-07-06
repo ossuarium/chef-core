@@ -2,17 +2,15 @@ source 'https://api.berkshelf.com'
 
 metadata
 
+cookbook 'php',
+         github: 'ourtownrentals/chef-php'
+
+cookbook 'phpmyadmin',
+         github: 'ourtownrentals/chef-phpmyadmin'
+
 cookbook 'apache2',
          github: 'onehealth-cookbooks/apache2',
          ref: 'b1ffc2fb4ce59c8c348850154a155b49824b072f'
-
-cookbook 'php',
-         github: 'razor-x/chef-php',
-         ref: '6c988746d9ae8daea4f734bc71cc4934b77775d4'
-
-cookbook 'phpmyadmin',
-         github: 'priestjim/chef-phpmyadmin',
-         ref: '00bb2734a90a7d91222c04e7fa8f4b4e1d7b969a'
 
 cookbook 'nodejs',
          github: 'redguide/nodejs',

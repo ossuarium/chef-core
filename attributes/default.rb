@@ -9,13 +9,6 @@ default['core']['contact'] = 'evan@ourtownrentals.com'
 default['core']['packages'] = []
 
 #
-# Configuration for phpMyAdmin.
-#
-
-default['core']['phpmyadmin']['pma_database'] = 'phpmyadmin'
-default['core']['phpmyadmin']['pma_username'] = 'phpmyadmin'
-
-#
 # Configuration for MySQL.
 #
 
