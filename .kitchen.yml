@@ -24,15 +24,23 @@ suites:
       - recipe[core::default]
 
   - name: deployment
-    driver:
-      network:
-        - ["private_network", {ip: "10.10.10.100"}]
     run_list:
       - recipe[core::deployment]
     attributes:
       core:
         deployments:
           - name: default
+
+  - name: storage-server
+    driver:
+      network:
+        - ["private_network", {ip: "10.10.10.100"}]
+    run_list:
+      - recipe[core::storage_server]
+    attributes:
+      core:
+        storage:
+          - name: default_app
 
   - name: mysql-server
     driver:

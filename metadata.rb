@@ -15,6 +15,7 @@ depends 'database', '~> 2.2.0'
 depends 'firewall', '~> 0.11.8'
 depends 'logrotate', '~> 1.6.0'
 depends 'mysql', '~> 5.3.6'
+depends 'nfs', '~> 2.0.0'
 depends 'nginx', '~> 2.7.2'
 depends 'ntp', '~> 1.6.2'
 depends 'nodejs', '~> 1.3.0'
@@ -32,6 +33,7 @@ depends 'vim', '~> 1.1.2'
 depends 'zsh', '~> 1.0.0'
 
 recipe 'core::default', 'Configures a minimal base system.'
+recipe 'core::storage_server', 'Configures an NFS storage server.'
 recipe 'core::mysql_server', 'Configures a MySQL server.'
 recipe 'core::static_app_server', 'Configures a static web server.'
 recipe 'core::lamp_app_server', 'Configures the Apache HTTP Server, MySQL client, PHP-FPM.'
@@ -40,6 +42,7 @@ recipe 'core::deployment', 'Sets up the deployer user and deployers group.'
 
 provides 'service[core_service]'
 provides 'service[core_deployment]'
+provides 'service[core_storage]'
 provides 'service[core_lamp_app]'
 provides 'service[core_static_app]'
 
@@ -217,4 +220,11 @@ attribute 'core/services',
           description: %q{Services to create on the node.},
           type: 'array',
           recipes: ['core::services'],
+          default: []
+
+attribute 'core/storage',
+          display_name: 'Storage',
+          description: %q{Storage to create on the node.},
+          type: 'array',
+          recipes: ['core::storage'],
           default: []

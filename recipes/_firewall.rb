@@ -48,3 +48,15 @@ firewall_rule 'mysql' do
   port node['mysql']['port'].to_i
   action node['core']['servers']['mysql'] ? :allow : :reject
 end
+
+firewall_rule 'nfs' do
+  protocol :tcp
+  ports [
+    node['nfs']['port']['statd'],
+    node['nfs']['port']['statd_out'],
+    node['nfs']['port']['mountd'],
+    node['nfs']['port']['lockd'],
+    node['nfs']['port']['rquotad']
+  ]
+  action node['core']['servers']['nfs'] ? :allow : :reject
+end

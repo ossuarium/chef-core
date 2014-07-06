@@ -23,10 +23,11 @@ default['core']['service']['dirs'] = [
 ]
 
 #
-# Services and apps.
+# Services, storage, and apps.
 #
 
 default['core']['services'] = []
+default['core']['storage'] = []
 default['core']['apps'] = []
 
 #
@@ -43,12 +44,16 @@ default['core']['srv_dir'] = '/srv'
 # Home directory.
 default['core']['home_dir'] = '/home'
 
+# Storage directory.
+default['core']['storage_dir'] = '/storage'
+
 # Disable available servers by default.
 # These will be enabled automatically by recipes that need them.
 default['core']['servers'] = {
   http: false,
   https: false,
   mysql: false,
+  nfs: false,
 }
 
 # Interface facing the private network.

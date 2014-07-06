@@ -22,6 +22,7 @@ Core infrastructure for OurTownRentals.com.
 * firewall (~> 0.11.8)
 * logrotate (~> 1.6.0)
 * mysql (~> 5.3.6)
+* nfs (~> 2.0.0)
 * nginx (~> 2.7.2)
 * ntp (~> 1.6.2)
 * nodejs (~> 1.3.0)
@@ -65,10 +66,12 @@ Attribute | Default | Description | Choices
 `node['core']['phpmyadmin']['pma_username']` | `"phpmyadmin"` | MySQL username for access to the phpMyAdmin control database. |
 `node['core']['service']['dirs']` | `["shared"]` | Directories to create under each service's directory. |
 `node['core']['services']` | `[]` | Services to create on the node. |
+`node['core']['storage']` | `[]` | Storage to create on the node. |
 
 ## Recipes
 
 * core::default - Configures a minimal base system.
+* core::storage_server - Configures an NFS storage server.
 * [core::mysql_server](#coremysql_server) - Configures a MySQL server.
 * core::static_app_server - Configures a static web server.
 * [core::lamp_app_server](#corelamp_app_server) - Configures the Apache HTTP Server, MySQL client, PHP-FPM.
