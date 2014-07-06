@@ -25,6 +25,7 @@ a Ruby version and a set of default gems (including Bundler).
 
 node.default['ruby_build']['git_ref'] = 'master'
 node.default['rbenv']['git_ref'] = 'master'
+node.default['build-essential']['compile_time'] = true
 
 include_recipe 'core::_common_system' if node['core']['common_system']
 include_recipe 'build-essential::default'

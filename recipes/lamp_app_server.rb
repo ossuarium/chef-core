@@ -17,6 +17,7 @@ This also installs the [database cookbook].
 node.default['core']['servers']['http'] = true
 node.default['core']['servers']['https'] = true
 
+node.default['build-essential']['compile_time'] = true
 node.default['php-fpm']['pools'] = []
 
 include_recipe 'core::_common_system' if node['core']['common_system']
