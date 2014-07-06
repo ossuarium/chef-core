@@ -40,3 +40,12 @@ service 'apache2' do
   action node['core']['mysql_admin'] ? :start : :stop
   not_if { node['apache2'].empty? }
 end
+
+core_service 'mysql_admin' do
+  only_if { node['core']['mysql_admin'] }
+end
+
+phpmyadmin 'mysql_admin' do
+  service resources('core_service[mysql_admin]')
+  only_if { node['core']['mysql_admin'] }
+end
