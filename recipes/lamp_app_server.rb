@@ -17,7 +17,7 @@ This also installs the [database cookbook].
 node.default['core']['servers']['http'] = true
 node.default['core']['servers']['https'] = true
 
-include_recipe 'core::_common_system'
+include_recipe 'core::_common_system' if node['core']['common_system']
 include_recipe 'core::_apache_server'
 include_recipe 'apache2::mod_fastcgi'
 include_recipe 'mysql::client'

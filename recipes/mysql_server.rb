@@ -22,7 +22,7 @@ if node['core']['mysql_admin']
   node.default['core']['servers']['https'] = true
 end
 
-include_recipe 'core::_common_system'
+include_recipe 'core::_common_system' if node['core']['common_system']
 include_recipe 'mysql::server'
 include_recipe 'mysql::client'
 include_recipe 'database::mysql'

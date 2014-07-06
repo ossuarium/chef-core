@@ -3,6 +3,7 @@
 # Attributes:: default
 #
 
+default['core']['common_system'] = true
 default['core']['contact'] = 'evan@ourtownrentals.com'
 
 default['core']['packages'] = []

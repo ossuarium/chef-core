@@ -46,8 +46,20 @@ attribute 'core/apps',
           display_name: 'Apps',
           description: %q{Apps to create on the node.},
           type: 'array',
-          recipes: ['core::lamp_app_server'],
+          recipes: [
+            'core::default',
+            'core::deployment',
+            'core::lamp_app_server',
+            'core::mysql_server',
+          ],
           default: []
+
+attribute 'core/common_system',
+          display_name: 'Common system',
+          description: %q{Whether to include the common system configuration.},
+          type: 'boolean',
+          recipes: ['core::lamp_app_server',],
+          default: true
 
 attribute 'core/contact',
           display_name: 'Contact',
