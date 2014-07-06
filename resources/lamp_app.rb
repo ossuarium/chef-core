@@ -14,8 +14,8 @@ Each LAMP app must be assigned a `core_service`.
 @attribute name the unique name of the LAMP app.
 @attribute moniker the name of the LAMP app.
 @attribute service the service to crate the LAMP app under.
-@attribute fpm_socket path to the externally managed FPM socket to use.
 @attribute fpm whether to setup an FPM socket for this app.
+@attribute fpm_pool php_fpm_pool resource to use (created if not set).
 @attribute mysql_connection MySQL admin connection information.
 @attribute database whether to setup a database for this app.
 @attribute db_name database name to use for the LAMP app.
@@ -33,7 +33,7 @@ attribute :name, kind_of: String, required: true, name_attribute: true
 attribute :moniker, kind_of: String, required: true
 attribute :service, kind_of: Chef::Resource, required: true
 attribute :fpm, kind_of: [TrueClass, FalseClass], default: true
-attribute :fpm_socket, kind_of: String
+attribute :fpm_pool, kind_of: Chef::Resource
 attribute :database, kind_of: [TrueClass, FalseClass], default: false
 attribute :mysql_connection, kind_of: Hash
 attribute :db_name, kind_of: String
@@ -43,5 +43,5 @@ attribute :db_client, kind_of: String
 
 attr_accessor :type, :dir, :conf_dir, :shared_dir, :fpm_socket_path, :group
 
-attr_writer :fpm_socket, :mysql_connection,
+attr_writer :mysql_connection,
             :db_name, :db_user, :db_password, :db_client

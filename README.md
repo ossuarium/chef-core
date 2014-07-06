@@ -143,7 +143,7 @@ Each LAMP app must be assigned a `core_service`.
 - moniker: the name of the LAMP app.
 - service: the service to crate the LAMP app under.
 - fpm: whether to setup an FPM socket for this app. Defaults to <code>true</code>.
-- fpm_socket: path to the externally managed FPM socket to use.
+- fpm_pool: php_fpm_pool resource to use (created if not set).
 - database: whether to setup a database for this app. Defaults to <code>false</code>.
 - mysql_connection: MySQL admin connection information.
 - db_name: database name to use for the LAMP app.

@@ -33,7 +33,6 @@ end
 private
 
 def set_attributes
-  new_resource.fpm_socket ||= new_resource.name
   new_resource.db_name ||= new_resource.name[0...64]
   new_resource.db_user ||= Digest::SHA1.hexdigest(new_resource.name)[0...16]
   new_resource.db_password ||= secure_password
@@ -45,10 +44,10 @@ def set_attributes
   new_resource.conf_dir = "#{new_resource.service.apache_conf_dir}/#{new_resource.moniker}.d"
   new_resource.shared_dir = "#{new_resource.service.dir}/shared/#{new_resource.moniker}"
   new_resource.fpm_socket_path =
-    if new_resource.fpm_socket == new_resource.name
-      "#{node['core']['run_dir']}/php-fpm-lamp_app_#{new_resource.fpm_socket}.sock"
+    if new_resource.fpm_pool.nil?
+      "#{node['core']['run_dir']}/php-fpm-lamp_app_#{new_resource.name}.sock"
     else
-      new_resource.fpm_socket
+      "#{node['core']['run_dir']}/php-fpm-#{new_resource.fpm_pool.variables[:pool_name]}.sock"
     end
 end
 
@@ -79,9 +78,9 @@ def create_lamp_app
   end
 
   # Create the PHP-FPM socket if not explicitly given.
-  php_fpm_pool "lamp_app_#{new_resource.fpm_socket}" do
+  php_fpm_pool "lamp_app_#{new_resource.name}" do
     socket true
-    only_if { new_resource.fpm_socket == new_resource.name }
+    only_if { new_resource.fpm_pool.nil? }
   end
 
   # Create `/usr/lib/cgi-bin/name`.
@@ -126,8 +125,6 @@ def create_lamp_app
     action [:drop, :create, :grant]
     only_if { new_resource.database }
   end
-
-  new_resource.fpm_socket = new_resource.fpm_socket_path
 end
 
 def delete_lamp_app
@@ -144,10 +141,10 @@ def delete_lamp_app
   end
 
   # Remove PHP-FPM socket if it shares the LAMP app name.
-  php_fpm_pool "lamp_app_#{new_resource.fpm_socket}" do
+  php_fpm_pool "lamp_app_#{new_resource.name}" do
     socket true
     action :delete
-    only_if { new_resource.fpm_socket == new_resource.name }
+    only_if { new_resource.fpm_pool.nil? }
   end
 
   # Delete `/usr/lib/cgi-bin/name`.
@@ -164,8 +161,6 @@ def delete_lamp_app
     action :drop
     only_if { new_resource.database }
   end
-
-  new_resource.fpm_socket = new_resource.fpm_socket_path
 end
 
 def destroy_lamp_app
