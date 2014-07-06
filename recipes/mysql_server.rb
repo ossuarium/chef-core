@@ -17,10 +17,8 @@ node.set_unless['core']['mysql_sudoroot_password'] = secure_password
 
 node.default['core']['servers']['mysql'] = true
 
-if node['core']['mysql_admin']
-  node.default['core']['servers']['http'] = true
-  node.default['core']['servers']['https'] = true
-end
+node.default['core']['servers']['http'] = node['core']['mysql_admin']
+node.default['core']['servers']['https'] = node['core']['mysql_admin']
 
 include_recipe 'core::_common_system' if node['core']['common_system']
 include_recipe 'mysql::server'
