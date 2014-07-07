@@ -1,5 +1,5 @@
 <IfModule mod_fastcgi.c>
-  FastCGIExternalServer <%= node['apache']['cgibin_dir'] %>/<%= @name %>/php-fcgi -socket <%= @socket %> -pass-header Authorization
+  FastCGIExternalServer <%= node['apache']['cgibin_dir'] %>/<%= @name %>/php-fcgi -socket <%= @socket %><% unless @node['core']['lamp']['pass_header'].empty? %> -pass-header <%= node['core']['lamp']['pass_header'].join ' ' %><% end %>
   Action php-fcgi-<%= @name %> /php-fcgi-<%= @name %>-alias
   Alias /php-fcgi-<%= @name %>-alias <%= node['apache']['cgibin_dir'] %>/<%= @name %>/php-fcgi
 
@@ -8,7 +8,7 @@
   </Directory>
 
   <Directory <%= @docroot %>>
-    <FilesMatch "\.(php)$">
+    <FilesMatch "\.(<%= node['core']['lamp']['handler_extensions'].join '|' %>)$">
       SetHandler php-fcgi-<%= @name %>
       Require all granted
     </FilesMatch>

@@ -3,9 +3,12 @@
 # Attributes:: default
 #
 
+#
+# Global configuration.
+#
+
 default['core']['common_system'] = true
 default['core']['contact'] = 'evan@ourtownrentals.com'
-
 default['core']['packages'] = []
 
 #
@@ -21,6 +24,13 @@ default['core']['mysql_sudoroot_user'] = 'sudoroot'
 default['core']['service']['dirs'] = [
   'shared',
 ]
+
+#
+# LAMP configuration.
+#
+
+default['core']['lamp']['handler_extensions'] = %w(php)
+default['core']['lamp']['pass_header'] = %w(Authorization)
 
 #
 # Services and apps.

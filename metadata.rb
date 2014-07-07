@@ -170,6 +170,20 @@ attribute 'core/deployments',
           recipes: ['core::deployment'],
           default: {}
 
+attribute 'core/lamp/handler_extensions',
+          display_name: 'Handler extensions',
+          description: %q{File extensions to process with FCGI.},
+          type: 'array',
+          recipes: ['core::lamp_app_server'],
+          default: ['php']
+
+attribute 'core/lamp/pass_header',
+          display_name: 'Pass header',
+          description: %q{Headers to pass to FCGI.},
+          type: 'array',
+          recipes: ['core::lamp_app_server'],
+          default: ['Authorization']
+
 attribute 'core/mysql_sudoroot_user',
           display_name: 'MySQL admin username',
           description: %q{Username for the MySQL admin user.},

@@ -58,6 +58,8 @@ Attribute | Default | Description | Choices
 `node['core']['deployers']['gems']` | `[{"name"=>"bundler", "version"=>"~> 1.6"}]` | Ruby gems to install for each deployer. |
 `node['core']['deployment']['packages']` | `[]` | Additional packages required for deployments. |
 `node['core']['deployments']` | `{}` | Deployments to create on the node. |
+`node['core']['lamp']['handler_extensions']` | `["php"]` | File extensions to process with FCGI. |
+`node['core']['lamp']['pass_header']` | `["Authorization"]` | Headers to pass to FCGI. |
 `node['core']['mysql_sudoroot_user']` | `"sudoroot"` | Username for the MySQL admin user. |
 `node['core']['mysql_sudoroot_password']` | `"`secure_password`"` | Password for the MySQL admin user. |
 `node['core']['packages']` | `[]` | Additional packages to install. |
