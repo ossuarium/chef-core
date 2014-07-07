@@ -239,5 +239,6 @@ attribute 'core/services',
 attribute 'core/storage',
           display_name: 'Storage',
           description: %q{Storage to create on the node.},
-          type: 'array',
+          type: 'hash',
           recipes: ['core::storage'],
+          default: {}

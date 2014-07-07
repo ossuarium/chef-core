@@ -40,7 +40,7 @@ suites:
     attributes:
       core:
         storage:
-          - name: default_app
+          default_app: {}
 
   - name: mysql-server
     driver:

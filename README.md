@@ -68,7 +68,7 @@ Attribute | Default | Description | Choices
 `node['core']['phpmyadmin']['pma_username']` | `"phpmyadmin"` | MySQL username for access to the phpMyAdmin control database. |
 `node['core']['service']['dirs']` | `["shared"]` | Directories to create under each service's directory. |
 `node['core']['services']` | `{}` | Services to create on the node. |
-`node['core']['storage']` | `[]` | Storage to create on the node. |
+`node['core']['storage']` | `{}` | Storage to create on the node. |
 
 ## Recipes
 
@@ -146,7 +146,7 @@ Each LAMP app must be assigned a `core_service`.
 
 - name: the unique name of the LAMP app.
 - moniker: the name of the LAMP app.
-- service: the service to crate the LAMP app under.
+- service: the service to create the LAMP app under.
 - fpm: whether to setup an FPM socket for this app. Defaults to <code>true</code>.
 - fpm_pool: php_fpm_pool resource to use (created if not set).
 - database: whether to setup a database for this app. Defaults to <code>false</code>.
@@ -187,7 +187,7 @@ Each static app must be assigned a `core_service`.
 
 - name: the unique name of the static app.
 - moniker: the name of the static app.
-- service: the service to crate the static app under.
+- service: the service to create the static app under.
 
 ## Development and Testing
 

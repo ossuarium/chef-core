@@ -10,20 +10,20 @@ include_recipe 'nfs::server4'
 
 directory node['core']['storage_dir']
 
-node['core']['storage'].each do |storage|
-  directory "#{node['core']['storage_dir']}/#{storage[:name]}"
+node['core']['storage'].each do |storage, params|
+  directory "#{node['core']['storage_dir']}/#{storage}"
 
-  storage[:paths].each do |path|
-    directory "#{node['core']['storage_dir']}/#{storage[:name]}/#{path}" do
-      group storage[:group].nil? ? node['apache']['group'] : storage[:group]
+  params[:paths].each do |path|
+    directory "#{node['core']['storage_dir']}/#{storage}/#{path}" do
+      group params[:group].nil? ? node['apache']['group'] : params[:group]
       mode '0775'
       recursive true
     end
-  end unless storage[:paths].nil?
+  end unless params[:paths].nil?
 
-  nfs_export "#{node['core']['storage_dir']}/#{storage[:name]}" do
+  nfs_export "#{node['core']['storage_dir']}/#{storage}" do
     network PrivateNetwork.new(node).subnet
-    writeable storage[:writeable] unless storage[:writeable].nil?
+    writeable params[:writeable] unless params[:writeable].nil?
     sync true
     options ['root_squash']
   end

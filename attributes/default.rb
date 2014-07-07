@@ -38,7 +38,7 @@ default['core']['lamp']['pass_header'] = %w(Authorization)
 
 default['core']['services'] = {}
 default['core']['apps'] = {}
-default['core']['storage'] = []
+default['core']['storage'] = {}
 
 #
 # All attributes below are configured automatically,
