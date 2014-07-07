@@ -13,7 +13,7 @@ Each LAMP app must be assigned a `core_service`.
 
 @attribute name the unique name of the LAMP app.
 @attribute moniker the name of the LAMP app.
-@attribute service the service to crate the LAMP app under.
+@attribute service the service to create the LAMP app under.
 @attribute fpm whether to setup an FPM socket for this app.
 @attribute fpm_pool php_fpm_pool resource to use (created if not set).
 @attribute mysql_connection MySQL admin connection information.

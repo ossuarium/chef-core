@@ -12,7 +12,7 @@ Each static app must be assigned a `core_service`.
 
 @attribute name the unique name of the static app.
 @attribute moniker the name of the static app.
-@attribute service the service to crate the static app under.
+@attribute service the service to create the static app under.
 #>
 =end
 
