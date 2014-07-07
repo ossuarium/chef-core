@@ -6,4 +6,11 @@
   <Directory <%= node['apache']['cgibin_dir'] %>/<%= @name %>>
     Require all granted
   </Directory>
+
+  <Directory <%= @docroot %>>
+    <FilesMatch "\.(php)$">
+      SetHandler php-fcgi-<%= @name %>
+      Require all granted
+    </FilesMatch>
+  </Directory>
 </IfModule>
