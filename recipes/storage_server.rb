@@ -6,7 +6,7 @@
 node.default['core']['servers']['nfs'] = true
 
 include_recipe 'core::_common_system' if node['core']['common_system']
-include_recipe 'core::_nfs_server'
+include_recipe 'nfs::server4'
 
 directory node['core']['storage_dir']
 
