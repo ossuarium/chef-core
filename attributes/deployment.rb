@@ -44,4 +44,4 @@ default['core']['deployers']['files'] = {
 # Deployments
 #
 
-default['core']['deployments'] = []
+default['core']['deployments'] = {}

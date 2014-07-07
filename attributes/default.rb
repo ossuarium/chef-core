@@ -3,9 +3,12 @@
 # Attributes:: default
 #
 
+#
+# Global configuration.
+#
+
 default['core']['common_system'] = true
 default['core']['contact'] = 'evan@ourtownrentals.com'
-
 default['core']['packages'] = []
 
 #
@@ -23,12 +26,19 @@ default['core']['service']['dirs'] = [
 ]
 
 #
+# LAMP configuration.
+#
+
+default['core']['lamp']['handler_extensions'] = %w(php)
+default['core']['lamp']['pass_header'] = %w(Authorization)
+
+#
 # Services, storage, and apps.
 #
 
-default['core']['services'] = []
+default['core']['services'] = {}
+default['core']['apps'] = {}
 default['core']['storage'] = []
-default['core']['apps'] = []
 
 #
 # All attributes below are configured automatically,

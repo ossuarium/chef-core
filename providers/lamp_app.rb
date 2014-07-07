@@ -99,7 +99,8 @@ def create_lamp_app
     cookbook 'core'
     variables(
       name: new_resource.name,
-      socket: new_resource.fpm_socket_path
+      socket: new_resource.fpm_socket_path,
+      docroot: new_resource.dir
     )
     notifies :reload, 'service[apache2]'
     only_if { new_resource.fpm }
