@@ -165,18 +165,11 @@ end
 def delete_lamp_app
   set_attributes
   set_mysql_connection
-  set_storage_host
 
   # Unmount storage directories.
   new_resource.storage.each do |path|
     mount "lamp_app_#{new_resource.shared_dir}/#{path}" do
       mount_point "#{new_resource.shared_dir}/#{path}"
-      device(
-        "#{new_resource.storage_host}:#{node['core']['storage_dir']}" \
-        "/#{new_resource.id}_#{app_name}/#{path}"
-      )
-      fstype 'nfs'
-      options 'rw'
       action :umount
     end
   end
@@ -216,7 +209,6 @@ end
 def destroy_lamp_app
   set_attributes
   set_mysql_connection
-  set_storage_host
 
   # Delete `/srv/service_name/shared/moniker`.
   directory "lamp_app_#{new_resource.shared_dir}" do

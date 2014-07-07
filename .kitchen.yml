@@ -66,6 +66,9 @@ suites:
       core:
         services:
           default: {}
+        storage_access:
+          default_app:
+            writeable: true
         apps:
           default_app:
             type: lamp
@@ -87,6 +90,8 @@ suites:
       core:
         services:
           default: {}
+        storage_access:
+          default_app: {}
         apps:
           default_assets:
             type: static
