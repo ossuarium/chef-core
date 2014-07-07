@@ -38,6 +38,8 @@ node['core']['apps'].select { |_, v| v[:type] == 'lamp' }.each do |app, params|
   core_lamp_app app do
     moniker params[:moniker]
     service lazy { resources(core_service: params[:service]) }
+    fpm params[:fpm] if params[:fpm]
+    database params[:database] if params[:database]
     action params[:action] if params[:action]
   end
 end

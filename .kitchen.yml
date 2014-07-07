@@ -63,6 +63,7 @@ suites:
             type: lamp
             moniker: app
             service: default
+            database: true
         deployments:
           app_default:
             apps: [{type: "lamp", name: "default_app"}]
