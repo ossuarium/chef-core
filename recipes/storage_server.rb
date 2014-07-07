@@ -15,7 +15,7 @@ node['core']['storage'].each do |storage|
 
   storage[:paths].each do |path|
     directory "#{node['core']['storage_dir']}/#{storage[:name]}/#{path}" do
-      group node['apache']['group']
+      group storage[:group].nil? ? node['apache']['group'] : storage[:group]
       mode '0775'
       recursive true
     end
@@ -23,7 +23,7 @@ node['core']['storage'].each do |storage|
 
   nfs_export "#{node['core']['storage_dir']}/#{storage[:name]}" do
     network PrivateNetwork.new(node).subnet
-    writeable true
+    writeable storage[:writeable] unless storage[:writeable].nil?
     sync true
     options ['root_squash']
   end
