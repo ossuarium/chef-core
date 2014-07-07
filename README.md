@@ -147,6 +147,8 @@ Each LAMP app must be assigned a `core_service`.
 - name: the unique name of the LAMP app.
 - moniker: the name of the LAMP app.
 - service: the service to create the LAMP app under.
+- shared: the shared paths to create. Defaults to <code>[]</code>.
+- storage: the shared paths to mount as storage. Defaults to <code>[]</code>.
 - fpm: whether to setup an FPM socket for this app. Defaults to <code>true</code>.
 - fpm_pool: php_fpm_pool resource to use (created if not set).
 - database: whether to setup a database for this app. Defaults to <code>false</code>.

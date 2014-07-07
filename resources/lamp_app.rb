@@ -14,6 +14,8 @@ Each LAMP app must be assigned a `core_service`.
 @attribute name the unique name of the LAMP app.
 @attribute moniker the name of the LAMP app.
 @attribute service the service to create the LAMP app under.
+@attribute shared the shared paths to create.
+@attribute storage the shared paths to mount as storage.
 @attribute fpm whether to setup an FPM socket for this app.
 @attribute fpm_pool php_fpm_pool resource to use (created if not set).
 @attribute mysql_connection MySQL admin connection information.
@@ -32,6 +34,8 @@ actions :create, :delete, :destroy
 attribute :name, kind_of: String, required: true, name_attribute: true
 attribute :moniker, kind_of: String, required: true
 attribute :service, kind_of: Chef::Resource, required: true
+attribute :shared, kind_of: Array, default: []
+attribute :storage, kind_of: Array, default: []
 attribute :fpm, kind_of: [TrueClass, FalseClass], default: true
 attribute :fpm_pool, kind_of: Chef::Resource
 attribute :database, kind_of: [TrueClass, FalseClass], default: false
@@ -41,7 +45,7 @@ attribute :db_user, kind_of: String
 attribute :db_password, kind_of: String
 attribute :db_client, kind_of: String
 
-attr_accessor :type, :dir, :conf_dir, :shared_dir, :fpm_socket_path, :group
+attr_accessor :type, :dir, :conf_dir, :shared_dir, :fpm_socket_path, :group, :storage_host
 
 attr_writer :mysql_connection,
             :db_name, :db_user, :db_password, :db_client

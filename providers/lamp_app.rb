@@ -63,9 +63,14 @@ def set_mysql_connection
   }
 end
 
+def set_storage_host
+  new_resource.storage_host ||= ''
+end
+
 def create_lamp_app
   set_attributes
   set_mysql_connection
+  set_storage_host
 
   fail 'No apache conf directory.' if new_resource.service.apache_conf_dir.nil?
 
@@ -74,6 +79,36 @@ def create_lamp_app
     path new_resource.shared_dir
     group new_resource.group
     mode '0750'
+  end
+
+  # Create shared directories.
+  new_resource.shared.each do |path|
+    directory "lamp_app_#{new_resource.shared_dir}/#{path}" do
+      path "#{new_resource.shared_dir}/#{path}"
+      owner node['apache']['user']
+      group new_resource.group
+      mode '0750'
+      recursive true
+    end
+  end
+
+  # Mount storage directories.
+  new_resource.storage.each do |path|
+    directory "lamp_app_#{new_resource.shared_dir}/#{path}" do
+      path "#{new_resource.shared_dir}/#{path}"
+      recursive true
+      not_if { Dir.exist?("#{new_resource.shared_dir}/#{path}") }
+    end
+
+    mount "lamp_app_#{new_resource.shared_dir}/#{path}" do
+      mount_point "#{new_resource.shared_dir}/#{path}"
+      device(
+        "#{new_resource.storage_host}:#{node['core']['storage_dir']}" \
+        "/#{new_resource.id}_#{app_name}/#{path}"
+      )
+      fstype 'nfs'
+      options 'rw'
+    end
   end
 
   # Create the PHP-FPM socket if not explicitly given.
@@ -130,6 +165,21 @@ end
 def delete_lamp_app
   set_attributes
   set_mysql_connection
+  set_storage_host
+
+  # Unmount storage directories.
+  new_resource.storage.each do |path|
+    mount "lamp_app_#{new_resource.shared_dir}/#{path}" do
+      mount_point "#{new_resource.shared_dir}/#{path}"
+      device(
+        "#{new_resource.storage_host}:#{node['core']['storage_dir']}" \
+        "/#{new_resource.id}_#{app_name}/#{path}"
+      )
+      fstype 'nfs'
+      options 'rw'
+      action :umount
+    end
+  end
 
   # Delete `/etc/apache2/services/service_name/moniker.d`.
   directory "lamp_app_#{new_resource.conf_dir}" do
@@ -166,6 +216,7 @@ end
 def destroy_lamp_app
   set_attributes
   set_mysql_connection
+  set_storage_host
 
   # Delete `/srv/service_name/shared/moniker`.
   directory "lamp_app_#{new_resource.shared_dir}" do
