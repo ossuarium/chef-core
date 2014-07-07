@@ -60,5 +60,7 @@ firewall_rule 'nfs' do
     node['nfs']['port']['lockd'],
     node['nfs']['port']['rquotad']
   ]
+  interface node['core']['private_interface']
+  source PrivateNetwork.new(node).subnet
   action node['core']['servers']['nfs'] ? :allow : :reject
 end
