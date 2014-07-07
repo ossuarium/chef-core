@@ -26,8 +26,8 @@ default['core']['service']['dirs'] = [
 # Services and apps.
 #
 
-default['core']['services'] = []
-default['core']['apps'] = []
+default['core']['services'] = {}
+default['core']['apps'] = {}
 
 #
 # All attributes below are configured automatically,

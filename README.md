@@ -42,7 +42,7 @@ Core infrastructure for OurTownRentals.com.
 
 Attribute | Default | Description | Choices
 ----------|---------|-------------|--------
-`node['core']['apps']` | `[]` | Apps to create on the node. |
+`node['core']['apps']` | `{}` | Apps to create on the node. |
 `node['core']['common_system']` | `true` | Whether to include the common system configuration. |
 `node['core']['contact']` | `"evan@ourtownrentals.com"` | Administrative contact email. |
 `node['core']['deployer']['user']` | `"deployer"` | System username for the deployer user. |
@@ -57,14 +57,14 @@ Attribute | Default | Description | Choices
 `node['core']['deployers']['ruby_version']` | `"2.1.2"` | Ruby version each deployer will use. |
 `node['core']['deployers']['gems']` | `[{"name"=>"bundler", "version"=>"~> 1.6"}]` | Ruby gems to install for each deployer. |
 `node['core']['deployment']['packages']` | `[]` | Additional packages required for deployments. |
-`node['core']['deployments']` | `[]` | Deployments to create on the node. |
+`node['core']['deployments']` | `{}` | Deployments to create on the node. |
 `node['core']['mysql_sudoroot_user']` | `"sudoroot"` | Username for the MySQL admin user. |
 `node['core']['mysql_sudoroot_password']` | `"`secure_password`"` | Password for the MySQL admin user. |
 `node['core']['packages']` | `[]` | Additional packages to install. |
 `node['core']['phpmyadmin']['pma_database']` | `"phpmyadmin"` | Name to use for the phpMyAdmin control database. |
 `node['core']['phpmyadmin']['pma_username']` | `"phpmyadmin"` | MySQL username for access to the phpMyAdmin control database. |
 `node['core']['service']['dirs']` | `["shared"]` | Directories to create under each service's directory. |
-`node['core']['services']` | `[]` | Services to create on the node. |
+`node['core']['services']` | `{}` | Services to create on the node. |
 
 ## Recipes
 

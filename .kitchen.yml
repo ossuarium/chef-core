@@ -32,7 +32,7 @@ suites:
     attributes:
       core:
         deployments:
-          - name: default
+          app_default: {}
 
   - name: mysql-server
     driver:
@@ -57,14 +57,14 @@ suites:
     attributes:
       core:
         services:
-          - name: default
+          default: {}
         apps:
-          - name: default_app
+          default_app:
             type: lamp
             moniker: app
             service: default
         deployments:
-          - name: app_default
+          app_default:
             apps: [{type: "lamp", name: "default_app"}]
 
   - name: static-app
@@ -77,12 +77,12 @@ suites:
     attributes:
       core:
         services:
-          - name: default
+          default: {}
         apps:
-          - name: default_assets
+          default_assets:
             type: static
             moniker: assets
             service: default
         deployments:
-          - name: app_default
+          app_default:
             apps: [{type: "static", name: "default_assets"}]

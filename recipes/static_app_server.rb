@@ -10,10 +10,10 @@ include_recipe 'core::_common_system' if node['core']['common_system']
 include_recipe 'core::_nginx_server'
 include_recipe 'core::services'
 
-node['core']['apps'].select { |a| a[:type] == 'static' }.each do |app|
-  core_static_app app[:name] do
-    moniker app[:moniker]
-    service resources(core_service: app[:service])
-    action app[:action] if app[:action]
+node['core']['apps'].select { |_, v| v[:type] == 'static' }.each do |app, params|
+  core_static_app app do
+    moniker params[:moniker]
+    service resources(core_service: params[:service])
+    action params[:action] if params[:action]
   end
 end

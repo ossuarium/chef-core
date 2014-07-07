@@ -46,14 +46,14 @@ provides 'service[core_static_app]'
 attribute 'core/apps',
           display_name: 'Apps',
           description: %q{Apps to create on the node.},
-          type: 'array',
+          type: 'hash',
           recipes: [
             'core::default',
             'core::deployment',
             'core::lamp_app_server',
             'core::mysql_server',
           ],
-          default: []
+          default: {}
 
 attribute 'core/common_system',
           display_name: 'Common system',
@@ -166,9 +166,9 @@ attribute 'core/deployment/packages',
 attribute 'core/deployments',
           display_name: 'Deployments',
           description: %q{Deployments to create on the node.},
-          type: 'array',
+          type: 'hash',
           recipes: ['core::deployment'],
-          default: []
+          default: {}
 
 attribute 'core/mysql_sudoroot_user',
           display_name: 'MySQL admin username',
@@ -215,6 +215,6 @@ attribute 'core/service/dirs',
 attribute 'core/services',
           display_name: 'Services',
           description: %q{Services to create on the node.},
-          type: 'array',
+          type: 'hash',
           recipes: ['core::services'],
-          default: []
+          default: {}

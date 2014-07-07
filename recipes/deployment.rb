@@ -115,15 +115,15 @@ node.set['rbenv']['upgrade'] = 'sync'
 include_recipe 'ruby_build::default'
 include_recipe 'rbenv::user'
 
-node['core']['deployments'].each do |deployment|
-  core_deployment deployment[:name] do
+node['core']['deployments'].each do |deployment, params|
+  core_deployment deployment do
     apps lazy {
-      if deployment[:apps]
-        deployment[:apps].map { |a| resources("core_#{a[:type]}_app[#{a[:name]}]") }
+      if params[:apps]
+        params[:apps].map { |a| resources("core_#{a[:type]}_app[#{a[:name]}]") }
       else
         []
       end
     }
-    action deployment[:action] if deployment[:action]
+    action params[:action] if params[:action]
   end
 end
