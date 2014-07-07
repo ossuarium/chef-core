@@ -190,6 +190,7 @@ Each static app must be assigned a `core_service`.
 - name: the unique name of the static app.
 - moniker: the name of the static app.
 - service: the service to create the static app under.
+- storage: the shared paths to mount as storage. Defaults to <code>[]</code>.
 
 ## Development and Testing
 
