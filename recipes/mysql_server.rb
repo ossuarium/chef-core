@@ -47,5 +47,6 @@ end
 
 phpmyadmin 'mysql_admin' do
   service resources('core_service[mysql_admin]')
+  vhost true
   only_if { node['core']['mysql_admin'] }
 end
