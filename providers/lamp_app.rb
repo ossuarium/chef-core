@@ -52,9 +52,13 @@ def set_attributes
 end
 
 def set_mysql_connection
-  db_node = search(
+  db_node = partial_search(
     :node,
-    "chef_environment:#{node.chef_environment} AND tags:mysql-master"
+    "chef_environment:#{node.chef_environment} AND tags:mysql-master",
+     keys: {
+      'network' => ['network'],
+      'core' => ['core']
+    }
   ).first
   new_resource.mysql_connection ||= {
     host: Chef::Recipe::PrivateNetwork.new(db_node).ip,
