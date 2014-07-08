@@ -34,7 +34,6 @@ end
 
 def create_static_app
   set_attributes
-  set_storage_host
 
   fail 'No nginx conf directory.' if new_resource.service.nginx_conf_dir.nil?
 
