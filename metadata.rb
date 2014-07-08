@@ -188,6 +188,13 @@ attribute 'core/lamp/pass_header',
           recipes: ['core::lamp_app_server'],
           default: ['Authorization']
 
+attribute 'core/mysql_admin',
+          display_name: 'MySQL admin',
+          description: %q{Whether to setup phpMyAdmin on the MySQL server.},
+          type: 'boolean',
+          recipes: ['core::mysql_server'],
+          default: false
+
 attribute 'core/mysql_sudoroot_user',
           display_name: 'MySQL admin username',
           description: %q{Username for the MySQL admin user.},

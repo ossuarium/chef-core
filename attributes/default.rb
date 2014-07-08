@@ -22,6 +22,7 @@ default['core']['storage_group'] = 'www-data'
 #
 
 default['core']['mysql_sudoroot_user'] = 'sudoroot'
+default['core']['mysql_admin'] = false
 
 #
 # Service configuration.
