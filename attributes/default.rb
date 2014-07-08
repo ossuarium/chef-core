@@ -12,6 +12,12 @@ default['core']['contact'] = 'evan@ourtownrentals.com'
 default['core']['packages'] = []
 
 #
+# Configuration for storage.
+#
+
+default['core']['storage_group'] = 'www-data'
+
+#
 # Configuration for MySQL.
 #
 

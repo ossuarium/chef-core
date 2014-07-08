@@ -1,0 +1,27 @@
+{
+  "chef_type": "node",
+  "chef_environment": "_default",
+  "name": "lamp-app",
+  "automatic": {
+    "core": {
+      "private_interface": "eth1",
+      "storage_access": {
+        "default_app_uploads": {
+          "readable": true,
+          "writeable": true
+        }
+      }
+    },
+    "network": {
+      "interfaces": {
+        "eth1": {
+          "addresses": {
+            "10.10.10.101": {
+              "family": "inet"
+            }
+          }
+        }
+      }
+    }
+  }
+}

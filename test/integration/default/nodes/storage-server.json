@@ -1,0 +1,27 @@
+{
+  "chef_type": "node",
+  "chef_environment": "_default",
+  "name": "storage-server",
+  "automatic": {
+    "core": {
+      "private_interface": "eth1",
+      "storage": {
+        "default_app_uploads": {}
+      }
+    },
+    "network": {
+      "interfaces": {
+        "eth1": {
+          "addresses": {
+            "10.10.10.101": {
+              "family": "inet"
+            }
+          }
+        }
+      }
+    },
+    "tags": [
+      "storage-master"
+    ]
+  }
+}

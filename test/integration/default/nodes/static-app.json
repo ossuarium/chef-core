@@ -1,0 +1,26 @@
+{
+  "chef_type": "node",
+  "chef_environment": "_default",
+  "name": "static-app",
+  "automatic": {
+    "core": {
+      "private_interface": "eth1",
+      "storage_access": {
+        "default_app_uploads": {
+          "readable": true
+        }
+      }
+    },
+    "network": {
+      "interfaces": {
+        "eth1": {
+          "addresses": {
+            "10.10.10.102": {
+              "family": "inet"
+            }
+          }
+        }
+      }
+    }
+  }
+}

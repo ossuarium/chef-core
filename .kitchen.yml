@@ -40,7 +40,7 @@ suites:
     attributes:
       core:
         storage:
-          default_app: {}
+          default_app_uploads: {}
 
   - name: mysql-server
     driver:
@@ -67,7 +67,8 @@ suites:
         services:
           default: {}
         storage_access:
-          default_app:
+          default_app_uploads:
+            readable: true
             writeable: true
         apps:
           default_app:
@@ -91,7 +92,8 @@ suites:
         services:
           default: {}
         storage_access:
-          default_app: {}
+          default_app_uploads:
+            readable: true
         apps:
           default_assets:
             type: static
