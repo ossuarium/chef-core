@@ -40,7 +40,7 @@ node['core']['storage'].each do |storage, params|
 
     nfs_export "#{node['core']['storage_dir']}/#{storage}" do
       network ip
-      writeable access['writeable'] unless access['writeable'].nil?
+      writeable access['writeable'].nil? ? false : access['writeable']
       sync true
       options ['root_squash']
       only_if { access['readable'] }
