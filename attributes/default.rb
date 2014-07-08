@@ -63,6 +63,9 @@ default['core']['home_dir'] = '/home'
 # Storage directory.
 default['core']['storage_dir'] = '/storage'
 
+# Exports configuration file.
+default['core']['exports_conf'] = '/etc/exports'
+
 # Disable available servers by default.
 # These will be enabled automatically by recipes that need them.
 default['core']['servers'] = {

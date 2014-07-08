@@ -13,12 +13,11 @@ include_recipe 'nfs::server4'
 
 directory node['core']['storage_dir']
 
-old_exports = node['core']['exports']
-new_exports = {}
+execute "rm #{node['core']['exports_conf']}" do
+  only_if { ::File.exists?(node['core']['exports_conf'])}
+end
 
 node['core']['storage'].each do |storage, params|
-  new_exports[storage] = {}
-
   directory "#{node['core']['storage_dir']}/#{storage}" do
     group params[:group].nil? ? node['core']['storage_group'] : params[:group]
     mode '0775'
@@ -36,7 +35,6 @@ node['core']['storage'].each do |storage, params|
   nodes.each do |n|
     ip = PrivateNetwork.new(n).ip
     access = n['core']['storage_access'][storage]
-    new_exports[storage][ip] = access
 
     nfs_export "#{node['core']['storage_dir']}/#{storage}" do
       network ip
@@ -47,5 +45,3 @@ node['core']['storage'].each do |storage, params|
     end
   end
 end
-
-node.set['core']['exports'] = new_exports
