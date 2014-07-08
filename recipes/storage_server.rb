@@ -14,7 +14,7 @@ include_recipe 'nfs::server4'
 directory node['core']['storage_dir']
 
 execute "rm #{node['core']['exports_conf']}" do
-  only_if { ::File.exists?(node['core']['exports_conf'])}
+  only_if { ::File.exist?(node['core']['exports_conf']) }
 end
 
 node['core']['storage'].each do |storage, params|
