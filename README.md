@@ -85,7 +85,7 @@ Attribute | Default | Description | Choices
 ### core::mysql_server
 
 This will configure a MySQL server and optionally
-setup phpMyAdmin running on Nginx using FastCGI and PHP-FPM.
+setup phpMyAdmin running on Apache using FastCGI and PHP-FPM.
 
 
 ### core::lamp_app_server
