@@ -15,7 +15,7 @@
       "interfaces": {
         "eth1": {
           "addresses": {
-            "10.10.10.101": {
+            "10.10.10.100": {
               "family": "inet"
             }
           }
