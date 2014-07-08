@@ -25,7 +25,8 @@ node['core']['storage'].each do |storage, params|
 
   nodes = partial_search(
     :node,
-    "chef_environment:#{node.chef_environment} AND core_storage_access_#{storage}_readable:true",
+    "chef_environment:#{node.chef_environment}" \
+    " AND core_storage_access_#{storage}_readable:true",
     keys: {
       'network' => ['network'],
       'core' => ['core']
@@ -41,7 +42,7 @@ node['core']['storage'].each do |storage, params|
       writeable access['writeable'].nil? ? false : access['writeable']
       sync true
       options ['root_squash']
-      only_if { access['readable'] }
+      only_if { params[:enabled] && access['readable'] }
     end
   end
 end

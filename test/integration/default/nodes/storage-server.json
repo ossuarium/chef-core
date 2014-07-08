@@ -6,7 +6,9 @@
     "core": {
       "private_interface": "eth1",
       "storage": {
-        "default_app_uploads": {}
+        "default_app_uploads": {
+          "enabled": true
+        }
       }
     },
     "network": {

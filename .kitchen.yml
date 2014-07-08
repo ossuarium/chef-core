@@ -40,7 +40,8 @@ suites:
     attributes:
       core:
         storage:
-          default_app_uploads: {}
+          default_app_uploads:
+            enabled: true
 
   - name: mysql-server
     driver:
