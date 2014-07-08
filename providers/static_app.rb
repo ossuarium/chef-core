@@ -32,10 +32,6 @@ def set_attributes
     "#{new_resource.service.dir}/shared/#{new_resource.moniker}" unless new_resource.storage.empty?
 end
 
-def storage_host(storage)
-  '10.10.10.100'
-end
-
 def create_static_app
   set_attributes
   set_storage_host
@@ -52,6 +48,15 @@ def create_static_app
 
   # Mount storage directories.
   new_resource.storage.each do |storage, params|
+    search_str = "chef_environment:#{node.chef_environment} AND tags:storage-master" \
+                 " AND core_storage_#{storage}_enabled:true"
+    storage_node =
+      partial_search(:node, search_str, keys: {
+        'network' => ['network'],
+        'core' => ['core']
+      }
+    ).first
+
     directory "lamp_app_#{new_resource.shared_dir}/#{params[:path]}" do
       path "#{new_resource.shared_dir}/#{params[:path]}"
       recursive true
@@ -61,7 +66,8 @@ def create_static_app
     mount "lamp_app_#{new_resource.shared_dir}/#{params[:path]}" do
       mount_point "#{new_resource.shared_dir}/#{params[:path]}"
       device(
-        "#{storage_host(storage)}:#{node['core']['storage_dir']}/#{storage}"
+        Chef::Recipe::PrivateNetwork.new(storage_node).ip +
+        ":#{node['core']['storage_dir']}/#{storage}"
       )
       fstype 'nfs'
       options params[:options]

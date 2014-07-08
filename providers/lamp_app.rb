@@ -67,10 +67,6 @@ def set_mysql_connection
   }
 end
 
-def storage_host(storage)
-  '10.10.10.100'
-end
-
 def create_lamp_app
   set_attributes
   set_mysql_connection
@@ -103,10 +99,20 @@ def create_lamp_app
       not_if { Dir.exist?("#{new_resource.shared_dir}/#{params[:path]}") }
     end
 
+    search_str = "chef_environment:#{node.chef_environment} AND tags:storage-master" \
+                 " AND core_storage_#{storage}_enabled:true"
+    storage_node =
+      partial_search(:node, search_str, keys: {
+        'network' => ['network'],
+        'core' => ['core']
+      }
+    ).first
+
     mount "lamp_app_#{new_resource.shared_dir}/#{params[:path]}" do
       mount_point "#{new_resource.shared_dir}/#{params[:path]}"
       device(
-        "#{storage_host(storage)}:#{node['core']['storage_dir']}/#{storage}"
+        Chef::Recipe::PrivateNetwork.new(storage_node).ip +
+        ":#{node['core']['storage_dir']}/#{storage}"
       )
       fstype 'nfs'
       options params[:options]
