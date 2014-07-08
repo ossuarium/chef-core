@@ -76,6 +76,7 @@ suites:
             moniker: app
             service: default
             database: true
+            shared: ["cache"]
             storage:
               default_app_uploads:
                 path: uploads

@@ -15,6 +15,7 @@ node['core']['apps'].select { |_, v| v[:type] == 'static' }.each do |app, params
   core_static_app app do
     moniker params[:moniker]
     service resources(core_service: params[:service])
+    storage params[:storage] if params[:storage]
     action params[:action] if params[:action]
   end
 end
