@@ -67,14 +67,13 @@ def set_mysql_connection
   }
 end
 
-def set_storage_host
-  new_resource.storage_host ||= ''
+def storage_host(storage)
+  '10.10.10.100'
 end
 
 def create_lamp_app
   set_attributes
   set_mysql_connection
-  set_storage_host
 
   fail 'No apache conf directory.' if new_resource.service.apache_conf_dir.nil?
 
@@ -97,21 +96,20 @@ def create_lamp_app
   end
 
   # Mount storage directories.
-  new_resource.storage.each do |path|
-    directory "lamp_app_#{new_resource.shared_dir}/#{path}" do
-      path "#{new_resource.shared_dir}/#{path}"
+  new_resource.storage.each do |storage, params|
+    directory "lamp_app_#{new_resource.shared_dir}/#{params[:path]}" do
+      path "#{new_resource.shared_dir}/#{params[:path]}"
       recursive true
-      not_if { Dir.exist?("#{new_resource.shared_dir}/#{path}") }
+      not_if { Dir.exist?("#{new_resource.shared_dir}/#{params[:path]}") }
     end
 
-    mount "lamp_app_#{new_resource.shared_dir}/#{path}" do
-      mount_point "#{new_resource.shared_dir}/#{path}"
+    mount "lamp_app_#{new_resource.shared_dir}/#{params[:path]}" do
+      mount_point "#{new_resource.shared_dir}/#{params[:path]}"
       device(
-        "#{new_resource.storage_host}:#{node['core']['storage_dir']}" \
-        "/#{new_resource.id}_#{app_name}/#{path}"
+        "#{storage_host(storage)}:#{node['core']['storage_dir']}/#{storage}"
       )
       fstype 'nfs'
-      options 'rw'
+      options params[:options]
     end
   end
 
@@ -171,9 +169,9 @@ def delete_lamp_app
   set_mysql_connection
 
   # Unmount storage directories.
-  new_resource.storage.each do |path|
-    mount "lamp_app_#{new_resource.shared_dir}/#{path}" do
-      mount_point "#{new_resource.shared_dir}/#{path}"
+  new_resource.storage.each do |storage, params|
+    mount "lamp_app_#{new_resource.shared_dir}/#{params[:path]}" do
+      mount_point "#{new_resource.shared_dir}/#{params[:path]}"
       action :umount
     end
   end

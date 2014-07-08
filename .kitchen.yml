@@ -64,18 +64,22 @@ suites:
       - recipe[core::deployment]
     attributes:
       core:
-        services:
-          default: {}
         storage_access:
           default_app_uploads:
             readable: true
             writeable: true
+        services:
+          default: {}
         apps:
           default_app:
             type: lamp
             moniker: app
             service: default
             database: true
+            storage:
+              default_app_uploads:
+                path: uploads
+                options: rw
         deployments:
           app_default:
             apps: [{type: "lamp", name: "default_app"}]
@@ -89,16 +93,20 @@ suites:
       - recipe[core::deployment]
     attributes:
       core:
-        services:
-          default: {}
         storage_access:
           default_app_uploads:
             readable: true
+        services:
+          default: {}
         apps:
           default_assets:
             type: static
             moniker: assets
             service: default
+            storage:
+              default_app_uploads:
+                path: uploads
+                options: ro
         deployments:
           app_default:
             apps: [{type: "static", name: "default_assets"}]

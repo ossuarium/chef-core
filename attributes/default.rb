@@ -39,12 +39,12 @@ default['core']['lamp']['handler_extensions'] = %w(php)
 default['core']['lamp']['pass_header'] = %w(Authorization)
 
 #
-# Services, storage, and apps.
+# Storage, services, and apps.
 #
 
+default['core']['storage'] = {}
 default['core']['services'] = {}
 default['core']['apps'] = {}
-default['core']['storage'] = {}
 
 #
 # All attributes below are configured automatically,

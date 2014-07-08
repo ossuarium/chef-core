@@ -32,8 +32,8 @@ def set_attributes
     "#{new_resource.service.dir}/shared/#{new_resource.moniker}" unless new_resource.storage.empty?
 end
 
-def set_storage_host
-  new_resource.storage_host ||= ''
+def storage_host(storage)
+  '10.10.10.100'
 end
 
 def create_static_app
@@ -51,21 +51,20 @@ def create_static_app
   end
 
   # Mount storage directories.
-  new_resource.storage.each do |path|
-    directory "static_app_#{new_resource.shared_dir}/#{path}" do
-      path "#{new_resource.shared_dir}/#{path}"
+  new_resource.storage.each do |storage, params|
+    directory "lamp_app_#{new_resource.shared_dir}/#{params[:path]}" do
+      path "#{new_resource.shared_dir}/#{params[:path]}"
       recursive true
-      not_if { Dir.exist?("#{new_resource.shared_dir}/#{path}") }
+      not_if { Dir.exist?("#{new_resource.shared_dir}/#{params[:path]}") }
     end
 
-    mount "static_app_#{new_resource.shared_dir}/#{path}" do
-      mount_point "#{new_resource.shared_dir}/#{path}"
+    mount "lamp_app_#{new_resource.shared_dir}/#{params[:path]}" do
+      mount_point "#{new_resource.shared_dir}/#{params[:path]}"
       device(
-        "#{new_resource.storage_host}:#{node['core']['storage_dir']}" \
-        "/#{new_resource.id}_#{app_name}/#{path}"
+        "#{storage_host(storage)}:#{node['core']['storage_dir']}/#{storage}"
       )
       fstype 'nfs'
-      options 'rw'
+      options params[:options]
     end
   end
 
@@ -80,9 +79,9 @@ def delete_static_app
   set_attributes
 
   # Unmount storage directories.
-  new_resource.storage.each do |path|
-    mount "static_app_#{new_resource.shared_dir}/#{path}" do
-      mount_point "#{new_resource.shared_dir}/#{path}"
+  new_resource.storage.each do |storage, params|
+    mount "lamp_app_#{new_resource.shared_dir}/#{params[:path]}" do
+      mount_point "#{new_resource.shared_dir}/#{params[:path]}"
       action :umount
     end
   end

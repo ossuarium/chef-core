@@ -24,6 +24,6 @@ actions :create, :delete
 attribute :name, kind_of: String, required: true, name_attribute: true
 attribute :moniker, kind_of: String, required: true
 attribute :service, kind_of: Chef::Resource, required: true
-attribute :storage, kind_of: Array, default: []
+attribute :storage, kind_of: Hash, default: {}
 
-attr_accessor :type, :dir, :conf_dir, :group, :shared_dir, :storage_host
+attr_accessor :type, :dir, :conf_dir, :group, :shared_dir

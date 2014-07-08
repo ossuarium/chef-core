@@ -35,7 +35,7 @@ attribute :name, kind_of: String, required: true, name_attribute: true
 attribute :moniker, kind_of: String, required: true
 attribute :service, kind_of: Chef::Resource, required: true
 attribute :shared, kind_of: Array, default: []
-attribute :storage, kind_of: Array, default: []
+attribute :storage, kind_of: Hash, default: {}
 attribute :fpm, kind_of: [TrueClass, FalseClass], default: true
 attribute :fpm_pool, kind_of: Chef::Resource
 attribute :database, kind_of: [TrueClass, FalseClass], default: false
@@ -45,7 +45,7 @@ attribute :db_user, kind_of: String
 attribute :db_password, kind_of: String
 attribute :db_client, kind_of: String
 
-attr_accessor :type, :dir, :conf_dir, :shared_dir, :fpm_socket_path, :group, :storage_host
+attr_accessor :type, :dir, :conf_dir, :shared_dir, :fpm_socket_path, :group
 
 attr_writer :mysql_connection,
             :db_name, :db_user, :db_password, :db_client
