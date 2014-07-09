@@ -17,6 +17,13 @@ user node['core']['deployer']['user'] do
   supports manage_home: true
 end
 
+# Must create the apps directory now.
+directory "#{node['core']['deployer']['home_dir']}/apps" do
+  owner node['core']['deployer']['user']
+  group node['core']['deployer']['user']
+  mode '0750'
+end
+
 #
 # Create and add uses to the deployers group.
 #

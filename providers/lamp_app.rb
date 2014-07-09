@@ -43,6 +43,17 @@ def set_attributes
     else
       "#{node['core']['run_dir']}/php-fpm-#{new_resource.fpm_pool.variables[:pool_name]}.sock"
     end
+
+  new_resource.to_yml = YAML.dump(
+    name: new_resource.name,
+    moniker: new_resource.moniker,
+    type: new_resource.type,
+    group: new_resource.group,
+    dir: new_resource.dir,
+    shared_dir: new_resource.shared_dir,
+    conf_dir: new_resource.conf_dir,
+    fpm_socket_path: new_resource.fpm_socket_path
+  )
 end
 
 def set_mysql_connection
@@ -159,6 +170,15 @@ def create_lamp_app
     action [:drop, :create, :grant]
     only_if { new_resource.database }
   end
+
+  # Create `/home/deployer/apps/lamp_name.yml`.
+  file("#{node['core']['deployer']['home_dir']}/apps" \
+       "/#{new_resource.type}_#{new_resource.name}.yml") do
+    content new_resource.to_yml
+    owner node['core']['deployer']['user']
+    group node['core']['deployer']['user']
+    mode '0640'
+  end
 end
 
 def delete_lamp_app
@@ -202,6 +222,12 @@ def delete_lamp_app
     host new_resource.db_client
     action :drop
     only_if { new_resource.database }
+  end
+
+  # Delete `/home/deployer/apps/lamp_name.yml`.
+  file("#{node['core']['deployer']['home_dir']}/apps" \
+       "/#{new_resource.type}_#{new_resource.name}.yml") do
+    action :delete
   end
 end
 

@@ -27,6 +27,16 @@ def set_attributes
   new_resource.shared_dir =
     "#{new_resource.service.dir}/shared/#{new_resource.moniker}" unless
       new_resource.storage.empty?
+
+  new_resource.to_yml = YAML.dump(
+    name: new_resource.name,
+    moniker: new_resource.moniker,
+    type: new_resource.type,
+    group: new_resource.group,
+    dir: new_resource.dir,
+    shared_dir: new_resource.shared_dir,
+    conf_dir: new_resource.conf_dir,
+  )
 end
 
 def create_static_app
@@ -75,6 +85,15 @@ def create_static_app
     path new_resource.conf_dir
     notifies :reload, 'service[nginx]'
   end
+
+  # Create `/home/deployer/apps/lamp_name.yml`.
+  file("#{node['core']['deployer']['home_dir']}/apps" \
+       "/#{new_resource.type}_#{new_resource.name}.yml") do
+    content new_resource.to_yml
+    owner node['core']['deployer']['user']
+    group node['core']['deployer']['user']
+    mode '0640'
+  end
 end
 
 def delete_static_app
@@ -103,5 +122,11 @@ def delete_static_app
     action :delete
     notifies :reload, 'service[nginx]'
     only_if { Dir.exist?(new_resource.conf_dir) }
+  end
+
+  # Delete `/home/deployer/apps/lamp_name.yml`.
+  file("#{node['core']['deployer']['home_dir']}/apps" \
+       "/#{new_resource.type}_#{new_resource.name}.yml") do
+    action :delete
   end
 end

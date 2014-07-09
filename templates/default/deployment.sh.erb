@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
 <% @apps.each do |app| -%>
-  <% if app.group %>
-    sudo /bin/chgrp -R <%= app.group %> <%= @deployments_dir %>/<%= @name %>/current/<%= app.moniker %>
+  <% if app[:group] %>
+    sudo /bin/chgrp -R <%= app[:group] %> <%= @deployments_dir %>/<%= @name %>/current/<%= app[:moniker] %>
   <% end -%>
 
-  if [ -h <%= app.dir %> ]; then
-    rm <%= app.dir %>
+  if [ -h <%= app[:dir] %> ]; then
+    rm <%= app[:dir] %>
   fi
 
-  ln -s <%= @deployments_dir %>/<%= @name %>/current/<%= app.moniker %> <%= app.dir %>
+  ln -s <%= @deployments_dir %>/<%= @name %>/current/<%= app[:moniker] %> <%= app[:dir] %>
 <% end -%>

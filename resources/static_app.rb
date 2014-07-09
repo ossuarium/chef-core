@@ -26,4 +26,4 @@ attribute :moniker, kind_of: String, required: true
 attribute :service, kind_of: Chef::Resource, required: true
 attribute :storage, kind_of: Hash, default: {}
 
-attr_accessor :type, :dir, :conf_dir, :group, :shared_dir
+attr_accessor :type, :group, :dir, :shared_dir, :conf_dir, :to_yml

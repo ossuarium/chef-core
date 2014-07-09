@@ -117,13 +117,7 @@ include_recipe 'rbenv::user'
 
 node['core']['deployments'].each do |deployment, params|
   core_deployment deployment do
-    apps lazy {
-      if params[:apps]
-        params[:apps].map { |a| resources("core_#{a[:type]}_app[#{a[:name]}]") }
-      else
-        []
-      end
-    }
+    apps params[:apps] if params[:apps]
     action params[:action] if params[:action]
   end
 end

@@ -19,3 +19,5 @@ actions :create, :delete
 
 attribute :name, kind_of: String, required: true, name_attribute: true
 attribute :apps, kind_of: Array, default: []
+
+attr_accessor :apps_hash

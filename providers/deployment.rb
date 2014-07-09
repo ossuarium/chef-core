@@ -29,10 +29,16 @@ def create_deployment
     cookbook 'core'
     owner node['core']['deployer']['user']
     group node['core']['deployer']['user']
-    variables(
-      name: new_resource.name,
-      apps: new_resource.apps
-    )
+    variables lazy {
+      {
+        name: new_resource.name,
+        apps: new_resource.apps.map do |a|
+          YAML.load_file(
+            "#{node['core']['deployer']['home_dir']}/apps/#{a[:type]}_#{a[:name]}.yml"
+          )
+        end
+      }
+    }
   end
 
   deployment_users.each do |user|
@@ -45,14 +51,20 @@ def create_deployment
       owner node['core']['deployer']['user']
       group node['core']['deployer']['user']
       mode '754'
-      variables(
-        name: new_resource.name,
-        user: user.id,
-        deployments_dir:
-          "#{node['core']['home_dir']}/#{user.id}/" +
-          node['core']['deployers']['deployments_dir'],
-        apps: new_resource.apps
-      )
+      variables lazy {
+        {
+          name: new_resource.name,
+          user: user.id,
+          deployments_dir:
+            "#{node['core']['home_dir']}/#{user.id}/" +
+            node['core']['deployers']['deployments_dir'],
+          apps: new_resource.apps.map do |a|
+            YAML.load_file(
+              "#{node['core']['deployer']['home_dir']}/apps/#{a[:type]}_#{a[:name]}.yml"
+            )
+          end
+        }
+      }
     end
 
     sudo script do

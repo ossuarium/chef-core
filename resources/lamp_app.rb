@@ -45,7 +45,7 @@ attribute :db_user, kind_of: String
 attribute :db_password, kind_of: String
 attribute :db_client, kind_of: String
 
-attr_accessor :type, :dir, :conf_dir, :shared_dir, :fpm_socket_path, :group
+attr_accessor :type, :group, :dir, :shared_dir, :conf_dir, :fpm_socket_path, :to_yml
 
 attr_writer :mysql_connection,
             :db_name, :db_user, :db_password, :db_client
