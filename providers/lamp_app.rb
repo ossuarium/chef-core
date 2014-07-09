@@ -12,22 +12,16 @@ def whyrun_supported?
 end
 
 action :create do
-  converge_by("Creating #{@new_resource}") do
-    create_lamp_app
-  end
+  create_lamp_app
 end
 
 action :delete do
-  converge_by("Deleting #{@new_resource}") do
-    delete_lamp_app
-  end
+  delete_lamp_app
 end
 
 action :destroy do
-  converge_by("Destroying #{@new_resource}") do
-    delete_lamp_app
-    destroy_lamp_app
-  end
+  delete_lamp_app
+  destroy_lamp_app
 end
 
 private

@@ -8,15 +8,11 @@ def whyrun_supported?
 end
 
 action :create do
-  converge_by("Creating #{@new_resource}") do
-    create_deployment
-  end
+  create_deployment
 end
 
 action :delete do
-  converge_by("Deleting #{@new_resource}") do
-    delete_deployment
-  end
+  delete_deployment
 end
 
 private

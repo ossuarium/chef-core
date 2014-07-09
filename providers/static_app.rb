@@ -10,15 +10,11 @@ def whyrun_supported?
 end
 
 action :create do
-  converge_by("Creating #{@new_resource}") do
-    create_static_app
-  end
+  create_static_app
 end
 
 action :delete do
-  converge_by("Deleting #{@new_resource}") do
-    delete_static_app
-  end
+  delete_static_app
 end
 
 private
