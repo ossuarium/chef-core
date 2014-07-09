@@ -49,4 +49,6 @@ phpmyadmin 'mysql_admin' do
   service resources('core_service[mysql_admin]')
   vhost true
   only_if { node['core']['mysql_admin'] }
+  domain "#{node['core']['mysql_admin_subdomain']}.#{node['hostname']}" unless
+    node['core']['mysql_admin_subdomain'].nil?
 end

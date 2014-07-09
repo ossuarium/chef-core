@@ -196,6 +196,13 @@ attribute 'core/mysql_admin',
           recipes: ['core::mysql_server'],
           default: false
 
+attribute 'core/mysql_admin_subdomain',
+          display_name: 'MySQL admin subdomain',
+          description: %q{Subdomain to serve phpMyAdmin from. Prepended to hostname.},
+          type: 'string',
+          recipes: ['core::mysql_server'],
+          default: nil
+
 attribute 'core/mysql_sudoroot_user',
           display_name: 'MySQL admin username',
           description: %q{Username for the MySQL admin user.},

@@ -63,6 +63,7 @@ Attribute | Default | Description | Choices
 `node['core']['lamp']['handler_extensions']` | `["php"]` | File extensions to process with FCGI. |
 `node['core']['lamp']['pass_header']` | `["Authorization"]` | Headers to pass to FCGI. |
 `node['core']['mysql_admin']` | `false` | Whether to setup phpMyAdmin on the MySQL server. |
+`node['core']['mysql_admin_subdomain']` | `nil` | Subdomain to serve phpMyAdmin from. Prepended to hostname. |
 `node['core']['mysql_sudoroot_user']` | `"sudoroot"` | Username for the MySQL admin user. |
 `node['core']['mysql_sudoroot_password']` | `"`secure_password`"` | Password for the MySQL admin user. |
 `node['core']['packages']` | `[]` | Additional packages to install. |
