@@ -27,10 +27,7 @@ node['core']['storage'].each do |storage, params|
     :node,
     "chef_environment:#{node.chef_environment}" \
     " AND core_storage_access_#{storage}_readable:true",
-    keys: {
-      'network' => ['network'],
-      'core' => ['core']
-    }
+    keys: {'network' => ['network'], 'core' => ['core']}
   )
 
   nodes.each do |n|

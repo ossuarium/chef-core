@@ -55,10 +55,7 @@ def set_mysql_connection
   db_node = partial_search(
     :node,
     "chef_environment:#{node.chef_environment} AND tags:mysql-master",
-     keys: {
-      'network' => ['network'],
-      'core' => ['core']
-    }
+    keys: {'network' => ['network'], 'core' => ['core']}
   ).first
   new_resource.mysql_connection ||= {
     host: Chef::Recipe::PrivateNetwork.new(db_node).ip,
@@ -102,10 +99,10 @@ def create_lamp_app
     search_str = "chef_environment:#{node.chef_environment} AND tags:storage-master" \
                  " AND core_storage_#{storage}_enabled:true"
     storage_node =
-      partial_search(:node, search_str, keys: {
-        'network' => ['network'],
-        'core' => ['core']
-      }
+      partial_search(
+        :node,
+        search_str,
+        keys: {'network' => ['network'], 'core' => ['core']}
     ).first
 
     mount "lamp_app_#{new_resource.shared_dir}/#{params[:path]}" do
@@ -175,7 +172,7 @@ def delete_lamp_app
   set_mysql_connection
 
   # Unmount storage directories.
-  new_resource.storage.each do |storage, params|
+  new_resource.storage.each do |_, params|
     mount "lamp_app_#{new_resource.shared_dir}/#{params[:path]}" do
       mount_point "#{new_resource.shared_dir}/#{params[:path]}"
       action :umount

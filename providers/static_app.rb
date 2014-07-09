@@ -29,7 +29,8 @@ def set_attributes
   new_resource.dir = "#{new_resource.service.dir}/#{new_resource.moniker}"
   new_resource.conf_dir = "#{new_resource.service.nginx_conf_dir}/#{new_resource.moniker}.d"
   new_resource.shared_dir =
-    "#{new_resource.service.dir}/shared/#{new_resource.moniker}" unless new_resource.storage.empty?
+    "#{new_resource.service.dir}/shared/#{new_resource.moniker}" unless
+      new_resource.storage.empty?
 end
 
 def create_static_app
@@ -50,10 +51,10 @@ def create_static_app
     search_str = "chef_environment:#{node.chef_environment} AND tags:storage-master" \
                  " AND core_storage_#{storage}_enabled:true"
     storage_node =
-      partial_search(:node, search_str, keys: {
-        'network' => ['network'],
-        'core' => ['core']
-      }
+      partial_search(
+        :node,
+        search_str,
+        keys: {'network' => ['network'], 'core' => ['core']}
     ).first
 
     directory "lamp_app_#{new_resource.shared_dir}/#{params[:path]}" do
@@ -84,7 +85,7 @@ def delete_static_app
   set_attributes
 
   # Unmount storage directories.
-  new_resource.storage.each do |storage, params|
+  new_resource.storage.each do |_, params|
     mount "lamp_app_#{new_resource.shared_dir}/#{params[:path]}" do
       mount_point "#{new_resource.shared_dir}/#{params[:path]}"
       action :umount
