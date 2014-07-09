@@ -32,9 +32,7 @@ default['core']['deployers']['gems'] = [
 default['core']['deployers']['npm_packages'] = [
   {name: 'bower', version: '1.3.5'},
 ]
-default['core']['deployers']['dirs'] = [
-  '.bundle',
-]
+default['core']['deployers']['dirs'] = %w(.bundle)
 default['core']['deployers']['files'] = {
   'ruby-.gemrc' => '.gemrc',
   'bundler-config' => '.bundle/config',
