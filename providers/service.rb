@@ -7,6 +7,8 @@ def whyrun_supported?
   true
 end
 
+use_inline_resources
+
 action :create do
   create_service
 end
