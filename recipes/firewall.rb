@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: core
-# Recipe:: _firewall
+# Recipe:: firewall
 #
 
 include_recipe 'firewall::default'

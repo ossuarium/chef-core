@@ -75,6 +75,7 @@ Attribute | Default | Description | Choices
 ## Recipes
 
 * core::default - Configures a minimal base system.
+* core::firewall - Configures a firewall.
 * core::storage_server - Configures an NFS storage server.
 * [core::mysql_server](#coremysql_server) - Configures a MySQL server.
 * core::static_app_server - Configures a static web server.

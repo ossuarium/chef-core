@@ -22,10 +22,12 @@ suites:
   - name: default
     run_list:
       - recipe[core::default]
+      - recipe[core::firewall]
 
   - name: deployment
     run_list:
       - recipe[core::deployment]
+      - recipe[core::firewall]
     attributes:
       core:
         deployments:
@@ -37,6 +39,7 @@ suites:
         - ["private_network", {ip: "10.10.10.100"}]
     run_list:
       - recipe[core::storage_server]
+      - recipe[core::firewall]
     attributes:
       core:
         storage:
@@ -49,6 +52,7 @@ suites:
         - ["private_network", {ip: "10.10.10.101"}]
     run_list:
       - recipe[core::mysql_server]
+      - recipe[core::firewall]
     attributes:
       mysql:
         server_root_password: password
@@ -63,6 +67,7 @@ suites:
     run_list:
       - recipe[core::lamp_app_server]
       - recipe[core::deployment]
+      - recipe[core::firewall]
     attributes:
       core:
         storage_access:
@@ -93,6 +98,7 @@ suites:
     run_list:
       - recipe[core::static_app_server]
       - recipe[core::deployment]
+      - recipe[core::firewall]
     attributes:
       core:
         storage_access:

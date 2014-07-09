@@ -38,7 +38,6 @@ include_recipe 'zsh::default'
 include_recipe 'vim::default'
 include_recipe 'sudo::default'
 include_recipe 'openssh::default'
-include_recipe 'core::_firewall'
 include_recipe 'oh-my-zsh::default'
 
 #

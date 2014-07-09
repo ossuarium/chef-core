@@ -34,6 +34,7 @@ depends 'vim', '~> 1.1.2'
 depends 'zsh', '~> 1.0.0'
 
 recipe 'core::default', 'Configures a minimal base system.'
+recipe 'core::firewall', 'Configures a firewall.'
 recipe 'core::storage_server', 'Configures an NFS storage server.'
 recipe 'core::mysql_server', 'Configures a MySQL server.'
 recipe 'core::static_app_server', 'Configures a static web server.'
