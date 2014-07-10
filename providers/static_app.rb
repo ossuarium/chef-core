@@ -35,7 +35,7 @@ def set_attributes
     group: new_resource.group,
     dir: new_resource.dir,
     shared_dir: new_resource.shared_dir,
-    conf_dir: new_resource.conf_dir,
+    conf_dir: new_resource.conf_dir
   )
 end
 
