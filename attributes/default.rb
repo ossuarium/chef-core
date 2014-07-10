@@ -38,6 +38,7 @@ default['core']['service']['dirs'] = [
 
 default['core']['lamp']['handler_extensions'] = %w(php)
 default['core']['lamp']['pass_header'] = %w(Authorization)
+default['core']['lamp']['ioncube'] = false
 
 #
 # Storage, services, and apps.

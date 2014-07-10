@@ -27,12 +27,19 @@ include_recipe 'apache2::mod_fastcgi'
 include_recipe 'mysql::client'
 include_recipe 'database::mysql'
 include_recipe 'php::default'
-include_recipe 'php-fpm::default'
 include_recipe 'php::module_mysql'
+include_recipe 'php-fpm::default'
+include_recipe 'php-ioncube::install' if node['core']['lamp']['ioncube']
 include_recipe 'core::services'
 
 apache_module 'actions' do
   enable true
+end
+
+link "#{node['php-fpm']['conf_dir']}/00-ioncube.ini" do
+  to "#{node['php']['ext_conf_dir']}/ioncube.ini"
+  action node['core']['lamp']['ioncube'] ? :create : :delete
+  notifies :reload, 'service[php-fpm]'
 end
 
 node['core']['apps'].select { |_, v| v[:type] == 'lamp' }.each do |app, params|

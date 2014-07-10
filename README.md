@@ -30,6 +30,7 @@ Core infrastructure for OurTownRentals.com.
 * openssh (~> 1.3.4)
 * partial_search (~> 1.0.7)
 * php (~> 1.4.7)
+* php-ioncube (~> 0.2.0)
 * phpmyadmin (~> 0.0.0)
 * php-fpm (~> 0.6.10)
 * rbenv (~> 0.7.3)
@@ -62,6 +63,7 @@ Attribute | Default | Description | Choices
 `node['core']['deployments']` | `{}` | Deployments to create on the node. |
 `node['core']['lamp']['handler_extensions']` | `["php"]` | File extensions to process with FCGI. |
 `node['core']['lamp']['pass_header']` | `["Authorization"]` | Headers to pass to FCGI. |
+`node['core']['lamp']['ioncube']` | `false` | Whether install and enable ionCube. |
 `node['core']['mysql_admin']` | `false` | Whether to setup phpMyAdmin on the MySQL server. |
 `node['core']['mysql_admin_subdomain']` | `nil` | Subdomain to serve phpMyAdmin from. Prepended to hostname. |
 `node['core']['mysql_sudoroot_user']` | `"sudoroot"` | Username for the MySQL admin user. |

@@ -6,6 +6,9 @@ cookbook 'php',
          github: 'ourtownrentals/chef-php',
          branch: 'otr'
 
+cookbook 'php-ioncube',
+         github: 'werdan/php-ioncube'
+
 cookbook 'phpmyadmin',
          github: 'ourtownrentals/chef-phpmyadmin'
 
