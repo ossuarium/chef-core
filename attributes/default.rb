@@ -57,6 +57,9 @@ default['core']['apps'] = {}
 # Run directory.
 default['core']['run_dir'] = '/var/run'
 
+# Log directory.
+default['core']['log_dir'] = '/var/log'
+
 # Serve directory.
 default['core']['srv_dir'] = '/srv'
 
