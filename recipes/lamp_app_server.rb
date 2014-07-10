@@ -36,6 +36,10 @@ logrotate_app 'php-fpm-pools' do
   path "#{node['php-fpm']['log_dir']}/*.log"
 end
 
+logrotate_app 'apache2-vhosts' do
+  path "#{default['apache']['log_dir']}/*.log"
+end
+
 apache_module 'actions' do
   enable true
 end
