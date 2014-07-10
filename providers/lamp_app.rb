@@ -41,7 +41,7 @@ def set_attributes
     if new_resource.fpm_pool.nil?
       "#{node['core']['run_dir']}/php-fpm-lamp_app_#{new_resource.name}.sock"
     else
-      "#{node['core']['run_dir']}/php-fpm-#{new_resource.fpm_pool.variables[:pool_name]}.sock"
+      "#{node['core']['run_dir']}/php-fpm-#{new_resource.fpm_pool}.sock"
     end
 
   new_resource.to_yml = YAML.dump(
