@@ -11,6 +11,10 @@ include_recipe 'nfs::client4'
 include_recipe 'core::_nginx_server'
 include_recipe 'core::services'
 
+logrotate_app 'nginx-server-blocks' do
+  path "#{default['nginx']['log_dir']}/*.log"
+end
+
 node['core']['apps'].select { |_, v| v[:type] == 'static' }.each do |app, params|
   core_static_app app do
     moniker params[:moniker]
