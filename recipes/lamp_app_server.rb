@@ -18,6 +18,7 @@ node.default['core']['servers']['http'] = true
 node.default['core']['servers']['https'] = true
 
 node.default['build-essential']['compile_time'] = true
+node.default['php-fpm']['pools'] = []
 
 include_recipe 'core::_common_system' if node['core']['common_system']
 include_recipe 'nfs::client4'
@@ -33,13 +34,6 @@ include_recipe 'core::services'
 
 apache_module 'actions' do
   enable true
-end
-
-# Disable any pools defined by attributes.
-node['php-fpm']['pools'].each do |pool|
-  php_fpm_pool pool[:name] do
-    enable false
-  end
 end
 
 link "#{node['php-fpm']['conf_dir']}/00-ioncube.ini" do

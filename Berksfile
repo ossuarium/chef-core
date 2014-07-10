@@ -6,6 +6,10 @@ cookbook 'php',
          github: 'ourtownrentals/chef-php',
          branch: 'ourtownrentals'
 
+cookbook 'php-fpm',
+         github: 'ourtownrentals/chef-php-fpm',
+         branch: 'ourtownrentals'
+
 cookbook 'php-ioncube',
          github: 'werdan/php-ioncube'
 
