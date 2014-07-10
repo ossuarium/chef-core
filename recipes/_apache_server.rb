@@ -11,6 +11,9 @@ node.default['apache']['contact'] = node['core']['contact']
 if apache24
   node.set['apache']['pid_file'] = '/var/run/apache2/apache2.pid'
   node.set['apache']['version']  = '2.4'
+  node.set['apache']['mpm'] = 'event'
+  node.set['apache']['event']['maxrequestworkers'] =
+    node['core']['lamp']['thread_multiplier'] * node['apache']['worker']['threadsperchild']
 end
 
 include_recipe 'apache2::default'

@@ -183,6 +183,13 @@ attribute 'core/lamp/handler_extensions',
           recipes: ['core::lamp_app_server'],
           default: ['php']
 
+attribute 'core/lamp/ioncube',
+          display_name: 'ionCube',
+          description: %q{Whether install and enable ionCube.},
+          type: 'boolean',
+          recipes: ['core::lamp_app_server'],
+          default: false
+
 attribute 'core/lamp/pass_header',
           display_name: 'Pass header',
           description: %q{Headers to pass to FCGI.},
@@ -190,12 +197,12 @@ attribute 'core/lamp/pass_header',
           recipes: ['core::lamp_app_server'],
           default: ['Authorization']
 
-attribute 'core/lamp/ioncube',
-          display_name: 'ionCube',
-          description: %q{Whether install and enable ionCube.},
-          type: 'boolean',
+attribute 'core/lamp/thread_multiplier',
+          display_name: 'Apache thread multiplier',
+          description: %q{Sets MaxRequestWorkers to ThreadsPerChild times this multiplier.},
+          type: 'numeric',
           recipes: ['core::lamp_app_server'],
-          default: false
+          default: 2
 
 attribute 'core/mysql_admin',
           display_name: 'MySQL admin',

@@ -62,8 +62,9 @@ Attribute | Default | Description | Choices
 `node['core']['deployment']['packages']` | `[]` | Additional packages required for deployments. |
 `node['core']['deployments']` | `{}` | Deployments to create on the node. |
 `node['core']['lamp']['handler_extensions']` | `["php"]` | File extensions to process with FCGI. |
-`node['core']['lamp']['pass_header']` | `["Authorization"]` | Headers to pass to FCGI. |
 `node['core']['lamp']['ioncube']` | `false` | Whether install and enable ionCube. |
+`node['core']['lamp']['pass_header']` | `["Authorization"]` | Headers to pass to FCGI. |
+`node['core']['lamp']['thread_multiplier']` | `2` | Sets MaxRequestWorkers to ThreadsPerChild times this multiplier. |
 `node['core']['mysql_admin']` | `false` | Whether to setup phpMyAdmin on the MySQL server. |
 `node['core']['mysql_admin_subdomain']` | `nil` | Subdomain to serve phpMyAdmin from. Prepended to hostname. |
 `node['core']['mysql_sudoroot_user']` | `"sudoroot"` | Username for the MySQL admin user. |
