@@ -4,7 +4,7 @@ metadata
 
 cookbook 'php',
          github: 'ourtownrentals/chef-php',
-         branch: 'otr'
+         branch: 'ourtownrentals'
 
 cookbook 'php-ioncube',
          github: 'werdan/php-ioncube'
