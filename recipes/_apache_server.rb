@@ -26,8 +26,7 @@ end
 
 apache_module 'access_compat' do
   enable false
-  only_if { apache24 }
-end
+end if apache24
 
 # This is required to avoid conflicting security.conf files.
 # @todo Remove this when [apache2 issue 131] is closed.

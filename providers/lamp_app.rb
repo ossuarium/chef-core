@@ -124,8 +124,7 @@ def create_lamp_app
   # Create the PHP-FPM socket if not explicitly given.
   php_fpm_pool "lamp_app_#{new_resource.name}" do
     socket true
-    only_if { new_resource.fpm_pool.nil? }
-  end
+  end if new_resource.fpm && new_resource.fpm_pool.nil?
 
   # Create `/usr/lib/cgi-bin/name`.
   directory "#{node['apache']['cgibin_dir']}/#{new_resource.name}" do
@@ -206,8 +205,7 @@ def delete_lamp_app
   php_fpm_pool "lamp_app_#{new_resource.name}" do
     socket true
     action :delete
-    only_if { new_resource.fpm_pool.nil? }
-  end
+  end if new_resource.fpm && new_resource.fpm_pool.nil?
 
   # Delete `/usr/lib/cgi-bin/name`.
   directory "#{node['apache']['cgibin_dir']}/php5-#{new_resource.name}" do
