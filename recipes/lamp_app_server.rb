@@ -35,12 +35,21 @@ include_recipe 'php-fpm::default'
 include_recipe 'php-ioncube::install' if node['core']['lamp']['ioncube']
 include_recipe 'core::services'
 
-logrotate_app 'php-fpm-pools' do
-  path "#{node['php-fpm']['log_dir']}/*.log"
+directory "#{node['core']['log_dir']}/php" do
+  group node['apache']['group']
+  mode '0775'
 end
 
 logrotate_app 'apache2-vhosts' do
   path "#{node['apache']['log_dir']}/*.log"
+end
+
+logrotate_app 'php-fpm-pools' do
+  path "#{node['php-fpm']['log_dir']}/*.log"
+end
+
+logrotate_app 'php' do
+  path "#{node['core']['log_dir']}/php/*.log"
 end
 
 apache_module 'actions' do

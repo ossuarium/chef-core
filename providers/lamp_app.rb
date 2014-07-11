@@ -124,6 +124,10 @@ def create_lamp_app
   # Create the PHP-FPM socket if not explicitly given.
   php_fpm_pool "lamp_app_#{new_resource.name}" do
     socket true
+    php_options(
+      'php_admin_value[error_log]' =>
+        "#{node['core']['log_dir']}/php/$pool.error.log"
+    )
   end if new_resource.fpm && new_resource.fpm_pool.nil?
 
   # Create `/usr/lib/cgi-bin/name`.
