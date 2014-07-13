@@ -18,6 +18,7 @@ Each LAMP app must be assigned a `core_service`.
 @attribute storage the shared paths to mount as storage.
 @attribute fpm whether to setup an FPM socket for this app.
 @attribute fpm_pool php_fpm_pool resource to use (created if not set).
+@attribute php_options php options to set for the FPM pool.
 @attribute mysql_connection MySQL admin connection information.
 @attribute database whether to setup a database for this app.
 @attribute db_name database name to use for the LAMP app.
@@ -38,6 +39,7 @@ attribute :shared, kind_of: Array, default: []
 attribute :storage, kind_of: Hash, default: {}
 attribute :fpm, kind_of: [TrueClass, FalseClass], default: true
 attribute :fpm_pool, kind_of: Chef::Resource
+attribute :php_options, kind_of: Hash, default: {}
 attribute :database, kind_of: [TrueClass, FalseClass], default: false
 attribute :mysql_connection, kind_of: Hash
 attribute :db_name, kind_of: String
@@ -47,5 +49,5 @@ attribute :db_client, kind_of: String
 
 attr_accessor :type, :group, :dir, :shared_dir, :conf_dir, :fpm_socket_path, :to_yml
 
-attr_writer :mysql_connection,
+attr_writer :php_options, :mysql_connection,
             :db_name, :db_user, :db_password, :db_client

@@ -32,6 +32,11 @@ def set_attributes
   new_resource.db_password ||= secure_password
   new_resource.db_client ||= Chef::Recipe::PrivateNetwork.new(node).ip
 
+  new_resource.php_options = new_resource.php_options.to_hash
+  new_resource.php_options['php_admin_value[error_log]'] =
+    "#{node['core']['log_dir']}/php/$pool.error.log" unless
+      new_resource.php_options.key? 'php_admin_value[error_log]'
+
   new_resource.type = :lamp
   new_resource.group = node['apache']['group']
   new_resource.dir = "#{new_resource.service.dir}/#{new_resource.moniker}"
@@ -122,12 +127,10 @@ def create_lamp_app
   end
 
   # Create the PHP-FPM socket if not explicitly given.
+  php_options_var = new_resource.php_options
   php_fpm_pool "lamp_app_#{new_resource.name}" do
     socket true
-    php_options(
-      'php_admin_value[error_log]' =>
-        "#{node['core']['log_dir']}/php/$pool.error.log"
-    )
+    php_options php_options_var
   end if new_resource.fpm && new_resource.fpm_pool.nil?
 
   # Create `/usr/lib/cgi-bin/name`.

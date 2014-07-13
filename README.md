@@ -158,6 +158,7 @@ Each LAMP app must be assigned a `core_service`.
 - storage: the shared paths to mount as storage. Defaults to <code>{}</code>.
 - fpm: whether to setup an FPM socket for this app. Defaults to <code>true</code>.
 - fpm_pool: php_fpm_pool resource to use (created if not set).
+- php_options: php options to set for the FPM pool. Defaults to <code>{}</code>.
 - database: whether to setup a database for this app. Defaults to <code>false</code>.
 - mysql_connection: MySQL admin connection information.
 - db_name: database name to use for the LAMP app.
