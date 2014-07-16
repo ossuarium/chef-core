@@ -2,16 +2,15 @@ source 'https://api.berkshelf.com'
 
 metadata
 
-cookbook 'php',
-         github: 'ourtownrentals/chef-php',
-         branch: 'ourtownrentals'
-
 cookbook 'php-fpm',
          github: 'ourtownrentals/chef-php-fpm',
          branch: 'ourtownrentals'
 
 cookbook 'php-ioncube',
          github: 'werdan/php-ioncube'
+
+cookbook 'php-modules',
+         github: 'ourtownrentals/chef-php-modules'
 
 cookbook 'phpmyadmin',
          github: 'ourtownrentals/chef-phpmyadmin'

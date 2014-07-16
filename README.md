@@ -29,7 +29,7 @@ Core infrastructure for OurTownRentals.com.
 * oh-my-zsh (~> 0.4.3)
 * openssh (~> 1.3.4)
 * partial_search (~> 1.0.7)
-* php (~> 1.4.7)
+* php (~> 1.4.6)
 * php-ioncube (~> 0.2.0)
 * phpmyadmin (~> 0.0.0)
 * php-fpm (~> 0.6.10)
