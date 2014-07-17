@@ -31,6 +31,7 @@ Core infrastructure for OurTownRentals.com.
 * partial_search (~> 1.0.7)
 * php (~> 1.4.6)
 * php-ioncube (~> 0.2.0)
+* php-modules (~> 0.0.0)
 * phpmyadmin (~> 0.0.0)
 * php-fpm (~> 0.6.10)
 * rbenv (~> 0.7.3)

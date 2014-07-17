@@ -52,7 +52,7 @@ provides 'service[core_static_app]'
 
 attribute 'core/apps',
           display_name: 'Apps',
-          description: %q{Apps to create on the node.},
+          description: 'Apps to create on the node.',
           type: 'hash',
           recipes: [
             'core::default',
@@ -64,34 +64,34 @@ attribute 'core/apps',
 
 attribute 'core/common_system',
           display_name: 'Common system',
-          description: %q{Whether to include the common system configuration.},
+          description: 'Whether to include the common system configuration.',
           type: 'boolean',
           recipes: ['core::lamp_app_server',],
           default: true
 
 attribute 'core/contact',
           display_name: 'Contact',
-          description: %q{Administrative contact email.},
+          description: 'Administrative contact email.',
           type: 'string',
           default: 'evan@ourtownrentals.com'
 
 attribute 'core/deployer/user',
           display_name: 'Deployer username',
-          description: %q{System username for the deployer user.},
+          description: 'System username for the deployer user.',
           type: 'string',
           recipes: ['core::deployment'],
           default: 'deployer'
 
 attribute 'core/deployer/home_dir',
           display_name: 'Deployer home directory',
-          description: %q{Home directory for the deployer user.},
+          description: 'Home directory for the deployer user.',
           type: 'string',
           recipes: ['core::deployment'],
-          default: %q{node['core']['home_dir']/node['core']['deployer']['user']}
+          default: "node['core']['home_dir']/node['core']['deployer']['user']"
 
 attribute 'core/deployer/sudo_commands',
           display_name: 'Deployer sudo commands',
-          description: %q{Commands the deployer user is allowed to run as root using sudo.},
+          description: 'Commands the deployer user is allowed to run as root using sudo.',
           type: 'array',
           recipes: ['core::deployment'],
           default: [
@@ -100,28 +100,28 @@ attribute 'core/deployer/sudo_commands',
 
 attribute 'core/deployers/name',
           display_name: 'Deployers group',
-          description: %q{Group name for the deployers group.},
+          description: 'Group name for the deployers group.',
           type: 'string',
           recipes: ['core::deployment'],
           default: 'deployers'
 
 attribute 'core/deployers/gid',
           display_name: 'Deployers group id',
-          description: %q{Group id for the deployers group.},
+          description: 'Group id for the deployers group.',
           type: 'numeric',
           recipes: ['core::deployment'],
           default: 3300
 
 attribute 'core/deployers/deployments_dir',
           display_name: 'Deployers deployments directory',
-          description: %q{Directory under each deploy user's home directory for deployments.},
+          description: "Directory under each deploy user's home directory for deployments.",
           type: 'string',
           recipes: ['core::deployment'],
           default: 'deployments'
 
 attribute 'core/deployers/dirs',
           display_name: 'Deployers directories',
-          description: %q{Directories to create under each deployer's home directory.},
+          description: "Directories to create under each deployer's home directory.",
           type: 'array',
           recipes: ['core::deployment'],
           default: [
@@ -130,7 +130,7 @@ attribute 'core/deployers/dirs',
 
 attribute 'core/deployers/files',
           display_name: 'Deployers files',
-          description: %q{Files to create under each deployer's home directory.},
+          description: "Files to create under each deployer's home directory.",
           type: 'hash',
           recipes: ['core::deployment'],
           default: {
@@ -140,7 +140,7 @@ attribute 'core/deployers/files',
 
 attribute 'core/deployers/npm_packages',
           display_name: 'Deployers Node packages',
-          description: %q{Node packages to install via npm for each deployer.},
+          description: 'Node packages to install via npm for each deployer.',
           type: 'array',
           recipes: ['core::deployment'],
           default: [
@@ -149,14 +149,14 @@ attribute 'core/deployers/npm_packages',
 
 attribute 'core/deployers/ruby_version',
           display_name: 'Deployers Ruby version',
-          description: %q{Ruby version each deployer will use.},
+          description: 'Ruby version each deployer will use.',
           type: 'string',
           recipes: ['core::deployment'],
           default: '2.1.2'
 
 attribute 'core/deployers/gems',
           display_name: 'Deployers Ruby gems',
-          description: %q{Ruby gems to install for each deployer.},
+          description: 'Ruby gems to install for each deployer.',
           type: 'array',
           recipes: ['core::deployment'],
           default: [
@@ -165,97 +165,97 @@ attribute 'core/deployers/gems',
 
 attribute 'core/deployment/packages',
           display_name: 'Deployment packages',
-          description: %q{Additional packages required for deployments.},
+          description: 'Additional packages required for deployments.',
           type: 'array',
           recipes: ['core::deployment'],
           default: []
 
 attribute 'core/deployments',
           display_name: 'Deployments',
-          description: %q{Deployments to create on the node.},
+          description: 'Deployments to create on the node.',
           type: 'hash',
           recipes: ['core::deployment'],
           default: {}
 
 attribute 'core/lamp/handler_extensions',
           display_name: 'Handler extensions',
-          description: %q{File extensions to process with FCGI.},
+          description: 'File extensions to process with FCGI.',
           type: 'array',
           recipes: ['core::lamp_app_server'],
           default: ['php']
 
 attribute 'core/lamp/ioncube',
           display_name: 'ionCube',
-          description: %q{Whether install and enable ionCube.},
+          description: 'Whether install and enable ionCube.',
           type: 'boolean',
           recipes: ['core::lamp_app_server'],
           default: false
 
 attribute 'core/lamp/pass_header',
           display_name: 'Pass header',
-          description: %q{Headers to pass to FCGI.},
+          description: 'Headers to pass to FCGI.',
           type: 'array',
           recipes: ['core::lamp_app_server'],
           default: ['Authorization']
 
 attribute 'core/lamp/thread_multiplier',
           display_name: 'Apache thread multiplier',
-          description: %q{Sets MaxRequestWorkers to ThreadsPerChild times this multiplier.},
+          description: 'Sets MaxRequestWorkers to ThreadsPerChild times this multiplier.',
           type: 'numeric',
           recipes: ['core::lamp_app_server'],
           default: 2
 
 attribute 'core/mysql_admin',
           display_name: 'MySQL admin',
-          description: %q{Whether to setup phpMyAdmin on the MySQL server.},
+          description: 'Whether to setup phpMyAdmin on the MySQL server.',
           type: 'boolean',
           recipes: ['core::mysql_server'],
           default: false
 
 attribute 'core/mysql_admin_subdomain',
           display_name: 'MySQL admin subdomain',
-          description: %q{Subdomain to serve phpMyAdmin from. Prepended to hostname.},
+          description: 'Subdomain to serve phpMyAdmin from. Prepended to hostname.',
           type: 'string',
           recipes: ['core::mysql_server'],
           default: nil
 
 attribute 'core/mysql_sudoroot_user',
           display_name: 'MySQL admin username',
-          description: %q{Username for the MySQL admin user.},
+          description: 'Username for the MySQL admin user.',
           type: 'string',
           recipes: ['core::mysql_server'],
           default: 'sudoroot'
 
 attribute 'core/mysql_sudoroot_password',
           display_name: 'MySQL admin password',
-          description: %q{Password for the MySQL admin user.},
+          description: 'Password for the MySQL admin user.',
           type: 'string',
           recipes: ['core::mysql_server'],
           default: '`secure_password`'
 
 attribute 'core/packages',
           display_name: 'Packages',
-          description: %q{Additional packages to install.},
+          description: 'Additional packages to install.',
           type: 'array',
           default: []
 
 attribute 'core/phpmyadmin/pma_database',
           display_name: 'phpMyAdmin database name',
-          description: %q{Name to use for the phpMyAdmin control database.},
+          description: 'Name to use for the phpMyAdmin control database.',
           type: 'string',
           recipes: ['core::mysql_server'],
           default: 'phpmyadmin'
 
 attribute 'core/phpmyadmin/pma_username',
           display_name: 'phpMyAdmin database username',
-          description: %q{MySQL username for access to the phpMyAdmin control database.},
+          description: 'MySQL username for access to the phpMyAdmin control database.',
           type: 'string',
           recipes: ['core::mysql_server'],
           default: 'phpmyadmin'
 
 attribute 'core/service/dirs',
           display_name: 'Service directories',
-          description: %q{Directories to create under each service's directory.},
+          description: "Directories to create under each service's directory.",
           type: 'string',
           default: [
             'shared',
@@ -263,14 +263,14 @@ attribute 'core/service/dirs',
 
 attribute 'core/services',
           display_name: 'Services',
-          description: %q{Services to create on the node.},
+          description: 'Services to create on the node.',
           type: 'hash',
           recipes: ['core::services'],
           default: {}
 
 attribute 'core/storage',
           display_name: 'Storage',
-          description: %q{Storage to create on the node.},
+          description: 'Storage to create on the node.',
           type: 'hash',
           recipes: ['core::storage'],
           default: {}
