@@ -115,6 +115,16 @@ def create_lamp_app
         keys: {'network' => ['network'], 'core' => ['core']}
     ).first
 
+    if storage_node.nil?
+      search_str = "chef_environment:#{node.chef_environment} AND tags:storage-master"
+      storage_node =
+        partial_search(
+          :node,
+          search_str,
+          keys: {'network' => ['network'], 'core' => ['core']}
+      ).first
+    end
+
     mount "lamp_app_#{new_resource.shared_dir}/#{params[:path]}" do
       mount_point "#{new_resource.shared_dir}/#{params[:path]}"
       device(
