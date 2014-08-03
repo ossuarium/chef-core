@@ -20,13 +20,6 @@ node.default['core']['servers']['https'] = true
 node.default['build-essential']['compile_time'] = true
 node.default['php-fpm']['pools'] = []
 
-# This is required to for PHP 5.4 on Ubuntu.
-# @todo Remove this when [php issue 76] is closed.
-# [php issue 76]: https://github.com/opscode-cookbooks/php/issues/76
-if platform?('ubuntu') && node['platform_version'].to_f >= 14.04
-  node.default['php']['ext_conf_dir'] = '/etc/php5/mods-available'
-end
-
 include_recipe 'core::_common_system' if node['core']['common_system']
 include_recipe 'nfs::client4'
 include_recipe 'core::_apache_server'
@@ -37,7 +30,6 @@ include_recipe 'php::default'
 include_recipe 'php::module_mysql'
 include_recipe 'php-modules::default'
 include_recipe 'php-fpm::default'
-include_recipe 'php-ioncube::install' if node['core']['lamp']['ioncube']
 include_recipe 'core::services'
 
 directory "#{node['core']['log_dir']}/php" do
@@ -65,6 +57,7 @@ link "#{node['php-fpm']['conf_dir']}/00-ioncube.ini" do
   to "#{node['php']['ext_conf_dir']}/ioncube.ini"
   action node['core']['lamp']['ioncube'] ? :create : :delete
   notifies :reload, 'service[php-fpm]'
+  only_if { ::File.exist? "#{node['php']['ext_conf_dir']}/ioncube.ini" }
 end
 
 node['core']['apps'].select { |_, v| v[:type] == 'lamp' }.each do |app, params|

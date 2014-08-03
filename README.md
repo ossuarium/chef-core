@@ -30,7 +30,6 @@ Core infrastructure for OurTownRentals.com.
 * openssh (~> 1.3.4)
 * partial_search (~> 1.0.7)
 * php (~> 1.4.6)
-* php-ioncube (~> 0.2.0)
 * php-modules (~> 0.0.0)
 * phpmyadmin (~> 0.0.0)
 * php-fpm (~> 0.6.10)
@@ -63,7 +62,6 @@ Attribute | Default | Description | Choices
 `node['core']['deployment']['packages']` | `[]` | Additional packages required for deployments. |
 `node['core']['deployments']` | `{}` | Deployments to create on the node. |
 `node['core']['lamp']['handler_extensions']` | `["php"]` | File extensions to process with FCGI. |
-`node['core']['lamp']['ioncube']` | `false` | Whether install and enable ionCube. |
 `node['core']['lamp']['pass_header']` | `["Authorization"]` | Headers to pass to FCGI. |
 `node['core']['lamp']['thread_multiplier']` | `2` | Sets MaxRequestWorkers to ThreadsPerChild times this multiplier. |
 `node['core']['mysql_admin']` | `false` | Whether to setup phpMyAdmin on the MySQL server. |

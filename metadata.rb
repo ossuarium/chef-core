@@ -23,7 +23,6 @@ depends 'oh-my-zsh', '~> 0.4.3'
 depends 'openssh', '~> 1.3.4'
 depends 'partial_search', '~> 1.0.7'
 depends 'php', '~> 1.4.6'
-depends 'php-ioncube', '~> 0.2.0'
 depends 'php-modules', '~> 0.0.0'
 depends 'phpmyadmin', '~> 0.0.0'
 depends 'php-fpm', '~> 0.6.10'
@@ -183,13 +182,6 @@ attribute 'core/lamp/handler_extensions',
           type: 'array',
           recipes: ['core::lamp_app_server'],
           default: ['php']
-
-attribute 'core/lamp/ioncube',
-          display_name: 'ionCube',
-          description: 'Whether install and enable ionCube.',
-          type: 'boolean',
-          recipes: ['core::lamp_app_server'],
-          default: false
 
 attribute 'core/lamp/pass_header',
           display_name: 'Pass header',
