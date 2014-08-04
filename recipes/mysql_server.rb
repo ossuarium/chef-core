@@ -47,8 +47,9 @@ end
 
 phpmyadmin 'mysql_admin' do
   service resources('core_service[mysql_admin]')
-  vhost true
+  alias_path node['core']['mysql_admin_alias_path'] if node['core']['mysql_admin_alias_path']
+  vhost true if node['core']['mysql_admin_subdomain']
+  domain "#{node['core']['mysql_admin_subdomain']}.#{node['hostname']}" if
+    node['core']['mysql_admin_subdomain']
   only_if { node['core']['mysql_admin'] }
-  domain "#{node['core']['mysql_admin_subdomain']}.#{node['hostname']}" unless
-    node['core']['mysql_admin_subdomain'].nil?
 end

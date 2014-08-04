@@ -23,6 +23,8 @@ default['core']['storage_group'] = 'www-data'
 
 default['core']['mysql_sudoroot_user'] = 'sudoroot'
 default['core']['mysql_admin'] = false
+default['core']['mysql_admin_subdomain'] = nil
+default['core']['mysql_admin_alias_path'] = nil
 
 #
 # Service configuration.
@@ -45,6 +47,7 @@ default['core']['lamp']['thread_multiplier'] = 2
 #
 
 default['core']['storage'] = {}
+default['core']['storage_access'] = {}
 default['core']['services'] = {}
 default['core']['apps'] = {}
 

@@ -211,6 +211,13 @@ attribute 'core/mysql_admin_subdomain',
           recipes: ['core::mysql_server'],
           default: nil
 
+attribute 'core/mysql_admin_alias_path',
+          display_name: 'MySQL alias path',
+          description: 'Alias path to serve phpMyAdmin from.',
+          type: 'string',
+          recipes: ['core::mysql_server'],
+          default: nil
+
 attribute 'core/mysql_sudoroot_user',
           display_name: 'MySQL admin username',
           description: 'Username for the MySQL admin user.',
