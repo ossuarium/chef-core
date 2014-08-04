@@ -74,6 +74,7 @@ Attribute | Default | Description | Choices
 `node['core']['service']['dirs']` | `["shared"]` | Directories to create under each service's directory. |
 `node['core']['services']` | `{}` | Services to create on the node. |
 `node['core']['storage']` | `{}` | Storage to create on the node. |
+`node['core']['storage_access']` | `{}` | Storage access permissions. |
 
 ## Recipes
 

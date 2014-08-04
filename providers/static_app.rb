@@ -54,14 +54,19 @@ def create_static_app
 
   # Mount storage directories.
   new_resource.storage.each do |storage, params|
-    search_str = "chef_environment:#{node.chef_environment} AND tags:storage-master" \
-                 " AND core_storage_#{storage}_enabled:true"
     storage_node =
-      partial_search(
-        :node,
-        search_str,
-        keys: {'network' => ['network'], 'core' => ['core']}
-    ).first
+      if node['tags'].include?('storage-master') &&
+         node['core']['storage'][storage] &&
+         node['core']['storage'][storage]['enabled']
+        node
+      else
+        partial_search(
+          :node,
+          "chef_environment:#{node.chef_environment} AND tags:storage-master" \
+          " AND core_storage_#{storage}_enabled:true",
+          keys: {'network' => ['network'], 'core' => ['core']}
+        ).first
+      end
 
     directory "lamp_app_#{new_resource.shared_dir}/#{params[:path]}" do
       path "#{new_resource.shared_dir}/#{params[:path]}"

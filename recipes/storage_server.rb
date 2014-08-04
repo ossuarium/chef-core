@@ -30,6 +30,9 @@ node['core']['storage'].each do |storage, params|
     keys: {'network' => ['network'], 'core' => ['core']}
   )
 
+  nodes << node if node['core']['storage_access'][storage] &&
+                   node['core']['storage_access'][storage]['readable']
+
   nodes.each do |n|
     ip = PrivateNetwork.new(n).ip
     access = n['core']['storage_access'][storage]

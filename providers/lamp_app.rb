@@ -62,11 +62,17 @@ def set_attributes
 end
 
 def set_mysql_connection
-  db_node = partial_search(
-    :node,
-    "chef_environment:#{node.chef_environment} AND tags:mysql-master",
-    keys: {'network' => ['network'], 'core' => ['core']}
-  ).first
+  db_node =
+    if node['tags'].include? 'mysql-master'
+      node
+    else
+      partial_search(
+        :node,
+        "chef_environment:#{node.chef_environment} AND tags:mysql-master",
+        keys: {'network' => ['network'], 'core' => ['core']}
+      ).first
+    end
+
   new_resource.mysql_connection ||= {
     host: Chef::Recipe::PrivateNetwork.new(db_node).ip,
     username: db_node['core']['mysql_sudoroot_user'],
@@ -106,24 +112,19 @@ def create_lamp_app
       not_if { Dir.exist?("#{new_resource.shared_dir}/#{params[:path]}") }
     end
 
-    search_str = "chef_environment:#{node.chef_environment} AND tags:storage-master" \
-                 " AND core_storage_#{storage}_enabled:true"
     storage_node =
-      partial_search(
-        :node,
-        search_str,
-        keys: {'network' => ['network'], 'core' => ['core']}
-    ).first
-
-    if storage_node.nil?
-      search_str = "chef_environment:#{node.chef_environment} AND tags:storage-master"
-      storage_node =
+      if node['tags'].include?('storage-master') &&
+         node['core']['storage'][storage] &&
+         node['core']['storage'][storage]['enabled']
+        node
+      else
         partial_search(
           :node,
-          search_str,
+          "chef_environment:#{node.chef_environment} AND tags:storage-master" \
+          " AND core_storage_#{storage}_enabled:true",
           keys: {'network' => ['network'], 'core' => ['core']}
-      ).first
-    end
+        ).first
+      end
 
     mount "lamp_app_#{new_resource.shared_dir}/#{params[:path]}" do
       mount_point "#{new_resource.shared_dir}/#{params[:path]}"

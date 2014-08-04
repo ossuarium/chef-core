@@ -266,3 +266,10 @@ attribute 'core/storage',
           type: 'hash',
           recipes: ['core::storage'],
           default: {}
+
+attribute 'core/storage_access',
+          display_name: 'Storage access',
+          description: 'Storage access permissions.',
+          type: 'hash',
+          recipes: ['core::storage'],
+          default: {}
