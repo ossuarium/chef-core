@@ -69,6 +69,8 @@ suites:
       - recipe[core::deployment]
       - recipe[core::firewall]
     attributes:
+      ssl:
+        domain: 'example_com'
       core:
         storage_access:
           default_app_uploads:
@@ -100,6 +102,8 @@ suites:
       - recipe[core::deployment]
       - recipe[core::firewall]
     attributes:
+      ssl:
+        domain: 'example_com'
       core:
         storage_access:
           default_app_uploads:
