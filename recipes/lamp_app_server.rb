@@ -55,7 +55,6 @@ end
 
 link "#{node['php-fpm']['conf_dir']}/00-ioncube.ini" do
   to "#{node['php']['ext_conf_dir']}/ioncube.ini"
-  action node['core']['lamp']['ioncube'] ? :create : :delete
   notifies :reload, 'service[php-fpm]'
   only_if { ::File.exist? "#{node['php']['ext_conf_dir']}/ioncube.ini" }
 end
