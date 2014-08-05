@@ -4,6 +4,7 @@
 #
 
 node.default['annoyances']['debian']['perform_apt_get_update'] = false
+node.default['ssl']['group'] = 'root'
 
 #
 # Configuration for sudo.
@@ -38,6 +39,7 @@ include_recipe 'zsh::default'
 include_recipe 'vim::default'
 include_recipe 'sudo::default'
 include_recipe 'openssh::default'
+include_recipe 'ssl::default' unless node['ssl'].nil?
 include_recipe 'oh-my-zsh::default'
 
 #
