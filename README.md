@@ -25,7 +25,7 @@ Core infrastructure for OurTownRentals.com.
 * nfs (~> 2.0.0)
 * nginx (~> 2.7.2)
 * ntp (~> 1.6.2)
-* nodejs (~> 1.3.0)
+* nodejs (~> 2.0.0)
 * oh-my-zsh (~> 0.4.3)
 * openssh (~> 1.3.4)
 * partial_search (~> 1.0.7)
