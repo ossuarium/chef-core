@@ -9,11 +9,11 @@ provisioner:
   data_bags_path: test/integration/default/data_bags
   nodes_path: test/integration/default/nodes
   attributes:
-    tz: 'America/Los_Angeles'
     authorization:
       sudo:
-        users: [vagrant]
         passwordless: true
+        users: [vagrant]
+    tz: 'America/Los_Angeles'
 
 platforms:
   - name: ubuntu-14.04
@@ -54,11 +54,11 @@ suites:
       - recipe[core::mysql_server]
       - recipe[core::firewall]
     attributes:
+      core:
+        mysql_admin: true
+        mysql_sudoroot_password: password
       mysql:
         server_root_password: password
-      core:
-        mysql_sudoroot_password: password
-        mysql_admin: true
 
   - name: lamp-app
     driver:
@@ -69,29 +69,27 @@ suites:
       - recipe[core::deployment]
       - recipe[core::firewall]
     attributes:
-      ssl:
-        domain: 'example_com'
       core:
-        storage_access:
-          default_app_uploads:
-            readable: true
-            writeable: true
-        services:
-          default: {}
         apps:
           default_app:
             type: lamp
             moniker: app
             service: default
-            database: true
             shared: ["cache"]
             storage:
               default_app_uploads:
                 path: uploads
                 options: rw
+            database: true
         deployments:
           app_default:
             apps: [{type: "lamp", name: "default_app"}]
+        services:
+          default: {}
+        storage_access:
+          default_app_uploads:
+            readable: true
+            writeable: true
 
   - name: static-app
     driver:
@@ -102,14 +100,7 @@ suites:
       - recipe[core::deployment]
       - recipe[core::firewall]
     attributes:
-      ssl:
-        domain: 'example_com'
       core:
-        storage_access:
-          default_app_uploads:
-            readable: true
-        services:
-          default: {}
         apps:
           default_assets:
             type: static
@@ -122,3 +113,10 @@ suites:
         deployments:
           app_default:
             apps: [{type: "static", name: "default_assets"}]
+        services:
+          default: {}
+        storage_access:
+          default_app_uploads:
+            readable: true
+      ssl:
+        domain: 'example_com'
