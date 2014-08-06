@@ -18,6 +18,7 @@ Core infrastructure for OurTownRentals.com.
 * apt (~> 2.4.0)
 * annoyances (~> 1.0.0)
 * build-essential (~> 2.0.4)
+* cron (~> 1.4.0)
 * database (~> 2.2.0)
 * firewall (~> 0.11.8)
 * logrotate (~> 1.6.0)

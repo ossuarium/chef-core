@@ -32,3 +32,9 @@ users_manage node['core']['deployers']['name'] do
   group_id node['core']['deployers']['gid']
   action [:remove, :create]
 end
+
+node['group'][default['core']['deployers']['name']]['members'].each do |member|
+  cron_manage member do
+    action :deny
+  end
+end
