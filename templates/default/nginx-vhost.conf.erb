@@ -1,8 +1,19 @@
 server {
-  listen 80;
+  listen <% if @ssl %>443<% else %>80<% end %>;
   server_name <%= @server_name %>;
 
   access_log <%= node['nginx']['log_dir'] %>/<%= @name %>.access.log;
+
+<% if @ssl -%>
+  ssl on;
+  ssl_certificate_key <%= node['ssl']['keys_dir'] %>/<%= @server_name %>.key;
+
+  <% if ::File.exist? "#{node['ssl']['certs_dir']}/#{@server_name}.combined.crt" -%>
+    ssl_certificate <%= node['ssl']['certs_dir'] %>/<%= @server_name %>.combined.crt;
+  <% else -%>
+    ssl_certificate <%= node['ssl']['certs_dir'] %>/<%= @server_name %>.crt;
+  <% end -%>
+<% end -%>
 
 <% @includes.each do |inc| -%>
   include <%= inc %>;

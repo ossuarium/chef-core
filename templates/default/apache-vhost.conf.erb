@@ -1,4 +1,5 @@
-<VirtualHost *:<%= @server_port || node['apache']['listen_ports'].first %>>
+<VirtualHost *:<%= @server_port ||
+  @ssl ? node['apache']['listen_ports'][1] : node['apache']['listen_ports'].first %>>
   ServerAdmin <%= node['apache']['contact'] %>
   ServerName <%= @server_name %>
 
@@ -24,6 +25,16 @@
 
   ErrorLog <%= node['apache']['log_dir'] %>/<%= @name %>-error.log
   CustomLog <%= node['apache']['log_dir'] %>/<%= @name %>-access.log vhost_combined
+
+<% if @ssl -%>
+  SSLEngine On
+  SSLCertificateFile <%= node['ssl']['certs_dir'] %>/<%= @server_name %>.crt
+  SSLCertificateKeyFile <%= node['ssl']['keys_dir'] %>/<%= @server_name %>.key
+
+  <% if ::File.exist? "#{node['ssl']['certs_dir']}/#{@server_name}.combined.crt" -%>
+    SSLCertificateChainFile <%= node['ssl']['certs_dir'] %>/<%= @server_name %>.combined.crt
+  <% end -%>
+<% end -%>
 
 <% @includes.each do |inc| -%>
   Include <%= inc %>
