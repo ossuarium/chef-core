@@ -8,11 +8,11 @@ server {
   ssl on;
   ssl_certificate_key <%= node['ssl']['keys_dir'] %>/<%= @server_name %>.key;
 
-  <% if ::File.exist? "#{node['ssl']['certs_dir']}/#{@server_name}.combined.crt" -%>
-    ssl_certificate <%= node['ssl']['certs_dir'] %>/<%= @server_name %>.combined.crt;
-  <% else -%>
-    ssl_certificate <%= node['ssl']['certs_dir'] %>/<%= @server_name %>.crt;
-  <% end -%>
+<% if ::File.exist? "#{node['ssl']['certs_dir']}/#{@server_name}.combined.crt" -%>
+  ssl_certificate <%= node['ssl']['certs_dir'] %>/<%= @server_name %>.combined.crt;
+<% else -%>
+  ssl_certificate <%= node['ssl']['certs_dir'] %>/<%= @server_name %>.crt;
+<% end -%>
 <% end -%>
 
 <% @includes.each do |inc| -%>
