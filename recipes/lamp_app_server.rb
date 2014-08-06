@@ -24,6 +24,7 @@ include_recipe 'core::_common_system' if node['core']['common_system']
 include_recipe 'nfs::client4'
 include_recipe 'core::_apache_server'
 include_recipe 'apache2::mod_fastcgi'
+include_recipe 'apache2::mod_ssl' if node['core']['ssl']
 include_recipe 'mysql::client'
 include_recipe 'database::mysql'
 include_recipe 'php::default'

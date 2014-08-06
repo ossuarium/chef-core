@@ -8,6 +8,7 @@
 #
 
 default['core']['common_system'] = true
+default['core']['ssl'] = false
 default['core']['contact'] = 'evan@ourtownrentals.com'
 default['core']['packages'] = []
 

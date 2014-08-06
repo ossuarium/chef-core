@@ -268,6 +268,16 @@ attribute 'core/services',
           recipes: ['core::services'],
           default: {}
 
+attribute 'core/ssl',
+          display_name: 'SSL',
+          description: 'SSL support.',
+          type: 'boolean',
+          recipes: [
+            'core::default',
+            'core::lamp_app_server',
+          ],
+          default: false
+
 attribute 'core/storage',
           display_name: 'Storage',
           description: 'Storage to create on the node.',

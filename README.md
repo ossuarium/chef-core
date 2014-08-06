@@ -75,6 +75,7 @@ Attribute | Default | Description | Choices
 `node['core']['phpmyadmin']['pma_username']` | `"phpmyadmin"` | MySQL username for access to the phpMyAdmin control database. |
 `node['core']['service']['dirs']` | `["shared"]` | Directories to create under each service's directory. |
 `node['core']['services']` | `{}` | Services to create on the node. |
+`node['core']['ssl']` | `false` | SSL support. |
 `node['core']['storage']` | `{}` | Storage to create on the node. |
 `node['core']['storage_access']` | `{}` | Storage access permissions. |
 

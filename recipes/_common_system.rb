@@ -39,7 +39,7 @@ include_recipe 'zsh::default'
 include_recipe 'vim::default'
 include_recipe 'sudo::default'
 include_recipe 'openssh::default'
-include_recipe 'ssl::default' unless node['ssl'].nil?
+include_recipe 'ssl::default' if node['core']['ssl']
 include_recipe 'oh-my-zsh::default'
 
 #
