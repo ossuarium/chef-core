@@ -33,8 +33,8 @@ users_manage node['core']['deployers']['name'] do
   action [:remove, :create]
 end
 
-node['group'][default['core']['deployers']['name']]['members'].each do |member|
-  cron_manage member do
+search('users', "groups:#{node['core']['deployers']['name']}").each do |user|
+  cron_manage user.id do
     action :deny
   end
 end
