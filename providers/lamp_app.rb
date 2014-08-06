@@ -195,6 +195,7 @@ def create_lamp_app
     owner node['core']['deployer']['user']
     group node['core']['deployer']['user']
     mode '0640'
+    only_if { Dir.exist? node['core']['deployer']['home_dir'] }
   end
 end
 
