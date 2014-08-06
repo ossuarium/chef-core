@@ -48,6 +48,7 @@ end
 phpmyadmin 'mysql_admin' do
   service resources('core_service[mysql_admin]')
   alias_path node['core']['mysql_admin_alias_path'] if node['core']['mysql_admin_alias_path']
+  ssl true if node['core']['mysql_admin_ssl']
   vhost true if node['core']['mysql_admin_subdomain']
   domain "#{node['core']['mysql_admin_subdomain']}.#{node['hostname']}" if
     node['core']['mysql_admin_subdomain']

@@ -67,8 +67,9 @@ Attribute | Default | Description | Choices
 `node['core']['lamp']['pass_header']` | `["Authorization"]` | Headers to pass to FCGI. |
 `node['core']['lamp']['thread_multiplier']` | `2` | Sets MaxRequestWorkers to ThreadsPerChild times this multiplier. |
 `node['core']['mysql_admin']` | `false` | Whether to setup phpMyAdmin on the MySQL server. |
-`node['core']['mysql_admin_subdomain']` | `nil` | Subdomain to serve phpMyAdmin from. Prepended to hostname. |
 `node['core']['mysql_admin_alias_path']` | `nil` | Alias path to serve phpMyAdmin from. |
+`node['core']['mysql_admin_ssl']` | `false` | Whether to enable SSL for MySQL admin. |
+`node['core']['mysql_admin_subdomain']` | `nil` | Subdomain to serve phpMyAdmin from. Prepended to hostname. |
 `node['core']['mysql_sudoroot_user']` | `"sudoroot"` | Username for the MySQL admin user. |
 `node['core']['mysql_sudoroot_password']` | `"`secure_password`"` | Password for the MySQL admin user. |
 `node['core']['packages']` | `[]` | Additional packages to install. |

@@ -24,8 +24,9 @@ default['core']['storage_group'] = 'www-data'
 
 default['core']['mysql_sudoroot_user'] = 'sudoroot'
 default['core']['mysql_admin'] = false
-default['core']['mysql_admin_subdomain'] = nil
 default['core']['mysql_admin_alias_path'] = nil
+default['core']['mysql_admin_ssl'] = false
+default['core']['mysql_admin_subdomain'] = nil
 
 #
 # Service configuration.

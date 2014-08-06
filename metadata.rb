@@ -207,16 +207,23 @@ attribute 'core/mysql_admin',
           recipes: ['core::mysql_server'],
           default: false
 
-attribute 'core/mysql_admin_subdomain',
-          display_name: 'MySQL admin subdomain',
-          description: 'Subdomain to serve phpMyAdmin from. Prepended to hostname.',
+attribute 'core/mysql_admin_alias_path',
+          display_name: 'MySQL admin alias path',
+          description: 'Alias path to serve phpMyAdmin from.',
           type: 'string',
           recipes: ['core::mysql_server'],
           default: nil
 
-attribute 'core/mysql_admin_alias_path',
-          display_name: 'MySQL alias path',
-          description: 'Alias path to serve phpMyAdmin from.',
+attribute 'core/mysql_admin_ssl',
+          display_name: 'MySQL admin SSL',
+          description: 'Whether to enable SSL for MySQL admin.',
+          type: 'boolean',
+          recipes: ['core::mysql_server'],
+          default: false
+
+attribute 'core/mysql_admin_subdomain',
+          display_name: 'MySQL admin subdomain',
+          description: 'Subdomain to serve phpMyAdmin from. Prepended to hostname.',
           type: 'string',
           recipes: ['core::mysql_server'],
           default: nil
