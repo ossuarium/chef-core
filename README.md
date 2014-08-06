@@ -85,6 +85,7 @@ Attribute | Default | Description | Choices
 * core::firewall - Configures a firewall.
 * core::storage_server - Configures an NFS storage server.
 * [core::mysql_server](#coremysql_server) - Configures a MySQL server.
+* core::ssl_certificates - Installs SSL certificates from encrypted data bags.
 * core::static_app_server - Configures a static web server.
 * [core::lamp_app_server](#corelamp_app_server) - Configures the Apache HTTP Server, MySQL client, PHP-FPM.
 * core::services - Create core_services based on attributes.
