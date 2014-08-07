@@ -2,7 +2,7 @@ server {
   listen <% if @ssl %>443<% else %>80<% end %>;
   server_name <%= @server_name %>;
 
-  access_log <%= node['nginx']['log_dir'] %>/<%= @name %>.access.log;
+  access_log <%= node['nginx']['log_dir'] %>/<%= @name %><% if @ssl %>.ssl<% end %>.access.log;
 
 <% if @ssl -%>
   ssl on;

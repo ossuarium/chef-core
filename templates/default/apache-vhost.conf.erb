@@ -23,8 +23,8 @@
 
   LogLevel <%= @log_level || 'info' %>
 
-  ErrorLog <%= node['apache']['log_dir'] %>/<%= @name %>-error.log
-  CustomLog <%= node['apache']['log_dir'] %>/<%= @name %>-access.log vhost_combined
+  ErrorLog <%= node['apache']['log_dir'] %>/<%= @name %><% if @ssl %>-ssl<% end %>-error.log
+  CustomLog <%= node['apache']['log_dir'] %>/<%= @name %><% if @ssl %>-ssl<% end %>-access.log vhost_combined
 
 <% if @ssl -%>
   SSLEngine On
