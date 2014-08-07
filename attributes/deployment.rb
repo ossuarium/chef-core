@@ -30,7 +30,7 @@ default['core']['deployers']['gems'] = [
   {name: 'bundler', version: '~> 1.6'},
 ]
 default['core']['deployers']['npm_packages'] = [
-  {name: 'bower', version: '1.3.5'},
+  {name: 'bower', version: '1.3.8'},
 ]
 default['core']['deployers']['dirs'] = %w(.bundle)
 default['core']['deployers']['files'] = {
