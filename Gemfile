@@ -41,4 +41,4 @@ group :integration do
   gem 'knife-solo_data_bag', '~> 1.1.0'
 end
 
-gem 'fuubar', '~> 2.0.0.rc1', group: [:development, :unit]
+gem 'fuubar', '~> 2.0.0', group: [:development, :unit]
