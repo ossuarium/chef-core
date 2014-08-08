@@ -7,7 +7,7 @@ version          '0.0.0'
 
 supports 'Ubuntu', '14.04'
 
-depends 'apache2', '~> 1.10.5'
+depends 'apache2', '~> 2.0.0'
 depends 'apt', '~> 2.4.0'
 depends 'annoyances', '~> 1.0.0'
 depends 'build-essential', '~> 2.0.4'

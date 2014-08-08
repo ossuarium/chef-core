@@ -14,7 +14,7 @@ Core infrastructure for OurTownRentals.com.
 
 ### Cookbooks:
 
-* apache2 (~> 1.10.5)
+* apache2 (~> 2.0.0)
 * apt (~> 2.4.0)
 * annoyances (~> 1.0.0)
 * build-essential (~> 2.0.4)
