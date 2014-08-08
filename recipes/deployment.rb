@@ -40,6 +40,10 @@ node['core']['deployment']['packages'].each do |pkg|
   end
 end
 
+#
+# Setup deployer.
+#
+
 directory "#{node['core']['deployer']['home_dir']}/bin" do
   owner node['core']['deployer']['user']
   group node['core']['deployers']['name']
@@ -60,15 +64,6 @@ search(
   'users', "groups:#{node['core']['deployers']['name']} AND NOT action:remove"
 ).each do |user|
   home = "#{node['core']['home_dir']}/#{user.id}"
-
-  node.default['rbenv']['user_installs'] << {
-    user: user.id,
-    rubies: [node['core']['deployers']['ruby_version']],
-    global: node['core']['deployers']['ruby_version'],
-    gems: {
-      node['core']['deployers']['ruby_version'] => node['core']['deployers']['gems']
-    }
-  }
 
   directory "#{home}/#{node['core']['deployers']['deployments_dir']}" do
     owner user.id
@@ -91,6 +86,8 @@ search(
       mode '0640'
     end
   end
+
+  node.default['rbenv']['group_users'] << user.id
 end
 
 #
@@ -109,11 +106,22 @@ end
 # Install rbenv, Ruby, and gems for deployers.
 #
 
-node.set['ruby_build']['upgrade'] = 'sync'
-node.set['rbenv']['upgrade'] = 'sync'
+include_recipe 'rbenv::default'
+include_recipe 'rbenv::ruby_build'
 
-include_recipe 'ruby_build::default'
-include_recipe 'rbenv::user'
+rbenv_ruby node['core']['deployers']['ruby_version']
+
+node['core']['deployers']['gems'].each do |g|
+  rbenv_gem g[:name] do
+    version g[:version]
+    ruby_version node['core']['deployers']['ruby_version']
+    action :upgrade
+  end
+end
+
+#
+# Create deployments.
+#
 
 node['core']['deployments'].each do |deployment, params|
   core_deployment deployment do
