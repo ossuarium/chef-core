@@ -36,7 +36,7 @@ Core infrastructure for OurTownRentals.com.
 * php-fpm (~> 0.6.10)
 * rbenv (~> 1.7.1)
 * ssl (~> 1.1.1)
-* sudo (~> 2.6.0)
+* sudo (~> 2.7.0)
 * timezone-ii (~> 0.2.0)
 * users (~> 1.7.0)
 * vim (~> 1.1.2)
