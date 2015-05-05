@@ -22,6 +22,9 @@ default['core']['storage_group'] = 'www-data'
 # Configuration for MySQL.
 #
 
+default['core']['mysql_instance'] = 'default'
+default['core']['mysql_version'] = '5.5'
+default['core']['mysql_port'] = '3307'
 default['core']['mysql_sudoroot_user'] = 'sudoroot'
 default['core']['mysql_admin'] = false
 default['core']['mysql_admin_alias_path'] = nil

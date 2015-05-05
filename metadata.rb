@@ -7,31 +7,32 @@ version          '0.0.0'
 
 supports 'Ubuntu', '14.04'
 
-depends 'apache2', '~> 2.0.0'
-depends 'apt', '~> 2.4.0'
+depends 'apache2', '~> 3.0.1'
+depends 'apt', '~> 2.7.0'
 depends 'annoyances', '~> 1.0.0'
-depends 'build-essential', '~> 2.0.4'
-depends 'cron', '~> 1.4.0'
-depends 'database', '~> 2.2.0'
-depends 'firewall', '~> 0.11.8'
-depends 'logrotate', '~> 1.6.0'
-depends 'mysql', '~> 5.3.6'
-depends 'nfs', '~> 2.0.0'
+depends 'build-essential', '~> 2.2.3'
+depends 'cron', '~> 1.6.1'
+depends 'database', '~> 4.0.6'
+depends 'firewall', '~> 1.1.0'
+depends 'logrotate', '~> 1.9.1'
+depends 'mysql', '~> 6.0.9'
+depends 'mysql2_chef_gem', '~> 1.0.1'
+depends 'nfs', '~> 2.1.0'
 depends 'nginx', '~> 2.7.2'
-depends 'ntp', '~> 1.6.2'
-depends 'nodejs', '~> 2.0.0'
+depends 'ntp', '~> 1.8.2'
+depends 'nodejs', '~> 2.4.0'
 depends 'oh-my-zsh', '~> 0.4.3'
-depends 'openssh', '~> 1.3.4'
+depends 'openssh', '~> 1.4.0'
 depends 'partial_search', '~> 1.0.7'
-depends 'php', '~> 1.4.6'
+depends 'php', '~> 1.5.0'
 depends 'php-modules', '~> 0.0.0'
 depends 'phpmyadmin', '~> 0.0.0'
-depends 'php-fpm', '~> 0.6.10'
+depends 'php-fpm', '~> 0.7.4'
 depends 'rbenv', '~> 1.7.1'
 depends 'ssl', '~> 1.1.1'
 depends 'sudo', '~> 2.7.0'
 depends 'timezone-ii', '~> 0.2.0'
-depends 'users', '~> 1.7.0'
+depends 'users', '~> 1.8.2'
 depends 'vim', '~> 1.1.2'
 depends 'zsh', '~> 1.0.0'
 
@@ -227,6 +228,27 @@ attribute 'core/mysql_admin_subdomain',
           recipes: ['core::mysql_server'],
           default: nil
 
+attribute 'core/mysql_instance',
+          display_name: 'MySQL instance name',
+          description: 'Name for the MySQL instance.',
+          type: 'string',
+          recipes: ['core::mysql_server'],
+          default: 'default'
+
+attribute 'core/mysql_port',
+          display_name: 'MySQL port',
+          description: 'Port for the MySQL server.',
+          type: 'string',
+          recipes: ['core::mysql_server'],
+          default: '3307'
+
+attribute 'core/mysql_root_password',
+          display_name: 'MySQL root password',
+          description: 'Password for the MySQL root user.',
+          type: 'string',
+          recipes: ['core::mysql_server'],
+          default: '`secure_password`'
+
 attribute 'core/mysql_sudoroot_user',
           display_name: 'MySQL admin username',
           description: 'Username for the MySQL admin user.',
@@ -241,25 +263,18 @@ attribute 'core/mysql_sudoroot_password',
           recipes: ['core::mysql_server'],
           default: '`secure_password`'
 
+attribute 'core/mysql_version',
+          display_name: 'MySQL version',
+          description: 'Version of the MySQL server.',
+          type: 'string',
+          recipes: ['core::mysql_server'],
+          default: '5.6'
+
 attribute 'core/packages',
           display_name: 'Packages',
           description: 'Additional packages to install.',
           type: 'array',
           default: []
-
-attribute 'core/phpmyadmin/pma_database',
-          display_name: 'phpMyAdmin database name',
-          description: 'Name to use for the phpMyAdmin control database.',
-          type: 'string',
-          recipes: ['core::mysql_server'],
-          default: 'phpmyadmin'
-
-attribute 'core/phpmyadmin/pma_username',
-          display_name: 'phpMyAdmin database username',
-          description: 'MySQL username for access to the phpMyAdmin control database.',
-          type: 'string',
-          recipes: ['core::mysql_server'],
-          default: 'phpmyadmin'
 
 attribute 'core/service/dirs',
           display_name: 'Service directories',

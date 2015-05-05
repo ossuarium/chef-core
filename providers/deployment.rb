@@ -57,7 +57,7 @@ def create_deployment
           user: user.id,
           deployments_dir:
             "#{node['core']['home_dir']}/#{user.id}/" +
-            node['core']['deployers']['deployments_dir'],
+              node['core']['deployers']['deployments_dir'],
           apps: new_resource.apps.map do |a|
             YAML.load_file(
               "#{node['core']['deployer']['home_dir']}/apps/#{a[:type]}_#{a[:name]}.yml"

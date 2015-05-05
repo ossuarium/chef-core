@@ -12,7 +12,7 @@ setup phpMyAdmin running on Apache using FastCGI and PHP-FPM.
 
 ::Chef::Recipe.send :include, Opscode::OpenSSL::Password
 
-node.set_unless['mysql']['server_root_password'] = secure_password
+node.set_unless['core']['mysql_root_password'] = secure_password
 node.set_unless['core']['mysql_sudoroot_password'] = secure_password
 
 node.default['core']['servers']['mysql'] = true
@@ -21,15 +21,29 @@ node.default['core']['servers']['http'] = node['core']['mysql_admin']
 node.default['core']['servers']['https'] = node['core']['mysql_admin']
 
 include_recipe 'core::_common_system' if node['core']['common_system']
-include_recipe 'mysql::server'
-include_recipe 'mysql::client'
-include_recipe 'database::mysql'
+
+mysql_service node['core']['mysql_instance'] do
+  port node['core']['mysql_port']
+  version node['core']['mysql_version']
+  initial_root_password node['core']['mysql_root_password']
+  action [:create, :start]
+end
+
+mysql_client 'default' do
+  action :create
+end
+
+mysql2_chef_gem 'default' do
+  action :install
+end
+
 include_recipe 'phpmyadmin::default' if node['core']['mysql_admin']
 
 mysql_database_user node['core']['mysql_sudoroot_user'] do
   connection host: 'localhost',
+             socket: "#{node['core']['run_dir']}/mysql-#{node['core']['mysql_instance']}/mysqld.sock",
              username: 'root',
-             password: node['mysql']['server_root_password']
+             password: node['core']['mysql_root_password']
   password node['core']['mysql_sudoroot_password']
   host Chef::Recipe::PrivateNetwork.new(node).subnet
   grant_option true

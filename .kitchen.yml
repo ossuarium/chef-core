@@ -56,9 +56,8 @@ suites:
     attributes:
       core:
         mysql_admin: true
+        mysql_root_password: password
         mysql_sudoroot_password: password
-      mysql:
-        server_root_password: password
 
   - name: lamp-app
     driver:

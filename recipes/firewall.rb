@@ -45,14 +45,14 @@ end
 
 firewall_rule 'mysql' do
   protocol :tcp
-  port node['mysql']['port'].to_i
+  port node['core']['mysql_port'].to_i
   interface node['core']['private_interface']
   action node['core']['servers']['mysql'] ? :allow : :reject
 end
 
 firewall_rule 'nfs' do
   protocol :tcp
-  ports [
+  port [
     node['nfs']['port']['statd'],
     node['nfs']['port']['statd_out'],
     node['nfs']['port']['mountd'],

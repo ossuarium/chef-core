@@ -14,31 +14,32 @@ Core infrastructure for OurTownRentals.com.
 
 ### Cookbooks:
 
-* apache2 (~> 2.0.0)
-* apt (~> 2.4.0)
+* apache2 (~> 3.0.1)
+* apt (~> 2.7.0)
 * annoyances (~> 1.0.0)
-* build-essential (~> 2.0.4)
-* cron (~> 1.4.0)
-* database (~> 2.2.0)
-* firewall (~> 0.11.8)
-* logrotate (~> 1.6.0)
-* mysql (~> 5.3.6)
-* nfs (~> 2.0.0)
+* build-essential (~> 2.2.3)
+* cron (~> 1.6.1)
+* database (~> 4.0.6)
+* firewall (~> 1.1.0)
+* logrotate (~> 1.9.1)
+* mysql (~> 6.0.9)
+* mysql2_chef_gem (~> 1.0.1)
+* nfs (~> 2.1.0)
 * nginx (~> 2.7.2)
-* ntp (~> 1.6.2)
-* nodejs (~> 2.0.0)
+* ntp (~> 1.8.2)
+* nodejs (~> 2.4.0)
 * oh-my-zsh (~> 0.4.3)
-* openssh (~> 1.3.4)
+* openssh (~> 1.4.0)
 * partial_search (~> 1.0.7)
-* php (~> 1.4.6)
+* php (~> 1.5.0)
 * php-modules (~> 0.0.0)
 * phpmyadmin (~> 0.0.0)
-* php-fpm (~> 0.6.10)
+* php-fpm (~> 0.7.4)
 * rbenv (~> 1.7.1)
 * ssl (~> 1.1.1)
 * sudo (~> 2.7.0)
 * timezone-ii (~> 0.2.0)
-* users (~> 1.7.0)
+* users (~> 1.8.2)
 * vim (~> 1.1.2)
 * zsh (~> 1.0.0)
 
@@ -69,11 +70,12 @@ Attribute | Default | Description | Choices
 `node['core']['mysql_admin_alias_path']` | `nil` | Alias path to serve phpMyAdmin from. |
 `node['core']['mysql_admin_ssl']` | `false` | Whether to enable SSL for MySQL admin. |
 `node['core']['mysql_admin_subdomain']` | `nil` | Subdomain to serve phpMyAdmin from. Prepended to hostname. |
+`node['core']['mysql_port']` | `"3307"` | Port for the MySQL server. |
+`node['core']['mysql_root_password']` | `"`secure_password`"` | Password for the MySQL root user. |
 `node['core']['mysql_sudoroot_user']` | `"sudoroot"` | Username for the MySQL admin user. |
 `node['core']['mysql_sudoroot_password']` | `"`secure_password`"` | Password for the MySQL admin user. |
+`node['core']['mysql_version']` | `"5.6"` | Version of the MySQL server. |
 `node['core']['packages']` | `[]` | Additional packages to install. |
-`node['core']['phpmyadmin']['pma_database']` | `"phpmyadmin"` | Name to use for the phpMyAdmin control database. |
-`node['core']['phpmyadmin']['pma_username']` | `"phpmyadmin"` | MySQL username for access to the phpMyAdmin control database. |
 `node['core']['service']['dirs']` | `["shared"]` | Directories to create under each service's directory. |
 `node['core']['services']` | `{}` | Services to create on the node. |
 `node['core']['ssl']` | `false` | SSL support. |
