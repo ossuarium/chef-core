@@ -5,8 +5,10 @@
   "automatic": {
     "core": {
       "private_interface": "eth1",
-      "mysql_sudoroot_user": "sudoroot",
-      "mysql_sudoroot_password": "password"
+      "mysql": {
+        "sudoroot_user": "sudoroot",
+        "sudoroot_password": "password"
+      }
     },
     "network": {
       "interfaces": {

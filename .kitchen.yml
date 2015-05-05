@@ -56,9 +56,10 @@ suites:
       - recipe[core::firewall]
     attributes:
       core:
-        mysql_admin: true
-        mysql_root_password: password
-        mysql_sudoroot_password: password
+        mysql:
+          admin: true
+          root_password: password
+          sudoroot_password: password
 
   - name: lamp-app
     driver:
