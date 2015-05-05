@@ -22,14 +22,14 @@ default['core']['storage_group'] = 'www-data'
 # Configuration for MySQL.
 #
 
-default['core']['mysql_instance'] = 'default'
-default['core']['mysql_version'] = '5.5'
-default['core']['mysql_port'] = '3307'
-default['core']['mysql_sudoroot_user'] = 'sudoroot'
-default['core']['mysql_admin'] = false
-default['core']['mysql_admin_alias_path'] = nil
-default['core']['mysql_admin_ssl'] = false
-default['core']['mysql_admin_subdomain'] = nil
+default['core']['mysql']['instance'] = 'default'
+default['core']['mysql']['version'] = '5.5'
+default['core']['mysql']['port'] = '3307'
+default['core']['mysql']['sudoroot_user'] = 'sudoroot'
+default['core']['mysql']['admin'] = false
+default['core']['mysql']['admin_alias_path'] = nil
+default['core']['mysql']['admin_ssl'] = false
+default['core']['mysql']['admin_subdomain'] = nil
 
 #
 # Service configuration.

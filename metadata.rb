@@ -200,70 +200,70 @@ attribute 'core/lamp/thread_multiplier',
           recipes: ['core::lamp_app_server'],
           default: 2
 
-attribute 'core/mysql_admin',
+attribute 'core/mysql/admin',
           display_name: 'MySQL admin',
           description: 'Whether to setup phpMyAdmin on the MySQL server.',
           type: 'boolean',
           recipes: ['core::mysql_server'],
           default: false
 
-attribute 'core/mysql_admin_alias_path',
+attribute 'core/mysql/admin_alias_path',
           display_name: 'MySQL admin alias path',
           description: 'Alias path to serve phpMyAdmin from.',
           type: 'string',
           recipes: ['core::mysql_server'],
           default: nil
 
-attribute 'core/mysql_admin_ssl',
+attribute 'core/mysql/admin_ssl',
           display_name: 'MySQL admin SSL',
           description: 'Whether to enable SSL for MySQL admin.',
           type: 'boolean',
           recipes: ['core::mysql_server'],
           default: false
 
-attribute 'core/mysql_admin_subdomain',
+attribute 'core/mysql/admin_subdomain',
           display_name: 'MySQL admin subdomain',
           description: 'Subdomain to serve phpMyAdmin from. Prepended to hostname.',
           type: 'string',
           recipes: ['core::mysql_server'],
           default: nil
 
-attribute 'core/mysql_instance',
+attribute 'core/mysql/instance',
           display_name: 'MySQL instance name',
           description: 'Name for the MySQL instance.',
           type: 'string',
           recipes: ['core::mysql_server'],
           default: 'default'
 
-attribute 'core/mysql_port',
+attribute 'core/mysql/port',
           display_name: 'MySQL port',
           description: 'Port for the MySQL server.',
           type: 'string',
           recipes: ['core::mysql_server'],
           default: '3307'
 
-attribute 'core/mysql_root_password',
+attribute 'core/mysql/root_password',
           display_name: 'MySQL root password',
           description: 'Password for the MySQL root user.',
           type: 'string',
           recipes: ['core::mysql_server'],
           default: '`secure_password`'
 
-attribute 'core/mysql_sudoroot_user',
+attribute 'core/mysql/sudoroot_user',
           display_name: 'MySQL admin username',
           description: 'Username for the MySQL admin user.',
           type: 'string',
           recipes: ['core::mysql_server'],
           default: 'sudoroot'
 
-attribute 'core/mysql_sudoroot_password',
+attribute 'core/mysql/sudoroot_password',
           display_name: 'MySQL admin password',
           description: 'Password for the MySQL admin user.',
           type: 'string',
           recipes: ['core::mysql_server'],
           default: '`secure_password`'
 
-attribute 'core/mysql_version',
+attribute 'core/mysql/version',
           display_name: 'MySQL version',
           description: 'Version of the MySQL server.',
           type: 'string',

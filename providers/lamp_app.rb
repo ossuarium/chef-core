@@ -75,8 +75,8 @@ def set_mysql_connection
 
   new_resource.mysql_connection ||= {
     host: Chef::Recipe::PrivateNetwork.new(db_node).ip,
-    username: db_node['core']['mysql_sudoroot_user'],
-    password: db_node['core']['mysql_sudoroot_password']
+    username: db_node['core']['mysql']['sudoroot_user'],
+    password: db_node['core']['mysql']['sudoroot_password']
   }
 end
 

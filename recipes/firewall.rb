@@ -45,7 +45,7 @@ end
 
 firewall_rule 'mysql' do
   protocol :tcp
-  port node['core']['mysql_port'].to_i
+  port node['core']['mysql']['port'].to_i
   interface node['core']['private_interface']
   action node['core']['servers']['mysql'] ? :allow : :reject
 end

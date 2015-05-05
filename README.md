@@ -66,15 +66,16 @@ Attribute | Default | Description | Choices
 `node['core']['lamp']['handler_extensions']` | `["php"]` | File extensions to process with FCGI. |
 `node['core']['lamp']['pass_header']` | `["Authorization"]` | Headers to pass to FCGI. |
 `node['core']['lamp']['thread_multiplier']` | `2` | Sets MaxRequestWorkers to ThreadsPerChild times this multiplier. |
-`node['core']['mysql_admin']` | `false` | Whether to setup phpMyAdmin on the MySQL server. |
-`node['core']['mysql_admin_alias_path']` | `nil` | Alias path to serve phpMyAdmin from. |
-`node['core']['mysql_admin_ssl']` | `false` | Whether to enable SSL for MySQL admin. |
-`node['core']['mysql_admin_subdomain']` | `nil` | Subdomain to serve phpMyAdmin from. Prepended to hostname. |
-`node['core']['mysql_port']` | `"3307"` | Port for the MySQL server. |
-`node['core']['mysql_root_password']` | `"`secure_password`"` | Password for the MySQL root user. |
-`node['core']['mysql_sudoroot_user']` | `"sudoroot"` | Username for the MySQL admin user. |
-`node['core']['mysql_sudoroot_password']` | `"`secure_password`"` | Password for the MySQL admin user. |
-`node['core']['mysql_version']` | `"5.6"` | Version of the MySQL server. |
+`node['core']['mysql']['admin']` | `false` | Whether to setup phpMyAdmin on the MySQL server. |
+`node['core']['mysql']['admin_alias_path']` | `nil` | Alias path to serve phpMyAdmin from. |
+`node['core']['mysql']['admin_ssl']` | `false` | Whether to enable SSL for MySQL admin. |
+`node['core']['mysql']['admin_subdomain']` | `nil` | Subdomain to serve phpMyAdmin from. Prepended to hostname. |
+`node['core']['mysql']['instance']` | `"default"` | Name for the MySQL instance. |
+`node['core']['mysql']['port']` | `"3307"` | Port for the MySQL server. |
+`node['core']['mysql']['root_password']` | `"`secure_password`"` | Password for the MySQL root user. |
+`node['core']['mysql']['sudoroot_user']` | `"sudoroot"` | Username for the MySQL admin user. |
+`node['core']['mysql']['sudoroot_password']` | `"`secure_password`"` | Password for the MySQL admin user. |
+`node['core']['mysql']['version']` | `"5.6"` | Version of the MySQL server. |
 `node['core']['packages']` | `[]` | Additional packages to install. |
 `node['core']['service']['dirs']` | `["shared"]` | Directories to create under each service's directory. |
 `node['core']['services']` | `{}` | Services to create on the node. |
