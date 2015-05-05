@@ -6,6 +6,9 @@
 
 Core infrastructure for OurTownRentals.com.
 
+### Usage
+
+
 ## Requirements
 
 ### Platforms
@@ -45,43 +48,43 @@ Core infrastructure for OurTownRentals.com.
 
 ## Attributes
 
-Attribute | Default | Description | Choices
-----------|---------|-------------|--------
-`node['core']['apps']` | `{}` | Apps to create on the node. |
-`node['core']['common_system']` | `true` | Whether to include the common system configuration. |
-`node['core']['contact']` | `"evan@ourtownrentals.com"` | Administrative contact email. |
-`node['core']['deployer']['user']` | `"deployer"` | System username for the deployer user. |
-`node['core']['deployer']['home_dir']` | `"node['core']['home_dir']/node['core']['deployer']['user']"` | Home directory for the deployer user. |
-`node['core']['deployer']['sudo_commands']` | `["/bin/chgrp"]` | Commands the deployer user is allowed to run as root using sudo. |
-`node['core']['deployers']['name']` | `"deployers"` | Group name for the deployers group. |
-`node['core']['deployers']['gid']` | `3300` | Group id for the deployers group. |
-`node['core']['deployers']['deployments_dir']` | `"deployments"` | Directory under each deploy user's home directory for deployments. |
-`node['core']['deployers']['dirs']` | `[".bundle"]` | Directories to create under each deployer's home directory. |
-`node['core']['deployers']['files']` | `{"ruby-.gemrc"=>".gemrc", "bundler-config"=>".bundle/config"}` | Files to create under each deployer's home directory. |
-`node['core']['deployers']['npm_packages']` | `[{"name"=>"bower", "version"=>"1.3.5"}]` | Node packages to install via npm for each deployer. |
-`node['core']['deployers']['ruby_version']` | `"2.1.2"` | Ruby version each deployer will use. |
-`node['core']['deployers']['gems']` | `[{"name"=>"bundler", "version"=>"~> 1.6"}]` | Ruby gems to install for each deployer. |
-`node['core']['deployment']['packages']` | `[]` | Additional packages required for deployments. |
-`node['core']['deployments']` | `{}` | Deployments to create on the node. |
-`node['core']['lamp']['handler_extensions']` | `["php"]` | File extensions to process with FCGI. |
-`node['core']['lamp']['pass_header']` | `["Authorization"]` | Headers to pass to FCGI. |
-`node['core']['lamp']['thread_multiplier']` | `2` | Sets MaxRequestWorkers to ThreadsPerChild times this multiplier. |
-`node['core']['mysql']['admin']` | `false` | Whether to setup phpMyAdmin on the MySQL server. |
-`node['core']['mysql']['admin_alias_path']` | `nil` | Alias path to serve phpMyAdmin from. |
-`node['core']['mysql']['admin_ssl']` | `false` | Whether to enable SSL for MySQL admin. |
-`node['core']['mysql']['admin_subdomain']` | `nil` | Subdomain to serve phpMyAdmin from. Prepended to hostname. |
-`node['core']['mysql']['instance']` | `"default"` | Name for the MySQL instance. |
-`node['core']['mysql']['port']` | `"3307"` | Port for the MySQL server. |
-`node['core']['mysql']['root_password']` | `"`secure_password`"` | Password for the MySQL root user. |
-`node['core']['mysql']['sudoroot_user']` | `"sudoroot"` | Username for the MySQL admin user. |
-`node['core']['mysql']['sudoroot_password']` | `"`secure_password`"` | Password for the MySQL admin user. |
-`node['core']['mysql']['version']` | `"5.6"` | Version of the MySQL server. |
-`node['core']['packages']` | `[]` | Additional packages to install. |
-`node['core']['service']['dirs']` | `["shared"]` | Directories to create under each service's directory. |
-`node['core']['services']` | `{}` | Services to create on the node. |
-`node['core']['ssl']` | `false` | SSL support. |
-`node['core']['storage']` | `{}` | Storage to create on the node. |
-`node['core']['storage_access']` | `{}` | Storage access permissions. |
+Attribute | Description | Default | Choices
+----------|-------------|---------|--------
+`node['core']['apps']` | `Apps to create on the node.` | {} |
+`node['core']['common_system']` | `Whether to include the common system configuration.` | true |
+`node['core']['contact']` | `Administrative contact email.` | "evan@ourtownrentals.com" |
+`node['core']['deployer']['user']` | `System username for the deployer user.` | "deployer" |
+`node['core']['deployer']['home_dir']` | `Home directory for the deployer user.` | "node['core']['home_dir']/node['core']['deployer']['user']" |
+`node['core']['deployer']['sudo_commands']` | `Commands the deployer user is allowed to run as root using sudo.` | ["/bin/chgrp"] |
+`node['core']['deployers']['name']` | `Group name for the deployers group.` | "deployers" |
+`node['core']['deployers']['gid']` | `Group id for the deployers group.` | 3300 |
+`node['core']['deployers']['deployments_dir']` | `Directory under each deploy user's home directory for deployments.` | "deployments" |
+`node['core']['deployers']['dirs']` | `Directories to create under each deployer's home directory.` | [".bundle"] |
+`node['core']['deployers']['files']` | `Files to create under each deployer's home directory.` | {"ruby-.gemrc"=>".gemrc", "bundler-config"=>".bundle/config"} |
+`node['core']['deployers']['npm_packages']` | `Node packages to install via npm for each deployer.` | [{"name"=>"bower", "version"=>"1.3.5"}] |
+`node['core']['deployers']['ruby_version']` | `Ruby version each deployer will use.` | "2.1.2" |
+`node['core']['deployers']['gems']` | `Ruby gems to install for each deployer.` | [{"name"=>"bundler", "version"=>"~> 1.6"}] |
+`node['core']['deployment']['packages']` | `Additional packages required for deployments.` | [] |
+`node['core']['deployments']` | `Deployments to create on the node.` | {} |
+`node['core']['lamp']['handler_extensions']` | `File extensions to process with FCGI.` | ["php"] |
+`node['core']['lamp']['pass_header']` | `Headers to pass to FCGI.` | ["Authorization"] |
+`node['core']['lamp']['thread_multiplier']` | `Sets MaxRequestWorkers to ThreadsPerChild times this multiplier.` | 2 |
+`node['core']['mysql']['admin']` | `Whether to setup phpMyAdmin on the MySQL server.` | false |
+`node['core']['mysql']['admin_alias_path']` | `Alias path to serve phpMyAdmin from.` | nil |
+`node['core']['mysql']['admin_ssl']` | `Whether to enable SSL for MySQL admin.` | false |
+`node['core']['mysql']['admin_subdomain']` | `Subdomain to serve phpMyAdmin from. Prepended to hostname.` | nil |
+`node['core']['mysql']['instance']` | `Name for the MySQL instance.` | "default" |
+`node['core']['mysql']['port']` | `Port for the MySQL server.` | "3307" |
+`node['core']['mysql']['root_password']` | `Password for the MySQL root user.` | "`secure_password`" |
+`node['core']['mysql']['sudoroot_user']` | `Username for the MySQL admin user.` | "sudoroot" |
+`node['core']['mysql']['sudoroot_password']` | `Password for the MySQL admin user.` | "`secure_password`" |
+`node['core']['mysql']['version']` | `Version of the MySQL server.` | "5.6" |
+`node['core']['packages']` | `Additional packages to install.` | [] |
+`node['core']['service']['dirs']` | `Directories to create under each service's directory.` | ["shared"] |
+`node['core']['services']` | `Services to create on the node.` | {} |
+`node['core']['ssl']` | `SSL support.` | false |
+`node['core']['storage']` | `Storage to create on the node.` | {} |
+`node['core']['storage_access']` | `Storage access permissions.` | {} |
 
 ## Recipes
 
@@ -269,7 +272,7 @@ To submit a patch:
 
 ## License
 
-Copyright © 2014-2015-2015 OurTownRentals.com
+Copyright © 2014-2015 OurTownRentals.com
 
 ## Warranty
 
