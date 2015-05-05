@@ -30,6 +30,7 @@ mysql_service node['core']['mysql']['instance'] do
 end
 
 mysql_client 'default' do
+  version node['core']['mysql']['version']
   action :create
 end
 

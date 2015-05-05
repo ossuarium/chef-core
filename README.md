@@ -78,7 +78,7 @@ Attribute | Description | Default | Choices
 `node['core']['mysql']['root_password']` | `Password for the MySQL root user.` | "`secure_password`" |
 `node['core']['mysql']['sudoroot_user']` | `Username for the MySQL admin user.` | "sudoroot" |
 `node['core']['mysql']['sudoroot_password']` | `Password for the MySQL admin user.` | "`secure_password`" |
-`node['core']['mysql']['version']` | `Version of the MySQL server.` | "5.6" |
+`node['core']['mysql']['version']` | `Version of the MySQL server.` | "5.5" |
 `node['core']['packages']` | `Additional packages to install.` | [] |
 `node['core']['service']['dirs']` | `Directories to create under each service's directory.` | ["shared"] |
 `node['core']['services']` | `Services to create on the node.` | {} |

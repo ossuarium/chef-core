@@ -268,7 +268,7 @@ attribute 'core/mysql/version',
           description: 'Version of the MySQL server.',
           type: 'string',
           recipes: ['core::mysql_server'],
-          default: '5.6'
+          default: '5.5'
 
 attribute 'core/packages',
           display_name: 'Packages',
